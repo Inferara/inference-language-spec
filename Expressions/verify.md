@@ -2,14 +2,15 @@
 
 ## Description
 
-Keyword `verify` may appear in a body of any function of specification module regardless of its ND-modifiers. Putting it in front of any non-deterministic block or expression with `total` semantic indicates that it must be checked for totality within particular context of current deterministic execution path. If successful termination of such block or expression can be confirmed for every possible execution path, verification discards all effects of non-deterministic computation and simply passes unchanged execution state down the normal control flow. Otherwise, verification process doesn't terminate at all.
+The keyword `verify` can be used in the body of a proof function even if it has non-deterministic modifiers. When you put `verify` in front of a non-deterministic block or expression marked with `total`, it means this block must be checked to ensure it always finishes correctly in the current deterministic context. If it can be confirmed that the block finishes correctly in every possible scenario, the `verify` process ignores any non-deterministic effects and continues normally. If it can't be confirmed, the verification process will not finish.
 
 ## Example
 
 Verification of total block:
 
 ```
-type Pred = fn(x: SomeType) : bool;
+external fn predicate (Type) -> bool;
+type Pred = typeof(predicate);
 
 fn proof(a: Pred, b: Pred) {
   verify total {
@@ -17,15 +18,14 @@ fn proof(a: Pred, b: Pred) {
     filter assert a(x);
     assert b(x);
   };
-
-  print 'Assertion b(x) is true for every x satisfying precondition a(x)';
 }
 ```
 
 Verification of total function:
 
 ```
-type Pred = fn(x: SomeType) : bool;
+external fn predicate (Type) -> bool;
+type Pred = typeof(predicate);
 
 total fn implies(a: Pred, b: Pred) {
   let undef x: SomeType;
@@ -35,7 +35,5 @@ total fn implies(a: Pred, b: Pred) {
 
 fn proof(a: Pred, b: Pred) {
   verify implies(a, b);
-
-  print 'Assertion b(x) is true for every x satisfying precondition a(x)';
 }
 ```
