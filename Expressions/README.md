@@ -1,3 +1,3 @@
 # Expressions
 
-- [Apply](apply.md)
+- [Verify](./verify.md)
