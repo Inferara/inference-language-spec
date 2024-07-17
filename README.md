@@ -10,7 +10,7 @@
 - §5 Basic concepts
 - §6 Types
 - §7 Variables
-- §8 Expressions
+- [§8](./Expressions/README.md) Expressions
 - §9 Statements
 - §10 Contexts
 - §11 Functions
