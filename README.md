@@ -11,7 +11,7 @@
 - §6 Types
 - §7 Variables
 - [§8](./Expressions/README.md) Expressions
-- §9 Statements
+- [§9](./Statements/README.md) Statements
 - §10 Contexts
 - §11 Functions
 - §12 Constants
