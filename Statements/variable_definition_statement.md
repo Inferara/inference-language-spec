@@ -2,21 +2,17 @@
 
 ## Description
 
-### `undef` modifier
+TBD
 
-When variable is declared with `undef` modifier, such definition has type but omits initialization. Declaration of undefined variable may appear only inside blocks or functions with non-deterministic semantics (with `total` or `filter` modifiers). It may be interpreted as syntactic sugar of the following nature:
+## Modifiers
 
-```
-let undef x: SomeType;
-```
+### `undef`
 
-is functionally equivalent to
+When a variable is declared with the `undef` modifier, such definition has a type but omits initialization. Declaration of an undefined variable may appear only inside blocks or functions with non-deterministic semantics (with `total` or `filter` modifiers).
 
 ```
-let x = SomeType::undef();
+let undef x: Type;
 ```
+where `undef` for `x` splits the execution path of nondeterministic computation into sub-paths. Each sub-path returns one of every possible `Type` instances.
 
-where `SomeType::undef()` is splitting current execution path of nondeterministic computation into sub-paths, on each of which it returns one of every possible `SomeType` instances.
-
-## Example
-
+## Examples
