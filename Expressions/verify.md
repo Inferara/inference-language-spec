@@ -9,7 +9,7 @@ The keyword `verify` can be used in the body of a proof function. When you put `
 Verification of total block:
 
 ```
-external fn predicate (Type) -> bool;
+external fn predicate (SomeType) -> bool;
 type Pred = typeof(predicate);
 
 fn proof(a: Pred, b: Pred) {
@@ -24,7 +24,7 @@ fn proof(a: Pred, b: Pred) {
 Verification of total function:
 
 ```
-external fn predicate (Type) -> bool;
+external fn predicate (SomeType) -> bool;
 type Pred = typeof(predicate);
 
 total fn implies(a: Pred, b: Pred) {
