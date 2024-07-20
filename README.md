@@ -12,11 +12,11 @@
 - §7 Variables
 - [§8](./Expressions/README.md) Expressions
 - [§9](./Statements/README.md) Statements
-- §10 Contexts
+- [§10](./Definitions/README.md) Definitions
 - §11 Functions
 - §12 Constants
 - §A Grammar
-- §B Standard library
+- §B Standard Library
 - §C Comments
 - §D Examples
 - §E Bibliography
