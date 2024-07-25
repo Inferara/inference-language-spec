@@ -1,3 +1,4 @@
 # Statements
 
-- [VariableDefinitionStatement](./variable_definition_statement.md)
+- [Variable Definition Statement](./variable.md)
+- [typeof](./typeof.md)

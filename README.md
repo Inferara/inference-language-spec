@@ -2,13 +2,13 @@
 
 ## Table of contents
 
-- Foreword
+- [Foreword](./foreword.md)
 - §1 Introduction
 - §2 Terms and definitions
 - §3 General description
 - §4 Lexical structure
 - §5 Basic concepts
-- §6 Types
+- [§6](./Types/README.md) Types
 - §7 Variables
 - [§8](./Expressions/README.md) Expressions
 - [§9](./Statements/README.md) Statements

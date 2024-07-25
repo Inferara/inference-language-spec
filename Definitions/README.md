@@ -1,3 +1,4 @@
 # Definitions
 
- - [Enum](./enum.md)
+- [Enum](./enum.md)
+- [Struct](./struct.md)
