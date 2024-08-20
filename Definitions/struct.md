@@ -9,7 +9,6 @@ Along with the fields, a struct can also have methods that define the behavior o
 ## Examples
 
 ```inference
-
 struct Account {
   address: Address;
   balance: u64;
@@ -18,3 +17,4 @@ struct Account {
     ctx.balance >= amount;
   }
 }
+```
