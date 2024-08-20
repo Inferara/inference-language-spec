@@ -12,9 +12,9 @@ Along with the fields, a struct can also have methods that define the behavior o
 
 struct Account {
   address: Address;
-  balance: u256;
+  balance: u64;
 
-  fn can_withdraw(amount: u256) -> bool {
+  fn can_withdraw(amount: u64) -> bool {
     ctx.balance >= amount;
   }
 }
