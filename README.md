@@ -1,12 +1,13 @@
 # Inference programming language specification
 
-Inference is a domain specific programming language designed to enable Web3 developers to formulate properties of the native application algorithms in a familiar format similar to how unit tests are written.
+Inference is a domain-specific programming language designed to enable Web3 developers to formulate properties of the native application algorithms in a familiar format similar to how unit tests are written.
 
-Inference allows to receive formal proof of the correctness of the specified properties in an automated way.
+Inference allows formal proof of the correctness of the specified properties to be received in an automated way.
 
-> In essence, Inference is a Web3 oriented formal specification language.
+> [!IMPORTANT]
+> Inference is a Web3 native applications-oriented, formal specification language.
 
-This repository contains the specification of the Inference programming language. The specification is divided into several sections, each of which describes a specific aspect of the language. The language itself is desiged to be simple and easy to learn and its syntax is very concise and similar to Rust.
+This repository contains the specification of the Inference programming language. The specification is divided into several sections, each describing a specific aspect of the language. The language is designed to be simple and easy to learn, and its syntax is concise and similar to Rust.
 
 ## Table of contents
 
