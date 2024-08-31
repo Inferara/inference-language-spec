@@ -1,5 +1,0 @@
-# Array
-
-## Description
-
-## Examples

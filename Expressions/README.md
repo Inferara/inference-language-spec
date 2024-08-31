@@ -1,3 +1,0 @@
-# Expressions
-
-- [Verify](./verify.md)
