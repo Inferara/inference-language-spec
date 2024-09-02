@@ -8,9 +8,9 @@ TODO
 
 ### Modifiers
 
-#### `undef`
+### 9.1.1 `undef`
 
-When a variable is declared with the `undef` modifier, such definition has a type but omits initialization. Declaration of an undefined variable may appear only inside blocks or functions with non-deterministic semantics (with `total` or `filter` modifiers).
+When a variable is declared with the `undef` modifier, such definition has a type but omits initialization. Declaration of an undefined variable may appear only inside blocks or functions with non-deterministic semantics (with [total](./functions.md#1111-total-keyword) or `filter` modifiers).
 
 ```
 let undef x: Type;

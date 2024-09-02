@@ -31,10 +31,13 @@ This repository contains the specification of the Inference programming language
   - [§8.1](./expressions.md#81-verify) Verify
 - [§9](./statements.md) Statements
   - [§9.1](./statements.md#91-variable-definition-statement) Variable Definition Statement
+    - [§9.1.1](./statements.md#911-undef) `undef`
 - [§10](./definitions.md) Definitions
   - [§10.1](./definitions.md#101-enum) Enum
   - [§10.2](./definitions.md#102-struct) Struct
 - [§11](./functions.md) Functions
+  - [§11.1](./functions.md#111-function-definition) Function Definition
+    - [§11.1.1](./functions.md#1111-total-keyword) `total` keyword
 - [§12](./constants.md) Constants
 - [§A](./grammar.md) Grammar
 - [§B](./standard-library.md) Standard Library
