@@ -35,6 +35,7 @@ This repository contains the specification of the Inference programming language
 - [§10](./definitions.md) Definitions
   - [§10.1](./definitions.md#101-enum) Enum
   - [§10.2](./definitions.md#102-struct) Struct
+  - [§10.3](./definitions.md#103-context) Context
 - [§11](./functions.md) Functions
   - [§11.1](./functions.md#111-function-definition) Function Definition
     - [§11.1.1](./functions.md#1111-total-keyword) `total` keyword

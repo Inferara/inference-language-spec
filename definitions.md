@@ -8,7 +8,7 @@ Definition
 
 Enums, short for enumerations, are a user-defined data type in Inference that consists of a set of named integral constants. They provide a way to assign symbolic names to integral values, enhancing code readability and maintainability.
 
-TODO add low-level implementation details later on.
+During compilation, the compiler replaces the enum constants with their corresponding integral values, making enums a compile-time construct.
 
 ### Examples
 
@@ -44,3 +44,10 @@ struct Account {
   }
 }
 ```
+
+## 10.3 Context
+
+### Description
+
+### Examples
+

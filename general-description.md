@@ -14,7 +14,7 @@ One of the most important concept that allows covering all possible execution pa
 The following keywords are used for that:
 - [verify](./expressions.md#verify)
 - [total](./functions.md##1111-total-keyword)
-- `filter`
+- [filter](./expressions.md#filter)
 - [undef](./statements.md#911-undef)
 
 TODO write explanation and draw a diagram @Keyholder
@@ -26,7 +26,8 @@ For more information, see the following article: [Specifying algorithms using no
 Infc is a multi-pass compiler that consists of the following stages:
 
 1. Source code parsing using [tree-sitter-inference](https://github.com/Inferara/tree-sitter-inference) grammar parser.
-2. Semantic analysis and type checking. https://github.com/Inferara/inference/issues/8
+2. Inference IR generation with code unsugaring.
+2. Semantic analysis and type checking. [Tracking issue](https://github.com/Inferara/inference/issues/8)
 3. Target backend code generation. Currently only Wasm is supported.
 4. Coq theory generation.
 

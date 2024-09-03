@@ -39,3 +39,10 @@ fn proof(a: Pred, b: Pred) {
   verify implies(a, b);
 }
 ```
+
+## 8.2 Filter
+
+### Description
+
+### Example
+
