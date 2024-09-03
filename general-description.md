@@ -14,7 +14,7 @@ One of the most important concept that allows covering all possible execution pa
 The following keywords are used for that:
 - [verify](./expressions.md#verify)
 - [total](./functions.md##1111-total-keyword)
-- [filter](./expressions.md#filter)
+- [filter](./statements.md#filter)
 - [undef](./statements.md#911-undef)
 
 TODO write explanation and draw a diagram @Keyholder
@@ -29,7 +29,7 @@ Infc is a multi-pass compiler that consists of the following stages:
 2. Inference IR generation with code unsugaring.
 2. Semantic analysis and type checking. [Tracking issue](https://github.com/Inferara/inference/issues/8)
 3. Target backend code generation. Currently only Wasm is supported.
-4. Coq theory generation.
+4. .v theory generation.
 
 ## Automated theorem proving
 

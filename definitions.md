@@ -1,6 +1,78 @@
 # 10 Definitions
 
-## 10.1 Enum
+## 10 Constant
+
+### Description
+
+Constants are immutable values that are assigned to a variable at compile time. Constants are declared using the `const` keyword and must be initialized with a value or with an expression that can be evaluated on the compile time. The value of a constant cannot be changed once it is assigned.
+
+### Examples
+
+```inference
+const MAX_SIZE: u32 = 100;
+```
+
+## 10 Function
+
+### Description
+
+Functions in Inference are used to define a block of code that can be executed multiple times with different inputs. Functions are defined using the `fn` keyword followed by the function name, parameters, return type, and body. Functions can have multiple parameters and can return a single value or a tuple of values.
+
+For the detailed information about functions, see the [Functions](./functions.md) section.
+
+### Examples
+
+```inference
+fn sum(a: u32, b: u32) -> u32 {
+  return a + b;
+}
+```
+
+## 10 External Function
+
+### Description
+
+External functions are functions that are defined outside of the current module or context. They are used to interact with the external environment, such as calling functions from other modules. External functions are declared using the `extern` keyword followed by the function signature.
+
+For the detailed information about functions, see the [Functions](./functions.md#11-external-function) section.
+
+### Examples
+
+```inference
+extern fn external_function(a: u32, b: u32) -> u32;
+```
+
+## 10 Type
+
+### Description
+
+Types in Inference are used to define the structure of data. Inference provides a set of built-in types, such as integers, booleans, and arrays, as well as the ability to define custom types using structs and enums.
+
+For the detailed information about embedded types, see the [Types](./types.md) section.
+
+### Examples
+
+```inference
+type Address = u32;
+```
+
+## 10.1 Context
+
+### Description
+
+Context is an abstract _module_ representation. By module, we mean a scoped set of imports, definitions, and functions. Contexts are used to group related definitions and functions together and provide a way to organize the specification.
+
+### Examples
+
+```inference
+
+context AuctionSpec {  
+
+}
+
+```
+
+## 10.2 Enum
 
 ### Description
 
@@ -24,7 +96,7 @@ enum ContextType {
 }
 ```
 
-## 10.2 Struct
+## 10.3 Struct
 
 ### Description
 
@@ -44,10 +116,3 @@ struct Account {
   }
 }
 ```
-
-## 10.3 Context
-
-### Description
-
-### Examples
-

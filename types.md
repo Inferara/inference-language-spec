@@ -2,6 +2,20 @@
 
 Inference provide a minimal set of types that are necessary for the language to be useful. The types are divided into elementary types and user-defined types.
 
+## 6 Unit
+
+### Description
+
+Unit is a type that has only one value, which is `()`. It is used to represent the absence of a value.
+TODO
+
+### Examples
+
+```inference
+let a: () = ();
+```
+
+
 ## 6.1 Elementary types
 
 By elementary types, we mean the type that is build into the language and allocates the constant amount of memory.

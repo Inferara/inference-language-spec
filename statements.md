@@ -1,6 +1,93 @@
 # 9 Statements
 
-## 9.1 Variable Definition Statement
+## 9 Block
+
+Block is a sequence of statements enclosed in curly braces `{}`. Blocks are used to group statements together. Blocks can be nested. Usually, blocks are used as function bodies, loop bodies, or conditional arms.
+
+```inference
+fn foo() {
+    /// this is the body block
+}
+
+fn bar() {
+    let flag: bool = true;
+    if flag {
+        /// this is the if block
+    } else {
+        /// this is the else block
+    }
+
+    let i: i32 = 10;
+    let acc: i32 = 0;
+    for (; i > 0; i--) {
+        /// this is the for block
+    }
+}
+```
+
+## 9 Return
+
+### Description
+
+Return statement returns an expression from a function. The expression must have the same type as the function return type.
+
+### Examples
+
+```inference
+fn foo() -> i32 {
+    let res: i32 = 0;
+    return res;
+}
+```
+
+## 9 Filter
+
+### Description
+
+TBD @Keyholder
+
+Filter is defined as a `filter` keyword followed by a [block](#9-block).
+
+### Examples
+
+```inference
+TODO @Keyholder
+```
+
+## 9 For
+
+### Description
+
+For statement is used to iterate over a range of values. It consists of three parts: initializer, condition, and update. The initialization part is executed once at the beginning of the loop. The condition part is checked before each iteration. The update part is executed after each iteration.
+
+### Examples
+
+```inference
+fn foo() {
+    for (let i: i32 = 0; i < 10; i++) {}
+}
+```
+
+## 9 If
+
+### Description
+
+If statement is used to execute a block of code if a condition is true. If the condition is false, an optional else block can be executed. The condition is an expression that must to be explicitly evaluated to a boolean value.
+
+### Examples
+
+```inference
+fn foo() {
+    let flag: bool = true;
+    if flag {
+        /// this block will be executed
+    } else {
+        /// this block will not be executed
+    }
+}
+```
+
+## 9 Variable Definition
 
 ### Description
 
@@ -21,7 +108,7 @@ where `undef` for `x` splits the execution path of nondeterministic computation 
 
 TODO
 
-## 9.2 `typeof`
+## 9 Type Definition
 
 ### Description
 
@@ -30,3 +117,49 @@ TODO
 ### Examples
 
 TODO
+
+## 9 Assert
+
+TODO
+
+## 9 Verify
+
+TODO @Keyholder
+
+### Description
+
+The keyword `verify` can be used in the body of a proof function. When you put `verify` in front of a non-deterministic block or expression marked with `total`, it means this block must be checked to ensure it always finishes correctly in the current deterministic context. If it can be confirmed that the block finishes correctly in every possible scenario, the `verify` process ignores any non-deterministic effects and continues normally. If it can't be confirmed, the verification process will not finish.
+
+### Example
+
+Verification of total block:
+
+```
+external fn predicate (SomeType) -> bool;
+type Pred = typeof(predicate);
+
+fn proof(a: Pred, b: Pred) {
+  verify total {
+    let undef x: SomeType;
+    filter assert a(x);
+    assert b(x);
+  };
+}
+```
+
+Verification of total function:
+
+```
+external fn predicate (SomeType) -> bool;
+type Pred = typeof(predicate);
+
+total fn implies(a: Pred, b: Pred) {
+  let undef x: SomeType;
+  filter assert a(x);
+  assert b(x);
+}
+
+fn proof(a: Pred, b: Pred) {
+  verify implies(a, b);
+}
+```

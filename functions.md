@@ -2,8 +2,8 @@
 
 TODO
 
-## 11.1 Function Definition
+## 11 Function Definition
 
 ### 11.1.1 `total` keyword
 
-TODO
+## 11 External Function
