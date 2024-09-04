@@ -23,7 +23,7 @@ For the detailed information about functions, see the [Functions](./functions.md
 ### Examples
 
 ```inference
-fn sum(a: u32, b: u32) -> u32 {
+total fn sum(a: u32, b: u32) -> u32 {
   return a + b;
 }
 ```
@@ -62,14 +62,33 @@ type Address = u32;
 
 Context is an abstract _module_ representation. By module, we mean a scoped set of imports, definitions, and functions. Contexts are used to group related definitions and functions together and provide a way to organize the specification.
 
+Contexts may contain definitions of constants and context-level variables, structs, enums and functions. Nested contexts are not allowed.
+
 ### Examples
 
 ```inference
-
 context AuctionSpec {  
+  const MAX_BID: u64 = 1000;
+  const MIN_BID: u64 = 100;
+  
+  struct Bid {
+    bidder: Address;
+    amount: u64;
+  }
+  
+  enum AuctionState {
+    Open,
+    Closed,
+  }
+  
+  total fn is_valid_bid(bid: Bid) -> bool {
+    return bid.amount >= MIN_BID && bid.amount <= MAX_BID;
+  }
 
+  total fn is_auction_open(state: AuctionState) -> bool {
+    return state == AuctionState::Open;
+  }
 }
-
 ```
 
 ## 10.2 Enum
@@ -111,7 +130,7 @@ struct Account {
   address: Address;
   balance: u64;
 
-  fn can_withdraw(amount: u64) -> bool {
+  total fn can_withdraw(amount: u64) -> bool {
     ctx.balance >= amount;
   }
 }
