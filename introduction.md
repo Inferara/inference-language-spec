@@ -16,9 +16,19 @@ UnitTests are the most common and widely used. They help developers check if a g
 
 Fuzzing and Invariant are used to check the program's behavior under the set of input in order to either check that the fuzzer is not able to find an input that makes the program produce unexpected outputr or, in the case of Invariant, to check that the fuzzer is not able to find a set of inputs that turns the program into an invalid state. Both of these techniques uses brute force to produce the input.
 
-TODO
+More complicated techniques that are named under the umbrella term "Formal methods" uses mathematical logic (the first-order logic, oftern) to interpret a program flow in logical terms and deduce the correctness of these formulas according to the provided properties, claimed for the program from the developer.
 
-Inference design goals are as follows:
+SMT solvers are the most common tools used in formal methods. They are used to check the satisfiability of the logical formulas. Usually, the solvers (`z3`, `cvc4`, `yices`, etc.) are used in pair with the symbolic execution engines that help to generate the logical formulas from the program code.
+
+Model checking, especially the $TLA^+$ model checker, is another formal method that is used to check the correctness of the program. It is based on the temporal logic and is used to check the correctness of the alrogithm for distributed systems.
+
+Automated theorem proving is a technique that is used to prove the correctness of the program by using the logical formulas and the set of theories, axioms, and rules of inference. The most common theorem provers are `Isabelle`, `Coq`, `Agda`, etc.
+
+Inference uses the automated theorem proving technique to check the correctness of the program. It uses internally developed theories and internal techniques allowing automatically generate axioms and theorems along with the propetries (defined in the spec) proofs. Inference theory system is based on the first-order logic, intuitionistic logic, hoare logics and extent it with non-determenistic computational theory that describes is used to desribe an abstract virstual machine.
+
+For more information, read Inferara [papers](https://inferara.com/papers).
+
+Speaking about Inference as a special purpose programming language, it is important to list important considerations that were taken into account during the language design:
 
 - Inference is intended to be a simple, concise, unambiguous, and easy-to-understand formal speficiation language.
 - The language should have a taste of an imperative language and hide all the complexity of formal verification details.
