@@ -91,7 +91,7 @@ fn foo() {
 
 ### Description
 
-TODO
+Variable definition is a statement that declares a variable and optionally initializes it with a value. The type of the variable must be explicitly specified.
 
 ### Modifiers
 
@@ -100,13 +100,18 @@ TODO
 When a variable is declared with the `undef` modifier, such definition has a type but omits initialization. Declaration of an undefined variable may appear only inside blocks or functions with non-deterministic semantics (with [total](./functions.md#1111-total-keyword) or `filter` modifiers).
 
 ```
-let undef x: Type;
+let undef x: i32;
 ```
 where `undef` for `x` splits the execution path of nondeterministic computation into sub-paths. Each sub-path returns one of every possible `Type` instances.
 
 ### Examples
 
-TODO
+```inference
+fn total foo() {
+    let x: i32 = 10;
+    let undef y: i32;
+}
+```
 
 ## 9 Type Definition
 
@@ -120,7 +125,18 @@ TODO
 
 ## 9 Assert
 
-TODO
+### Description
+
+Assert statement is used to check a condition and generate properties for the verifier. If the condition is false, the verifier will find a contradiction.
+
+### Examples
+
+```inference
+fn foo() {
+    let flag: u32 = 0;
+    assert(flag <= 0);
+}
+```
 
 ## 9 Verify
 

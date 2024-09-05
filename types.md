@@ -15,7 +15,6 @@ TODO
 let a: () = ();
 ```
 
-
 ## 6.1 Elementary types
 
 By elementary types, we mean the type that is build into the language and allocates the constant amount of memory.
