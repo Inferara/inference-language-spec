@@ -117,11 +117,13 @@ fn total foo() {
 
 ### Description
 
-TODO
+Type definition statement is a way to get a reference to a type. It can be used to define type aliases or get a reference to a type.
 
 ### Examples
 
-TODO
+```inference
+type Address = typeof(u32);
+```
 
 ## 9 Assert
 
