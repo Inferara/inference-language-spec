@@ -26,7 +26,8 @@ Automated theorem proving is a technique that is used to prove the correctness o
 
 Inference uses the automated theorem proving technique to check the correctness of the program. It uses internally developed theories and internal techniques allowing automatically generate axioms and theorems along with the propetries (defined in the spec) proofs. Inference theory system is based on the first-order logic, intuitionistic logic, hoare logics and extent it with non-determenistic computational theory that describes is used to desribe an abstract virstual machine.
 
-For more information, read Inferara [papers](https://inferara.com/papers).
+> [!NOTE]
+> For more information, read Inferara [papers](https://inferara.com/papers).
 
 Speaking about Inference as a special purpose programming language, it is important to list important considerations that were taken into account during the language design:
 

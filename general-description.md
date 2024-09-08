@@ -23,13 +23,22 @@ For more information, see the following article: [Specifying algorithms using no
 
 ## Compiler design
 
-Infc is a multi-pass compiler that consists of the following stages:
+Infc is a multi-pass compiler. But since the final target of the language is a [proof-module](./terms-and-definitions.md#proof-unit) it produces required for proof modules as intermediate representations instead of different languages. 
 
-1. Source code parsing using [tree-sitter-inference](https://github.com/Inferara/tree-sitter-inference) grammar parser.
-2. Inference IR generation with code unsugaring.
-2. Semantic analysis and type checking. [Tracking issue](https://github.com/Inferara/inference/issues/8)
-3. Target backend code generation. Currently only Wasm is supported.
-4. .v theory generation.
+The compilation process consists of the following stages:
+
+1. Inference source code parsing using [tree-sitter-inference](https://github.com/Inferara/tree-sitter-inference) grammar parser.
+    1. Builing required internal representations.
+    0. Semantic analysis and type checking. [Tracking issue](https://github.com/Inferara/inference/issues/8)
+    0. Linked external modules intergrity and capability check.
+0. Generating IR for the target execution platform (WASM) amended with Inference non-deterministic markers.
+0. Building a compound module contains the inference module IR and linked external code.
+0. Translating the compound module to `.v` [proof-unit](./terms-and-definitions.md#proof-unit).
+0. Attaching Inference [theory](./terms-and-definitions.md#theory), platform axioms, and theorems generating.
+0. Build proof for the `v2` specification.
+
+
+<img src="./assets/inference-ir-building-sequence.png" alt="Inference IR building sequence" width="600" style="margin: 0 auto; display: block;">
 
 ## Automated theorem proving
 
