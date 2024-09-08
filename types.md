@@ -7,7 +7,6 @@ Inference provide a minimal set of types that are necessary for the language to 
 ### Description
 
 Unit is a type that has only one value, which is `()`. It is used to represent the absence of a value.
-TODO
 
 ### Examples
 
