@@ -4,7 +4,7 @@ Inference is a formal-specification language the main goal of which is to provid
 
 > [!IMPORTANT]
 > Based on this fact, the following important consequences follow:
-> 1. Inference in not a Turin-complete language
+> 1. Inference in not a Turing-complete language
 > 2. It is not intended to be used for general-purpose programming.
 
 ## Non-determenistic computations
@@ -52,7 +52,7 @@ TODO need an example
 
 ## Restrictions
 
-- The minimal addressable unit of memory in Inference is a 2-bytes word (32 bits).
+- The minimal addressable unit of memory in Inference is a 4-bytes word (32 bits).
 - The language does not support floating point numbers.
 - The languge tends to the as much explicit as possible, so no implicit type conversions are allowed as well as no type inference.
 - The language does not support bit operations such as `&`, `|`, `^`, `<<`, `>>`.
