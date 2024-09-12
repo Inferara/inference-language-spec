@@ -81,7 +81,7 @@ fn foo() {
 
 ### Description
 
-If statement is used to execute a block of code if a condition is true. If the condition is false, an optional else block can be executed. The condition is an expression that must to be explicitly evaluated to a boolean value.
+The `if` statement is used to execute a block of code if a condition is true. If the condition is false, an optional else block can be executed. The condition is an expression that must be explicitly evaluated to a boolean value.
 
 ### Examples
 
