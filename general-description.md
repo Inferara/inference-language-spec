@@ -1,10 +1,10 @@
 # 3 General description
 
-Inference is a formal-specification language the main goal of which is to provide a straightforward way to specify the correctness properties of the Web3 native application algorithms.
+Inference is a formal specification language that aims to provide a straightforward way to specify the correctness of properties of the Web3 native application algorithms.
 
 > [!IMPORTANT]
 > Based on this fact, the following important consequences follow:
-> 1. Inference in not a Turing-complete language
+> 1. Inference is a Turing-complete language, **but**
 > 2. It is not intended to be used for general-purpose programming.
 
 ## Non-determenistic computations
