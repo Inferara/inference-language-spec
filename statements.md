@@ -58,7 +58,7 @@ TODO @Keyholder
 
 ### Description
 
-The `for` statement is used to perform a certain number of iterations in a loop. It is configured by an inlined range syntax. As boundaries can be used as either constants or identifiers.
+The `for` statement is used to perform a certain number of iterations in a loop. It is configured by an inlined range syntax. Both constants and expressions can be used as boundaries, but if such expressions depend on mutable variables, they are calculated only once, before entering cycle body for the first time.
 
 ### Examples
 
