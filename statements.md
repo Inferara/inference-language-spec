@@ -46,7 +46,7 @@ fn foo() -> i32 {
 
 TBD @Keyholder
 
-Filter is defined as a `filter` keyword followed by a [block](#9-block).
+The filter is defined as a `filter` keyword followed by a [block](#9-block).
 
 ### Examples
 
@@ -58,13 +58,22 @@ TODO @Keyholder
 
 ### Description
 
-For statement is used to iterate over a range of values. It consists of three parts: initializer, condition, and update. The initialization part is executed once at the beginning of the loop. The condition part is checked before each iteration. The update part is executed after each iteration.
+The `for` statement is used to perform a certain number of iterations in a loop. It is configured by an inlined range syntax. As boundaries can be used as either constants or identifiers.
 
 ### Examples
 
 ```inference
 fn foo() {
-    for (let i: i32 = 0; i < 10; i++) {}
+    for 0..10 {
+        ///
+    }
+
+    let a: u32 = 0;
+    let b: u32 = 10;
+
+    for a..b {
+        ///
+    }
 }
 ```
 
