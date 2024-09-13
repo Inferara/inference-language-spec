@@ -1,3 +1,5 @@
+![alt text](./assets/inference-logo.png)
+
 # Inference programming language specification
 
 Inference is a domain-specific programming language designed by [Inferara](https://inferara.com) to enable Web3 developers to formulate properties of the native application algorithms in a familiar format similar to how unit tests are written.
