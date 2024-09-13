@@ -33,52 +33,40 @@ let a: bool = true;
 let b: bool = 1 == 2; ///false
 ```
 
-### 6.1.2 i32
+### 6.1.2 Integers
 
 #### Description
 
-`i32` is a 32-bit signed integer type.
+Integer numbers are represented by the following types: `i8`, `i16`, `i32`, `i64`. The `i` prefix stands for signed integer. The number after the `i` prefix stands for the number of bits that the integer occupies in memory.
+
+> [!NOTE]
+> In case of using `i8` or `i16` types, 4 byes of memory will be allocated for the variable.
 
 #### Examples
 
 ```inference
-let a: i32 = 42;
+let a: i8 = (2 ** 8) - 1;
+let b: i16 = (2 ** 16) - 1;
+let c: i32 = (2 ** 32) - 1;
+let d: i64 = (2 ** 64) - 1;
 ```
 
-### 6.1.3 i64
+### 6.1.3 Unsigned integers
 
 #### Description
 
-`i64` is a 64-bit signed integer type.
+Unsigned integer numbers are represented by the following types: `u8`, `u16`, `u32`, `u64`. The `u` prefix stands for unsigned integer. The number after the `u` prefix stands for the number of bits that the integer occupies in memory.
+
+> [!NOTE]
+> In case of using `u8` or `u16` types, 4 byes of memory will be allocated for the variable.
 
 #### Examples
 
 ```inference
-let a: i64 = 42;
-```
-
-### 6.1.4 u32
-
-#### Description
-
-`u32` is a 32-bit unsigned integer type.
-
-#### Examples
-
-```inference
-let a: u32 = 42;
-```
-
-### 6.1.5 u64
-
-#### Description
-
-`u64` is a 64-bit unsigned integer type.
-
-#### Examples
-
-```inference
-let a: u64 = 42;
+let a: u8 = (2 ** 8);
+let b: u16 = (2 ** 16);
+let c: u32 = (2 ** 32);
+let d: u64 = (2 ** 64);
 ```
 
 ## 6.2 Array
