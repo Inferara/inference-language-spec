@@ -17,7 +17,21 @@ The following keywords are used for that:
 - [filter](./statements.md#filter)
 - [undef](./statements.md#911-undef)
 
-TODO write explanation and draw a diagram @Keyholder
+### Verify
+
+`verify` keyword is used to make up an expression that tells a prover that the function this expression is applied to must be proven by a proof assistant.
+
+### Total
+
+`total` is a function modifier that indicated that the function is total, i.e. it is guaranteed to terminate for all possible inputs. (in contrast to [partial functions](https://en.wikipedia.org/wiki/Partial_function)).
+
+### Filter
+
+`filter` keyword is used to make a statement that continuies only execution paths confirming with a given precondition. For instance, if some property needs to be checked only for the even values of $\mathbb{N}$, we can prepend it with a filter to retain only needed variants as follows `filter { assert (N % 2 == 0); }`.
+
+### Undef
+
+`undef` keyword is a variable modifier that indicates that the variable can have (eventually includes all possible variants) any value. So if we delcare `let undef a: i32;` it means that `a` is considered as a set of all possible `i32` values.
 
 For more information, see the following article: [Specifying algorithms using non-deterministic computations](https://www.inferara.com/en/papers/specifying-algorithms-using-non-deterministic-computations/)
 
