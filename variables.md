@@ -67,6 +67,8 @@ total fn foo() {
 }
 ```
 
+Number literals actual type is `i64`. If other size is required, the type must be explicitly defined.
+
 ## 7.4 Define assignment
 
 ### 7.1 Block statement
