@@ -44,14 +44,23 @@ fn foo() -> i32 {
 
 ### Description
 
-TBD @Keyholder
-
-The filter is defined as a `filter` keyword followed by a [block](#9-block).
+The filter is defined as a `filter` keyword followed by a [block](#9-block). Semantically, `filter` converts [traps](https://webassembly.github.io/spec/core/intro/overview.html) and proven infinite loops into the successful completion of the closest `total` context (understood in sence of dynamic, not lexical scope). In regard to unwinding the call stack, handling of traps inside `filter` is similar to how exception handling works in other languages (termination propogates up through activation frames till the point of handling) with the difference that `filter` doesn't retain any information about cause and context of failure.
 
 ### Examples
 
 ```inference
-TODO @Keyholder
+total fn foo(i: i32) {
+
+    /// this filter block
+    filter {
+        assert i > 0;
+    }
+
+    /// is similar to the following
+    if !(i >0) {
+        break foo';
+    }
+}
 ```
 
 ## 9 For
@@ -150,8 +159,6 @@ fn foo() {
 ```
 
 ## 9 Verify
-
-TODO @Keyholder
 
 ### Description
 
