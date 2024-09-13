@@ -27,7 +27,7 @@ The following keywords are used for that:
 
 ### Filter
 
-`filter` keyword is used to make a statement that reduces the number of possible execution paths from the point where it is applied. For instance, if there is a $\mathbb{N}$ possible variants an execution flow can take, we can apply a filter to reduce the number of possible variants to $\mathbb{N} \mod 2$ as follows `filter (N % 2 == 0);`.
+`filter` keyword is used to make a statement that continuies only execution paths confirming with a given precondition. For instance, if some property needs to be checked only for the even values of $\mathbb{N}$, we can prepend it with a filter to retain only needed variants as follows `filter { assert (N % 2 == 0); }`.
 
 ### Undef
 
