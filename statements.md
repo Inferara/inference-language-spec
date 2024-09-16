@@ -86,6 +86,19 @@ fn foo() {
 }
 ```
 
+The special case of using `for` is the infinite loop that **must** be inside the `filter` statement and **must** contain a `break` statement to exit. Infinite loops are specified with the `for ..` syntax.
+
+```inference
+total fn foo() {
+    filter {
+        for .. {
+            ///
+            break;
+        }
+    }
+}
+```
+
 ## 9 If
 
 ### Description
