@@ -21,7 +21,7 @@ Inference defines the following categories of variables:
 
 #### Description
 
-Local variables are variables that are defined within the scope of a function. They are not accessible from outside of the function.
+Local variables are variables that are defined within the scope of a function. They are not accessible from outside of the function. If a function has parameters, local variables cannot shadow those regardless of variable types.
 
 #### Examples
 
@@ -29,13 +29,10 @@ Local variables are variables that are defined within the scope of a function. T
 total fn foo() {
     let a: i32 = 42;
     let b: bool = true;
+    bar(a);
 }
-```
 
-If a function has parameters, local variables cannot shadow those regardless of variable types.
-
-```inference
-total fn foo(a: i32) {
+total fn bar(a: i32) {
     ///let a: u32 = 0; impossible
     let b : i32 = a + 10; ///OK
 }
