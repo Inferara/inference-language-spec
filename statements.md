@@ -19,8 +19,8 @@ fn bar() {
 
     let i: i32 = 10;
     let acc: i32 = 0;
-    for (; i > 0; i--) {
-        /// this is the for block
+    loop i {
+        /// this is the loop block
     }
 }
 ```
@@ -63,35 +63,38 @@ total fn foo(i: i32) {
 }
 ```
 
-## 9 For
+## 9 Loop
 
 ### Description
 
-The `for` statement is used to perform a certain number of iterations in a loop. It is configured by an inlined range syntax. Both constants and expressions can be used as boundaries, but if such expressions depend on mutable variables, they cannot be changed after entering the cycle body until the loop body ends.
+The `loop` statement is used to perform a certain number of iterations repetitevly. It is configured by number literal or a variable. The loop body is a block of code that is executed in each iteration. The loop cannot be parametrized by a negative number. If a loop is parametrized by a variable, the variable must be initialized before the loop.
 
 ### Examples
 
 ```inference
 fn foo() {
-    for 0..10 {
-        ///
+    loop 10 {
+        /// this block will be executed 10 times
     }
 
-    let a: u32 = 0;
-    let b: u32 = 10;
+    loop 0 {
+        /// this block will not be executed
+    }
 
-    for a..b {
-        ///
+    let i: i32 = 10;
+    loop i {
+        /// this block will be executed 10 times
+        /// i = 2; this is not possible
     }
 }
 ```
 
-The special case of using `for` is the infinite loop that **must** be inside the `filter` statement and **must** contain a `break` statement to exit. Infinite loops are specified with the `for ..` syntax.
+The special case of using `loop` is the infinite loop that **must** be inside the `filter` statement and **must** contain a `break` statement to exit. Infinite loops are parametrized by a [unit](./types.md#6-unit) type as a special case.
 
 ```inference
 total fn foo() {
     filter {
-        for .. {
+        loop () {
             ///
             break;
         }

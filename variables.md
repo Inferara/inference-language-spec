@@ -81,7 +81,7 @@ Number literals actual type is `i64`. If other size is required, the type must b
 
 #### Description
 
-A block of code `{}` is a usual syntax location where variables are defined and assigned. Blocks are form function bodies, `if` statements arms, `for` loop body.
+A block of code `{}` is a usual syntax location where variables are defined and assigned. Blocks are form function bodies, `if` statements arms, `loop` body.
 
 #### Examples
 
@@ -90,23 +90,24 @@ total fn foo() {
     let a: i32 = 42;
     let b: bool = true;
 
-    for (; a < 10; a++) {
+    loop a {
         let c: i32 = a * 2;
     }
 }
 ```
 
-### 7.2 For statement
+### 7.2 Loop statement
 
 #### Description
 
-A `for` statement is a loop that iterates over a range of values. It is used to iterate over a sequence of values. The first part of the `for` statement is an initialization part where the variable can be defined and assigned.
+A `loop` statement is a cycle that iterates `N` times. It is used to iterate over a sequence of values. The `loop` statement is used to execute a block of code repeatedly until number of repetition a loop was parametrized by is reached.
 
 #### Examples
 
 ```inference
 total fn foo() {
-    for (let a: i32 = 0; a < 10; a++) {
+    let a: i32 = 42;
+    loop 10 {
         let b: i32 = a * 2;
     }
 }
