@@ -4,7 +4,7 @@
 
 ### Description
 
-The assign expression is used to assign a value or, generally saying a result of an expression evaluation to a variable or to the `lval` expression. The syntax for the assign expression is the variable name followed by the assignment operator (`=`) and the expression.
+The assign expression is used to assign a value or, generally a result of an expression evaluation to a variable or to the `lval` expression. The syntax for the assign expression is the variable name followed by the assignment operator (`=`) and the expression.
 
 ### Examples
 
@@ -130,7 +130,15 @@ Binary operators are operators that operate on two operands. In Inference, the f
 - `>` (greater than)
 - `>=` (greater than or equal to)
 
-Left and right operands of a binary expressoins are expressions.
+Bitwise operators are available, but highly not recommended to use because of their semantics complexity. They are added for the sake of supporting imported code. For instance, if an external function which is a part of spec returns a bit packed value, we need a way to unpack such a union.
+
+- `<<` (shift one bit left)
+- `>>` (shift one bit right)
+- `^` (logical xor)
+- `|` (logical disjunction aka set bit)
+- `&` (logical conjunction aka check bit)
+
+Left and right operands of binary expressions are expressions.
 
 ### Examples
 
