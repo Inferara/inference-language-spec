@@ -1,27 +1,25 @@
 # 7 Variables
 
-## 7.1 General description
+## 7.1 General Description
 
-Variable structure in programming languages are usually reflects the memory model of a language. So, this section describes the Inference memory model.
+Variables in programming languages often reflect the language's memory model. However, in Inference, there is no concept of a memory model.
 
-> [!IMPORTANT]
->And to begin with, we say that there is no concept of a memory model in Inference.
+Inference is a language for defining formal specifications. While the spec defines variables and operations on them, these are abstract definitions and do not involve interaction with actual physical (or virtual) memory. This means there is no stack, heap, or any other specific memory location where variables are stored. The same applies to how variables are passed to functions. It is even possible to create an array of infinite length and pass it to a function.
 
-Inference is a language used to define formal specifications. So despite the spec defines variables and operations on them, these are definitions but not the matter of the interaction with the actual physical (or virtual) memory. It means there is no stack, heap or any other specific memory location where the variables are stored. The same situation applies to the method of how variables are passed to functions. It means that it is possible to create an array of infinite lengths and pass it to a function.
+The question arises: how can Inference reason about platforms used in real life in a theoretical way that still reflects actual machine behavior? The answer lies in Inference's abstract computational model, which allows reasoning about program behavior without being tied to specific memory implementations, yet remains applicable to real-world platforms through appropriate mappings during the proof process.
 
-The question is how come Inference can reason about the platforms used in real life in a theoretical way that reflects the real machine behavior **indeed**. The answer @Keyholder
-
-## 7.2 Variables categories
+## 7.2 Variable Categories
 
 Inference defines the following categories of variables:
-- local variables
-- array elements
 
-### 7.2.1 Local variables
+- Local variables
+- Array elements
+
+### 7.2.1 Local Variables
 
 #### Description
 
-Local variables are variables that are defined within the scope of a function. They are not accessible from outside of the function. If a function has parameters, local variables cannot shadow those regardless of variable types.
+Local variables are variables defined within the scope of a function. They are not accessible from outside the function.
 
 #### Examples
 
@@ -29,20 +27,14 @@ Local variables are variables that are defined within the scope of a function. T
 total fn foo() {
     let a: i32 = 42;
     let b: bool = true;
-    bar(a);
-}
-
-total fn bar(a: i32) {
-    ///let a: u32 = 0; impossible
-    let b : i32 = a + 10; ///OK
 }
 ```
 
-### 7.2.2 Array elements
+### 7.2.2 Array Elements
 
 #### Description
 
-Array elements are variables that are defined when an array is defined. All array variable values must be defined at the time of array definition.
+Array elements are the individual items within an array. All array elements must be initialized at the time of array definition.
 
 #### Examples
 
@@ -53,16 +45,16 @@ total fn foo() {
 }
 ```
 
-## 7.3 Default values
+## 7.3 Default Values
 
-Inference, as a language for formal specification is assumed to be used for critical system components.
+Inference, as a language for formal specification, is intended for use in critical system components.
 
 > [!WARNING]
->So no default values are allowed for variables.
+> No default values are allowed for variables.
 
-Each variable must be assigned before it is used.
+Each variable must be assigned a value before it is used.
 
-The only exception from this rule if a variable has `undef` modifier. In this case, it is assumed that all possible values for the variable are considered.
+The only exception to this rule is when a variable has the `undef` modifier. In this case, it is assumed that all possible values for the variable are considered.
 
 ### Examples
 
@@ -73,15 +65,15 @@ total fn foo() {
 }
 ```
 
-Number literals actual type is `i64`. If other size is required, the type must be explicitly defined.
+Number literals have an actual type of `i64`. If a different size is required, the type must be explicitly specified.
 
-## 7.4 Define assignment
+## 7.4 Variable Definition and Assignment
 
-### 7.1 Block statement
+### 7.4.1 Block Statement
 
 #### Description
 
-A block of code `{}` is a usual syntax location where variables are defined and assigned. Blocks are form function bodies, `if` statements arms, `loop` body.
+A block of code `{}` is a typical syntax location where variables are defined and assigned. Blocks form function bodies, `if` statement branches, and loop bodies.
 
 #### Examples
 
@@ -96,11 +88,11 @@ total fn foo() {
 }
 ```
 
-### 7.2 Loop statement
+### 7.4.2 Loop Statement
 
 #### Description
 
-A `loop` statement is a cycle that iterates `N` times. It is used to iterate over a sequence of values. The `loop` statement is used to execute a block of code repeatedly until number of repetition a loop was parametrized by is reached.
+A `loop` statement is used to execute a block of code repeatedly for a specified number of iterations `N`. It is used to iterate over a sequence of values or perform a fixed number of repetitions.
 
 #### Examples
 

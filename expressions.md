@@ -4,7 +4,7 @@
 
 ### Description
 
-The assign expression is used to assign a value or, generally a result of an expression evaluation to a variable or to the `lval` expression. The syntax for the assign expression is the variable name followed by the assignment operator (`=`) and the expression.
+The assign expression is used to assign a value, or generally speaking, the result of an expression evaluation to a variable or to the `lval` expression. The syntax for the assign expression is the variable name followed by the assignment operator (`=`) and the expression.
 
 ### Examples
 
@@ -16,7 +16,7 @@ total fn example() -> u32 {
 }
 ```
 
-## 8 Member access
+## 8 Member Access
 
 ### Description
 
@@ -35,11 +35,11 @@ total fn get_balance(account: Account) -> u64 {
 }
 ```
 
-## 8 Array index access
+## 8 Array Index Access
 
 ### Description
 
-Array index access is an expression that allows you to access the elements of an array. The syntax for array index access is the square brackets (`[]`) followed by the index of the element.
+Array index access is an expression that allows you to access the elements of an array. The syntax for array index access is square brackets (`[]`) enclosing the index of the element.
 
 ### Examples
 
@@ -49,11 +49,11 @@ total fn get_element(arr: u32[10], index: u32) -> u32 {
 }
 ```
 
-## 8 Function call
+## 8 Function Call
 
 ### Description
 
-Function call is an expression that allows you to call a function with the specified arguments. The syntax for function call is the function name followed by the arguments enclosed in parentheses.
+A function call is an expression that allows you to call a function with the specified arguments. The syntax for a function call is the function name followed by the arguments enclosed in parentheses.
 
 ### Examples
 
@@ -76,9 +76,9 @@ The `typeof` expression is used to get the type of a variable or an expression. 
 ### Examples
 
 ```inference
-total fn example() -> u32 {
+total fn example() -> Type {
   let a: u32 = 42;
-  return typeof (a);
+  return typeof(a);
 }
 ```
 
@@ -96,7 +96,7 @@ total fn example() -> u32 {
 }
 ```
 
-## 8 Unary operators
+## 8 Unary Operators
 
 ### Description
 
@@ -105,32 +105,34 @@ Unary operators are operators that operate on a single operand. In Inference, on
 ### Examples
 
 ```inference
-total fn example() -> u32 {
+total fn example() -> i32 {
   let a: i32 = -42;
   return a;
 }
 ```
 
-## 8 Binary operators
+## 8 Binary Operators
 
 ### Description
 
 Binary operators are operators that operate on two operands. In Inference, the following binary operators are supported (in order of precedence):
+
 - `**` (power)
-- `&&` (logical AND)
-- `||` (logical OR)
+- `*` (multiplication)
+- `/` (division)
+- `%` (modulo)
 - `+` (addition)
 - `-` (subtraction)
-- `*` (multiplication)
-- `%` (modulo)
 - `<` (less than)
 - `<=` (less than or equal to)
 - `==` (equal to)
 - `!=` (not equal to)
 - `>` (greater than)
 - `>=` (greater than or equal to)
+- `&&` (logical AND)
+- `||` (logical OR)
 
-Bitwise operators are available, but highly not recommended to use because of their semantics complexity. They are added for the sake of supporting imported code. For instance, if an external function which is a part of spec returns a bit packed value, we need a way to unpack such a union.
+Bitwise operators are available, but they are added for the sake of supporting imported code. For instance, if an external function which is a part of spec returns a bit packed value, we need a way to unpack such a union. Other possible reasons for using bitwise operators in a specification like memory or computation optimization are not relevant because a spec is not an execution unit.
 
 - `<<` (shift one bit left)
 - `>>` (shift one bit right)
@@ -138,7 +140,7 @@ Bitwise operators are available, but highly not recommended to use because of th
 - `|` (logical disjunction aka set bit)
 - `&` (logical conjunction aka check bit)
 
-Left and right operands of binary expressions are expressions.
+Left and right operands of a binary expression are expressions.
 
 ### Examples
 

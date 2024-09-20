@@ -4,7 +4,7 @@
 
 ### Description
 
-Comments are used to document the code and are ignored by the compiler. Inference supports tripple-slash comments `///` only.
+Comments are used to document the code and are ignored by the compiler. Inference supports triple-slash comments `///` only.
 
 ### Examples
 
