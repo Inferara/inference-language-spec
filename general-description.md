@@ -70,3 +70,8 @@ Otherwise, meaningful diagnostics are provided.
 - The language does not support dynamically sized arrays.
 - The language does not support pointers.
 - The language does not support strings.
+
+---
+
+[<kbd><br>⏭️ Lexical structure<br><br></kbd>](./lexical-structure.md)
+[<kbd><br>⏮️ Terms and definitions<br><br></kbd>](./terms-and-definitions.md)

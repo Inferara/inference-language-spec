@@ -37,3 +37,8 @@ Speaking about Inference as a special-purpose programming language, it is import
 - The language is intended for use in developing Web3 applications as a correctness specification language that ensures the application's properties and certifies the application's correctness.
 - The language evolves in the direction of improving the power of automated deduction and being applicable to a wide range of blockchain architectures.
 - Support for modern IDEs and code editors is very important.
+
+---
+
+[<kbd><br>⏭️ Terms and definitions<br><br></kbd>](./terms-and-definitions.md)
+[<kbd><br>⏮️ Foreword<br><br></kbd>](./foreword.md)

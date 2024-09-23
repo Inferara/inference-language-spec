@@ -26,3 +26,8 @@ total fn foo() {
     const z: u32 = 0;
 }
 ```
+
+---
+
+[<kbd><br>⏭️ Directives<br><br></kbd>](./directives.md)
+[<kbd><br>⏮️ Functions<br><br></kbd>](./functions.md)

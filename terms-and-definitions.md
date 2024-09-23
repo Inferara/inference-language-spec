@@ -23,3 +23,8 @@ A proof-unit is a [module](./#module) of proof code that is generated from the I
 ## lval and rval expressions
 
 In Inference, an expression can be either an lval or an rval expression. An lval expression is an expression that can appear on the left-hand side of an assignment, while an rval expression is an expression that can exclusively appear on the right-hand side of an assignment.
+
+---
+
+[<kbd><br>⏭️ General description<br><br></kbd>](./general-description.md)
+[<kbd><br>⏮️ Introduction<br><br></kbd>](./introduction.md)

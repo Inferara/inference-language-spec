@@ -149,3 +149,8 @@ total fn example() -> u32 {
   return 1 + 2 * 3;
 }
 ```
+
+---
+
+[<kbd><br>⏭️ Statements<br><br></kbd>](./statements.md)
+[<kbd><br>⏮️ Variables<br><br></kbd>](./variables.md)

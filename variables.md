@@ -110,3 +110,8 @@ total fn foo() {
     }
 }
 ```
+
+---
+
+[<kbd><br>⏭️ Expressions<br><br></kbd>](./expressions.md)
+[<kbd><br>⏮️ Types<br><br></kbd>](./types.md)

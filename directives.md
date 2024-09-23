@@ -17,3 +17,8 @@ use inference::std::algorithms::sort;
 use { sort, hash } from "./sort.0.wasm";
 use inference::std::algorithms::{sort, hash};
 ```
+
+---
+
+[<kbd><br>⏭️ Grammar<br><br></kbd>](./grammar.md)
+[<kbd><br>⏮️ Constants<br><br></kbd>](./constants.md)

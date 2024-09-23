@@ -90,3 +90,8 @@ Users can define custom types in several ways:
 1. Using the `typeof` statement
 2. Defining an `enum` (see [Enum](./definitions.md#102-enum))
 3. Defining a `struct` (see [Struct](./definitions.md#103-struct))
+
+---
+
+[<kbd><br>⏭️ Variables<br><br></kbd>](./variables.md)
+[<kbd><br>⏮️ Basic concepts<br><br></kbd>](./basic-concepts.md)

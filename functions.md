@@ -57,3 +57,8 @@ context Hasher {
     }
 }
 ```
+
+---
+
+[<kbd><br>⏭️ Constants<br><br></kbd>](./constants.md)
+[<kbd><br>⏮️ Definitions<br><br></kbd>](./definitions.md)

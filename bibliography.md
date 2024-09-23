@@ -30,3 +30,7 @@
 ## Links
 
 - CompCert Manual. [URL](https://compcert.org/man/manual001.html)
+
+---
+
+[<kbd><br>⏮️ Comments<br><br></kbd>](./comments.md)

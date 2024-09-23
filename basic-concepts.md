@@ -127,3 +127,8 @@ Since the final artifact of `infc` is a Coq file `.v`, it can be checked by the 
 Furthermore, correctness tracking is also available, so we can check if the proof for the code at state $S$ is equivalent to the proof for the code at state $S'$.
 
 There is a [database](TODO) of correctness certificates that Inferara holds, and it is possible to ensure if a given code has been proven before and if the proof is still valid.
+
+---
+
+[<kbd><br>⏭️ Types<br><br></kbd>](./types.md)
+[<kbd><br>⏮️ Lexical structure<br><br></kbd>](./lexical-structure.md)
