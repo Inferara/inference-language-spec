@@ -1,12 +1,12 @@
 # 8 Expressions
 
-## 8 Assign
+## 8.1 Assign
 
-### Description
+### 8.1.1 Description
 
 The assign expression is used to assign a value, or generally speaking, the result of an expression evaluation to a variable or to the `lval` expression. The syntax for the assign expression is the variable name followed by the assignment operator (`=`) and the expression.
 
-### Examples
+### 8.1.2 Examples
 
 ```inference
 total fn example() -> u32 {
@@ -16,13 +16,13 @@ total fn example() -> u32 {
 }
 ```
 
-## 8 Member Access
+## 8.2 Member Access
 
-### Description
+### 8.2.1 Description
 
 Member access is an expression that allows you to access the fields of a struct. The syntax for member access is the dot operator (`.`) followed by the name of the field or element.
 
-### Examples
+### 8.2.2 Examples
 
 ```inference
 struct Account {
@@ -35,13 +35,13 @@ total fn get_balance(account: Account) -> u64 {
 }
 ```
 
-## 8 Array Index Access
+## 8.3 Array Index Access
 
-### Description
+### 8.3.1 Description
 
 Array index access is an expression that allows you to access the elements of an array. The syntax for array index access is square brackets (`[]`) enclosing the index of the element.
 
-### Examples
+### 8.3.2 Examples
 
 ```inference
 total fn get_element(arr: u32[10], index: u32) -> u32 {
@@ -49,13 +49,13 @@ total fn get_element(arr: u32[10], index: u32) -> u32 {
 }
 ```
 
-## 8 Function Call
+## 8.4 Function Call
 
-### Description
+### 8.4.1 Description
 
 A function call is an expression that allows you to call a function with the specified arguments. The syntax for a function call is the function name followed by the arguments enclosed in parentheses.
 
-### Examples
+### 8.4.2 Examples
 
 ```inference
 total fn sum(a: u32, b: u32) -> u32 {
@@ -67,13 +67,13 @@ total fn example() -> u32 {
 }
 ```
 
-## 8 `typeof`
+## 8.5 `typeof`
 
-### Description
+### 8.5.1 Description
 
 The `typeof` expression is used to get the type of a variable or an expression. The syntax for `typeof` is the keyword `typeof` followed by the variable or expression.
 
-### Examples
+### 8.5.2 Examples
 
 ```inference
 total fn example() -> Type {
@@ -82,13 +82,13 @@ total fn example() -> Type {
 }
 ```
 
-## 8 Parenthesized
+## 8.6 Parenthesized
 
-### Description
+### 8.6.1 Description
 
 The parenthesized expression is used to group `lval` expressions and control the order of evaluation. The syntax for the parenthesized expression is the opening and closing parentheses enclosing the expression.
 
-### Examples
+### 8.6.2 Examples
 
 ```inference
 total fn example() -> u32 {
@@ -96,13 +96,13 @@ total fn example() -> u32 {
 }
 ```
 
-## 8 Unary Operators
+## 8.7 Unary Operators
 
-### Description
+### 8.7.1 Description
 
 Unary operators are operators that operate on a single operand. In Inference, only the unary minus operator (`-`) is supported. The operand of a unary expression is an expression.
 
-### Examples
+### 8.7.2 Examples
 
 ```inference
 total fn example() -> i32 {
@@ -111,9 +111,9 @@ total fn example() -> i32 {
 }
 ```
 
-## 8 Binary Operators
+## 8.8 Binary Operators
 
-### Description
+### 8.8.1 Description
 
 Binary operators are operators that operate on two operands. In Inference, the following binary operators are supported (in order of precedence):
 
@@ -142,7 +142,7 @@ Bitwise operators are available, but they are added for the sake of supporting i
 
 Left and right operands of a binary expression are expressions.
 
-### Examples
+### 8.8.2 Examples
 
 ```inference
 total fn example() -> u32 {

@@ -1,18 +1,18 @@
 # 4 Lexical structure
 
-## 4 Comments
+## 4.1 Comments
 
-### Description
+### 4.1.1 Description
 
 Comments are used to document the code and are ignored by the compiler. Inference supports triple-slash comments `///` only.
 
-### Examples
+### 4.1.2 Examples
 
 ```inference
 /// This is a comment
 ```
 
-## 4 Keywords
+## 4.2 Keywords
 
 - `fn`
 - `external`
@@ -37,20 +37,20 @@ Comments are used to document the code and are ignored by the compiler. Inferenc
 - `typeof`
 
 
-## 4 Identifiers
+## 4.3 Identifiers
 
-### Description
+### 4.3.1 Description
 
 An identifier is a sequence of characters that is used to name variables, functions, and other entities in the program. Identifiers must start with a letter or an underscore and can contain letters, digits, and underscores.
 
-### Examples
+### 4.3.2 Examples
 
 ```inference
 let a: u32 = 42;
 let _ident : i64 = 42;
 ```
 
-## 4 Reserved identifiers
+## 4.4 Reserved identifiers
 
 - `constructor`
 - `proof`
@@ -58,25 +58,25 @@ let _ident : i64 = 42;
 - `type`
 - `ctx`
 
-## 4 Qualified identifiers
+## 4.5 Qualified identifiers
 
-### Description
+### 4.5.1 Description
 
 A qualified identifier is a sequence of identifiers separated by `::`. It is used to refer to functions in structs and contexts.
 
-### Examples
+### 4.5.2 Examples
 
 ```inference
 let a: context::AuctionSpec = context::AuctionSpec::new();
 ```
 
-## 4 Member access
+## 4.6 Member access
 
-### Description
+### 4.6.1 Description
 
 The member access operator `.` is used to access fields and methods of a struct.
 
-### Examples
+### 4.6.2 Examples
 
 ```inference
 let a: Account = Account { address: 42 };
@@ -84,65 +84,52 @@ let a: Account = Account { address: 42 };
 let b: u32 = a.address;
 ```
 
-## 4 Literals
+## 4.7 Literals
 
-### 4.1 Bool
+### 4.7.1 Bool
 
-#### Description
+#### 4.7.1.1 Description
 
 `bool` is a boolean type that can have one of two values: `true` or `false`.
 
-#### Examples
+#### 4.7.1.2 Examples
 
 ```inference
 let a: bool = true;
 let b: bool = false;
 ```
 
-### 4.2 String
+### 4.7.2 Number
 
-#### Description
-
-`string` is a string type that represents a sequence of characters. Strings are enclosed in double quotes. String is nether a primitive type nor a composite type. It is a compile time type that is enterpreted as a sequence of UTF-8 bytes.
-
-#### Examples
-
-```inference
-let a: string = "Hello, World!";
-let b: string = "Inference";
-```
-
-### 4.3 Number
-
-#### Description
+#### 4.7.2.1 Description
 
 `number` is a numeric type that represents a number. Numbers can be integers numbers only.
 
-#### Examples
+#### 4.7.2.2 Examples
 
 ```inference
 let a: number = 42;
 ```
 
-### 4.4 Unit
+### 4.7.3 Unit
 
-#### Description
+#### 4.7.3.1 Description
 
 `unit` is a [type](./types.md#6-unit) that has only one value: `()`. It is used to represent the absence of a value.
 
-#### Examples
+#### 4.7.3.2 Examples
 
 ```inference
 let a: unit = ();
 ```
 
-## 4 Right arrow
+## 4.8 Right arrow
 
-### Description
+### 4.8.1 Description
 
 The right arrow `->` is used to specify the return type of a function.
 
-### Examples
+### 4.8.2 Examples
 
 ```inference
 fn add(a: u32, b: u32) -> u32 {
@@ -150,29 +137,29 @@ fn add(a: u32, b: u32) -> u32 {
 }
 ```
 
-## 4 Terminator
+## 4.9 Terminator
 
-### Description
+### 4.9.1 Description
 
 The terminator `;` is used to separate statements in Inference.
 
-### Examples
+### 4.9.2 Examples
 
 ```inference
 let a: u32 = 42;
 ```
 
-## 4 Braces
+## 4.10 Braces
 
-### 4.1 Curly braces
+### 4.10.1 Curly braces
 
-#### Description
+#### 4.10.1.1 Description
 
 Curly braces `{}` are used to define blocks of code.
 
 See also: [Statements](./statements.md#9-block)
 
-#### Examples
+#### 4.10.1.2 Examples
 
 ```inference
 fn foo() {
@@ -180,16 +167,16 @@ fn foo() {
 }
 ```
 
-### 4.2 Parentheses
+### 4.10.2 Parentheses
 
-#### Description
+#### 4.10.2.1 Description
 
 Parentheses `()` are used to group expressions and arguments in function calls. Also a `()` outside of a function definition context is interpreted as a single token and is used to represent the unit type.
 
 See also: [Functions](./functions.md#11-function-definition)
 See also; [Types](./types.md#6-unit)
 
-#### Examples
+#### 4.10.2.2 Examples
 
 ```inference
 fn foo(a: u32, b: u32) -> u32 {
@@ -201,30 +188,30 @@ fn foo(a: u32, b: u32) -> u32 {
 let a: () = ();
 ```
 
-### 4.3 Square brackets
+### 4.10.3 Square brackets
 
-#### Description
+#### 4.10.3.1 Description
 
 Square brackets `[]` are used to define arrays and address individual elements of an array.
 
 See also: [Types](./types.md#62-array)
 
-#### Examples
+#### 4.10.3.2 Examples
 
 ```inference
 let a: [u32; 3] = [1, 2, 3];
 let b: u32 = a[0];
 ```
 
-### 4.4 Angle brackets
+### 4.10.4 Angle brackets
 
-#### Description
+#### 4.10.4.1 Description
 
 Angle brackets `<>` are used to define type parameters.
 
 See also: [Types](./types.md#63-user-defined-types)
 
-#### Examples
+#### 4.10.4.2 Examples
 
 ```inference
 fn foo<T>(a: T) {

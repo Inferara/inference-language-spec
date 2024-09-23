@@ -17,11 +17,11 @@ Inference defines the following categories of variables:
 
 ### 7.2.1 Local Variables
 
-#### Description
+#### 7.2.1.1 Description
 
 Local variables are variables defined within the scope of a function. They are not accessible from outside the function.
 
-#### Examples
+#### 7.2.1.2 Examples
 
 ```inference
 total fn foo() {
@@ -32,11 +32,11 @@ total fn foo() {
 
 ### 7.2.2 Array Elements
 
-#### Description
+#### 7.2.2.1 Description
 
 Array elements are the individual items within an array. All array elements must be initialized at the time of array definition.
 
-#### Examples
+#### 7.2.2.2 Examples
 
 ```inference
 total fn foo() {
@@ -47,6 +47,8 @@ total fn foo() {
 
 ## 7.3 Default Values
 
+### 7.3.1 Description
+
 Inference, as a language for formal specification, is intended for use in critical system components.
 
 > [!WARNING]
@@ -56,7 +58,7 @@ Each variable must be assigned a value before it is used.
 
 The only exception to this rule is when a variable has the `undef` modifier. In this case, it is assumed that all possible values for the variable are considered.
 
-### Examples
+### 7.3.2 Examples
 
 ```inference
 total fn foo() {
@@ -69,19 +71,19 @@ Number literals have an actual type of `i64`. If a different size is required, t
 
 ## 7.4 Variable Definition and Assignment
 
-### 7.4.1 General Description
+### 7.4.1 Description
 
 All variables are **immutable** by default. This means that once a variable is assigned a value, it cannot be changed. To create a mutable variable, the `mut` keyword must be used. However, `mut` keyword in not allowed for `undef` variables.
 
 Variable names cannot shadow each other. For instance, if a function has a parameter `a`, a local variable `a` cannot be defined in the function. The same rule applies to the variable re-definition. If a variable is defined in a function, it cannot be redefined in the same function.
 
-### 7.4.1 Block Statement
+### 7.4.2 Block Statement
 
-#### Description
+#### 7.4.2.1 Description
 
 A block of code `{}` is a typical syntax location where variables are defined and assigned. Blocks form function bodies, `if` statement branches, and loop bodies.
 
-#### Examples
+#### 7.4.2.2 Examples
 
 ```inference
 total fn foo() {
@@ -94,13 +96,13 @@ total fn foo() {
 }
 ```
 
-### 7.4.2 Loop Statement
+### 7.4.3 Loop Statement
 
-#### Description
+#### 7.4.3.1 Description
 
 A `loop` statement is used to execute a block of code repeatedly for a specified number of iterations `N`. It is used to iterate over a sequence of values or perform a fixed number of repetitions.
 
-#### Examples
+#### 7.4.3.2 Examples
 
 ```inference
 total fn foo() {

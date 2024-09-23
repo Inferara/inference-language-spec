@@ -2,7 +2,11 @@
 
 ## 9.1 Block
 
+### 9.1.1 Description
+
 A block is a sequence of statements enclosed in curly braces `{}`. Blocks are used to group statements together and can be nested. Usually, blocks are used as function bodies, loop bodies, or conditional branches.
+
+### 9.1.2 Examples
 
 ```inference
 fn foo() {
@@ -26,11 +30,11 @@ fn bar() {
 
 ## 9.2 Return
 
-### Description
+### 9.2.1 Description
 
 The `return` statement returns an expression from a function. The expression must have the same type as the function's return type.
 
-### Examples
+### 9.2.2 Examples
 
 ```inference
 fn foo() -> i32 {
@@ -41,11 +45,11 @@ fn foo() -> i32 {
 
 ## 9.3 Filter
 
-### Description
+### 9.3.1 Description
 
 The `filter` keyword is followed by a [block](#91-block). Semantically, `filter` converts [traps](https://webassembly.github.io/spec/core/intro/overview.html) and proven infinite loops into the successful completion of the closest `total` context (understood in terms of dynamic, not lexical scope). Regarding unwinding the call stack, handling traps inside `filter` is similar to exception handling in other languages (termination propagates up through activation frames until the point of handling) but differs in that `filter` doesn't retain any information about the cause and context of failure.
 
-### Examples
+### 9.3.2 Examples
 
 ```inference
 total fn foo(i: i32) {
@@ -64,11 +68,11 @@ total fn foo(i: i32) {
 
 ## 9.4 Loop
 
-### Description
+### 9.4.1 Description
 
 The `loop` statement is used to perform a certain number of iterations repetitively. It is configured by a numeric literal or a variable. The loop body is a block of code executed in each iteration. The loop cannot be parameterized by a negative number. If a loop is parameterized by a variable, the variable must be initialized before the loop.
 
-### Examples
+### 9.4.2 Examples
 
 ```inference
 fn foo() {
@@ -103,11 +107,11 @@ total fn foo() {
 
 ## 9.5 If
 
-### Description
+### 9.5.1 Description
 
 The `if` statement is used to execute a block of code if a condition is true. If the condition is false, an optional `else` block can be executed. The condition is an expression that must explicitly evaluate to a Boolean value.
 
-### Examples
+### 9.5.2 Examples
 
 ```inference
 fn foo() {
@@ -122,13 +126,13 @@ fn foo() {
 
 ## 9.6 Variable Definition
 
-### Description
+### 9.6.1 Description
 
 Variable definition is a statement that declares a variable and optionally initializes it with a value. The type of the variable must be explicitly specified.
 
-### Modifiers
+### 9.6.2 Modifiers
 
-#### 9.6.1 `undef`
+#### 9.6.2.1 `undef`
 
 When a variable is declared with the `undef` modifier, it has a type but omits initialization. Declaration of an undefined variable may appear only inside blocks or functions with non-deterministic semantics (with [total](./functions.md#111-total) or `filter` modifiers).
 
@@ -138,7 +142,7 @@ let undef x: i32;
 
 Here, `undef` for `x` splits the execution path of the non-deterministic computation into sub-paths. Each sub-path considers one of every possible `i32` value.
 
-### Examples
+### 9.6.3 Examples
 
 ```inference
 total fn foo() {
@@ -150,11 +154,11 @@ total fn foo() {
 
 ## 9.7 Type Definition
 
-### Description
+### 9.7.1 Description
 
 The type definition statement is a way to create a type alias or reference an existing type.
 
-### Examples
+### 9.7.2 Examples
 
 ```inference
 type Address = u32;
@@ -162,11 +166,11 @@ type Address = u32;
 
 ## 9.8 Assert
 
-### Description
+### 9.8.1 Description
 
 The `assert` statement is used to check a condition and generate properties for the verifier. If the condition is false, the verifier will find a contradiction.
 
-### Examples
+### 9.82 Examples
 
 ```inference
 fn foo() {
@@ -177,11 +181,11 @@ fn foo() {
 
 ## 9.9 Verify
 
-### Description
+### 9.9.1 Description
 
 The `verify` keyword can be used in the body of a proof function. When you put `verify` in front of a non-deterministic block or expression marked with `total`, it means this block must be checked to ensure it always finishes correctly in the current deterministic context. If it can be confirmed that the block finishes correctly in every possible scenario, the `verify` process ignores any non-deterministic effects and continues normally. If it can't be confirmed, the verification process will not finish.
 
-### Examples
+### 9.9.2 Examples
 
 **Verification of a total block:**
 
@@ -218,32 +222,6 @@ fn proof(a: Pred, b: Pred) {
     verify implies(a, b);
 }
 ```
-
-# 2 Terms and Definitions
-
-## DApp
-
-Decentralized Applications (DApps) are applications that run on a decentralized network of computers, such as a blockchain. Since terminology can differ (e.g., "smart contract"), in this document, "DApp" refers to an application that is a part of a blockchain network.
-
-## `infc`
-
-Inference Compiler (`infc`) is a tool that compiles Inference programs into proof code. The compiler is responsible for parsing the Inference code, type-checking it, and generating the output code. The source code is located in the [Inference](https://github.com/Inferara/inference) repository.
-
-## Module
-
-A module is an assembled distributable unit of code that can be used independently or by other modules and platforms. In this document, a module can refer to a single `.inf` file or a set of `.inf` files that are compiled together, WASM modules, or other platform-specific modules.
-
-## Theory
-
-A theory is a set of definitions, inductive types, axioms, theorems, and proofs that describe the behavior of a system. A theory is written in `.v` files and can consist of multiple files.
-
-## Proof-Unit
-
-A proof-unit is a [module](./terms-and-definitions.md#module) of proof code generated from the Inference spec and contains attached required theories to build the proof.
-
-## `lval` and `rval` Expressions
-
-In Inference, an expression can be either an `lval` (left value) or an `rval` (right value) expression. An `lval` expression can appear on the left-hand side of an assignment, while an `rval` expression can exclusively appear on the right-hand side of an assignment.
 
 ---
 

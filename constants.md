@@ -1,6 +1,6 @@
 # 12 Constants
 
-## Description
+## 12.1 Description
 
 Inference supports the following types of constants:
 
@@ -17,7 +17,7 @@ Constants can be defined in the following structures:
 - [context](./definitions.md#101-context)
 - [function](./functions.md)
 
-## Examples
+## 12.2 Examples
 
 ```inference
 total fn foo() {

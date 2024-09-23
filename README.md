@@ -16,19 +16,214 @@ This repository contains the specification of the Inference programming language
 - [Foreword](./foreword.md)
 - [§1](./introduction.md) Introduction
 - [§2](./terms-and-definitions.md) Terms and definitions
+  - [§2.1](./terms-and-definitions.md#21-dapp) DApp
+  - [§2.2](./terms-and-definitions.md#22-infc) `infc`
+  - [§2.3](./terms-and-definitions.md#23-module) Module
+  - [§2.4](./terms-and-definitions.md#24-theory) Theory
+  - [§2.5](./terms-and-definitions.md#25-proof-unit) Proof-Unit
+  - [§2.6](./terms-and-definitions.md#26-lval-and-rval-expressions) `lval` and `rval` Expressions
 - [§3](./general-description.md) General description
+  - [§3.1](./general-description.md#31-non-deterministic-computations) Non-Deterministic Computations
+    - [§3.1.1](./general-description.md#311-verify) Verify
+    - [§3.1.2](./general-description.md#312-total) Total
+    - [§3.1.3](./general-description.md#313-filter) Filter
+    - [§3.1.4](./general-description.md#314-undef) Undef
+  - [§3.2](./general-description.md#32-compiler-design) Compiler Design
+  - [§3.3](./general-description.md#33-automated-theorem-proving) Automated Theorem Proving
+  - [§3.4](./general-description.md#34-restrictions) Restrictions
 - [§4](./lexical-structure.md) Lexical structure
+  - [§4.1](./lexical-structure.md#41-comments) Comments
+    - [§4.1.](./lexical-structure.md#411-description) Description
+    - [§4.1.2](./lexical-structure.md#412-examples) Examples
+  - [§4.2](./lexical-structure.md#42-keywords) Keywords
+  - [§4.3](./lexical-structure.md#43-identifiers) Identifiers
+    - [§4.3.1](./lexical-structure.md#431-description) Description
+    - [§4.3.2](./lexical-structure.md#432-examples) Examples
+  - [§4.4](./lexical-structure.md#44-reserved-identifiers) Reserved Identifiers
+  - [§4.5](./lexical-structure.md#45-qualified-identifiers) Qualified Identifiers
+    - [§4.5.1](./lexical-structure.md#451-description) Description
+    - [§4.5.2](./lexical-structure.md#452-examples) Examples
+  - [§4.6](./lexical-structure.md#46-member-access) Member Access
+    - [§4.6.1](./lexical-structure.md#461-description) Description
+    - [§4.6.2](./lexical-structure.md#462-examples) Examples
+  - [§4.7](./lexical-structure.md#47-literals)
+    - [§4.7.1](./lexical-structure.md#471-bool)
+      - [§4.7.1.1](./lexical-structure.md#4711-description) Description
+      - [§4.7.1.2](./lexical-structure.md#4712-examples) Examples
+    - [§4.7.2](./lexical-structure.md#472-number)
+      - [§4.7.2.1](./lexical-structure.md#4721-description) Description
+      - [§4.7.2.2](./lexical-structure.md#4722-examples) Examples
+    - [§4.7.3](./lexical-structure.md#473-unit)
+      - [§4.7.3.1](./lexical-structure.md#4731-description) Description
+      - [§4.7.3.2](./lexical-structure.md#4732-examples) Examples
+  - [§4.8](./lexical-structure.md#48-right-arrow) Right Arrow
+    - [§4.8.1](./lexical-structure.md#481-description) Description
+    - [§4.8.2](./lexical-structure.md#482-examples) Examples
+  - [§4.9](./lexical-structure.md#49-terminator) Terminator
+    - [§4.9.1](./lexical-structure.md#491-description) Description
+    - [§4.9.2](./lexical-structure.md#492-examples) Examples
+  - [§4.10](./lexical-structure.md#410-braces) Braces
+    - [§4.10.1](./lexical-structure.md#4101-curly-braces) Curly Braces
+      - [§4.10.1.1](./lexical-structure.md#41011-description) Description
+      - [§4.10.1.2](./lexical-structure.md#41012-examples) Examples
+    - [§4.10.2](./lexical-structure.md#4102-parentheses) Parentheses
+      - [§4.10.2.1](./lexical-structure.md#41021-description) Description
+      - [§4.10.2.2](./lexical-structure.md#41022-examples) Examples
+    - [§4.10.3](./lexical-structure.md#4103-square-brackets) Square Brackets
+      - [§4.10.3.1](./lexical-structure.md#41031-description) Description
+      - [§4.10.3.2](./lexical-structure.md#41032-examples) Examples
+    - [§4.10.4](./lexical-structure.md#4104-angle-brackets) Angle Brackets
+      - [§4.10.4.1](./lexical-structure.md#41041-description) Description
+      - [§4.10.4.2](./lexical-structure.md#41042-examples) Examples
 - [§5](./basic-concepts.md) Basic concepts
+  - [§5.1](./basic-concepts.md#51-specification-definition) Specification Definition
+  - [§5.2](./basic-concepts.md#52-specification-is-not-a-program) Specification Is Not a Program
+  - [§5.3](./basic-concepts.md#53-execution-model) Execution Model
+  - [§5.4](./basic-concepts.md#54-non-deterministic-execution) Non-deterministic Execution
+  - [§5.5](./basic-concepts.md#55-platform-specific-execution) Platform-specific Execution
+  - [§5.6](./basic-concepts.md#56-poly-blockchain-design) Poly-blockchain Design
+  - [§5.7](./basic-concepts.md#57-automated-reasoning) Automated Reasoning
+  - [§5.8](./basic-concepts.md#58-correctness-certificate) Correctness Certificate
 - [§6](./types.md) Types
+  - [§6.1](./types.md#61-unit) Unit
+    - [§6.1.1](./types.md#611-description) Description
+    - [§6.1.2](./types.md#612-examples) Examples
+  - [§6.2](./types.md#62-elementary-types) Elementary Types
+    - [§6.2.1](./types.md#621-boolean) Boolean
+      - [§6.2.1.1](./types.md#6211-description) Description
+      - [§6.2.1.2](./types.md#6212-examples) Examples
+    - [§6.2.2](./types.md#622-integers) Integers
+      - [§6.2.2.1](./types.md#6221-description) Description
+      - [§6.2.2.2](./types.md#6222-examples) Examples
+    - [§6.2.3](./types.md#623-unsigned-integers) Unsigned Integers
+      - [§6.2.3.1](./types.md#6231-description) Description
+      - [§6.2.3.2](./types.md#6232-examples) Examples
+    - [§6.3](./types.md#63-array) Array
+      - [§6.3.1](./types.md#631-description) Description
+      - [§6.3.2](./types.md#632-examples) Examples
+    - [§6.4](./types.md#64-user-defined-types) User-defined Types
+      - [§6.4.1](./types.md#641-description) Description
 - [§7](./variables.md) Variables
+  - [§7.1](./variables.md#71-general-description) General Description
+  - [§7.2](./variables.md#72-variable-categories) Variable Categories
+    - [§7.2.1](./variables.md#721-local-variables) Local Variables
+      - [§7.2.1.1](./variables.md#7211-description) Description
+      - [§7.2.1.2](./variables.md#7212-examples) Examples
+    - [§7.2.2](./variables.md#722-array-elements) Array Elements
+      - [§7.2.2.1](./variables.md#7221-description) Description
+      - [§7.2.2.2](./variables.md#7222-examples) Examples
+  - [§7.3](./variables.md#73-default-values) Default Values
+    - [§7.3.1](./variables.md#731-description) Description
+    - [§7.3.2](./variables.md#732-examples) Examples
+  - [§7.4](./variables.md#74-variable-definition-and-assignment) Variable Definition and Assignment
+    - [§7.4.1](./variables.md#741-description) Description
+    - [§7.4.2](./variables.md#742-block-statement) Block Statement
+      - [§7.4.2.1](./variables.md#7421-description) Description
+      - [§7.4.2.2](./variables.md#7422-examples) Examples
+    - [§7.4.3](./variables.md#743-loop-statement) Loop Statement
+      - [§7.4.3.1](./variables.md#7431-description) Description
+      - [§7.4.3.2](./variables.md#7432-examples) Examples
 - [§8](./expressions.md) Expressions
+  - [§8.1](./expressions.md#81-assign) Assign
+    - [§8.1.1](./expressions.md#811-description) Description
+    - [§8.1.2](./expressions.md#812-examples) Examples
+  - [§8.2](./expressions.md#82-member-access) Member Access
+    - [§8.2.1](./expressions.md#821-description) Description
+    - [§8.2.2](./expressions.md#822-examples) Examples
+  - [§8.3](./expressions.md#83-array-index-access) Array Index Access
+    - [§8.3.1](./expressions.md#831-description) Description
+    - [§8.3.2](./expressions.md#832-examples) Examples
+  - [§8.4](./expressions.md#84-function-call) Function Call
+    - [§8.4.1](./expressions.md#841-description) Description
+    - [§8.4.2](./expressions.md#842-examples) Examples
+  - [§8.5](./expressions.md#85-typeof) `typeof`
+    - [§8.5.1](./expressions.md#851-description) Description
+    - [§8.5.2](./expressions.md#852-examples) Examples
+  - [§8.6](./expressions.md#86-parenthesized) Parenthesized
+    - [§8.6.1](./expressions.md#861-description) Description
+    - [§8.6.2](./expressions.md#862-examples) Examples
+  - [§8.7](./expressions.md#87-unary-operators) Unary Operators
+    - [§8.7.1](./expressions.md#871-description) Description
+    - [§8.7.2](./expressions.md#872-examples) Examples
+  - [§8.8](./expressions.md#88-binary-operators) Binary Operators
+    - [§8.8.1](./expressions.md#881-description) Description
+    - [§8.8.2](./expressions.md#882-examples) Examples
 - [§9](./statements.md) Statements
+  - [§9.1](./statements.md#91-block) Block
+    - [§9.1.1](./statements.md#911-description) Description
+    - [§9.1.2](./statements.md#912-examples) Examples
+  - [§9.2](./statements.md#92-return) Return
+    - [§9.2.1](./statements.md#921-description) Description
+    - [§9.2.2](./statements.md#922-examples) Examples
+  - [§9.3](./statements.md#93-filter) Filter
+    - [§9.3.1](./statements.md#931-description) Description
+    - [§9.3.2](./statements.md#932-examples) Examples
+  - [§9.4](./statements.md#94-loop) Loop
+    - [§9.4.1](./statements.md#941-description) Description
+    - [§9.4.2](./statements.md#942-examples) Examples
+  - [§9.5](./statements.md#95-if) If
+    - [§9.5.1](./statements.md#951-description) Description
+    - [§9.5.2](./statements.md#952-examples) Examples
+  - [§9.6](./statements.md#96-variable-definition) Variable Definition
+    - [§9.6.1](./statements.md#961-description) Description
+    - [§9.6.2](./statements.md#962-modifiers) Modifiers
+        - [§9.6.2.1](./statements.md#9621-undef) `undef`
+    - [§9.6.3](./statements.md#963-examples) Examples
+  - [§9.7](./statements.md#97-type-definition) Type Definition
+    - [§9.7.1](./statements.md#971-description) Description
+    - [§9.7.2](./statements.md#972-examples) Examples
+  - [§9.8](./statements.md#98-assert) Assert
+    - [§9.8.1](./statements.md#981-description) Description
+    - [§9.8.2](./statements.md#982-examples) Examples
+  - [§9.9](./statements.md#99-verify) Verify
+    - [§9.9.1](./statements.md#991-description) Description
+    - [§9.9.2](./statements.md#992-examples) Examples
 - [§10](./definitions.md) Definitions
+  - [§10.1](./definitions.md#101-constant) Constant
+    - [§10.1.1](./definitions.md#1011-description) Description
+    - [§10.1.2](./definitions.md#1012-examples) Examples
+  - [§10.2](./definitions.md#102-function) Function
+    - [§10.2.1](./definitions.md#1021-description) Description
+    - [§10.2.2](./definitions.md#1022-examples) Examples
+  - [§10.3](./definitions.md#103-external-function) External Function
+    - [§10.3.1](./definitions.md#1031-description) Description
+    - [§10.3.2](./definitions.md#1032-examples) Examples
+  - [§10.4](./definitions.md#104-type) Type
+    - [§10.4.1](./definitions.md#1041-description) Description
+    - [§10.4.2](./definitions.md#1042-examples) Examples
+  - [§10.5](./definitions.md#105-context) Context
+    - [§10.5.1](./definitions.md#1051-description) Description
+    - [§10.5.2](./definitions.md#1052-examples) Examples
+  - [§10.6](./definitions.md#106-enum) Enum
+    - [§10.6.1](./definitions.md#1061-description) Description
+    - [§10.6.2](./definitions.md#1062-examples) Examples
+  - [§10.7](./definitions.md#107-struct) Struct
+    - [§10.7.1](./definitions.md#1071-description) Description
+    - [§10.7.2](./definitions.md#1072-examples) Examples
 - [§11](./functions.md) Functions
+  - [§11.1](./functions.md#111-function-definition) Function Definition
+    - [§11.1.1](./functions.md#1111-description) Description
+    - [§11.1.2](./functions.md#1112-modifiers) Modifiers
+        - [§11.1.2.1](./functions.md#11121-total) `total`
+    - [§11.1.3](./functions.md#1113-examples) Examples
+  - [§11.2](./functions.md#112-external-function) External Function
+    - [§11.2.1](./functions.md#1121-description) Description
+    - [§11.2.2](./functions.md#1122-examples) Examples
 - [§12](./constants.md) Constants
+  - [§12.1](./constants.md#121-description) Description
+  - [§12.2](./constants.md#122-examples) Examples
 - [§13](./directives.md) Directives
+  - [§13.1](./directives.md#131-use-directive) Use Directive
+    - [§13.1.1](./directives.md#1311-description) Description
+    - [§13.1.2](./directives.md#1312-examples) Examples
 - [§A](./grammar.md) Grammar
 - [§B](./standard-library.md) Standard Library
 - [§C](./comments.md) Comments
+  - [C001](./comments.md#c001)
+  - [C002](./comments.md#c002)
 - [§D](./examples.md) Examples
 - [§E](./bibliography.md) Bibliography
+  - [§E.1](./bibliography.md#e1-inferara-papers) Inferara Papers
+  - [§E.2](./bibliography.md#e2-books) Books
+  - [§E.3](./bibliography.md#e3-articles) Articles
+  - [§E.4](./bibliography.md#e4-links) Links

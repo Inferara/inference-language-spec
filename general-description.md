@@ -7,7 +7,7 @@ Inference is a formal specification language that aims to provide a straightforw
 > 1. Inference is a Turing-complete language, **but**
 > 2. It is not intended to be used for general-purpose programming.
 
-## Non-Deterministic Computations
+## 3.1 Non-Deterministic Computations
 
 One of the most important concepts that allows covering all possible execution paths is non-deterministic computation. Inference provides a way to specify and manage non-deterministic computations in the program.
 
@@ -18,25 +18,25 @@ The following keywords are used for that:
 - [filter](./statements.md#9-filter)
 - [undef](./statements.md#911-undef)
 
-### Verify
+### 3.1.1 Verify
 
 The `verify` keyword is used to create an expression that tells a prover that the function this expression is applied to must be proven by a proof assistant.
 
-### Total
+### 3.1.2 Total
 
 `total` is a function modifier that indicates that the function is total, i.e., it is guaranteed to terminate for all possible inputs (in contrast to [partial functions](https://en.wikipedia.org/wiki/Partial_function)).
 
-### Filter
+### 3.1.3 Filter
 
 The `filter` keyword is used to make a statement that continues only execution paths conforming to a given precondition. For instance, if some property needs to be checked only for the even values of $\mathbb{N}$, we can prepend it with a filter to retain only needed variants as follows: `filter { assert (N % 2 == 0); }`.
 
-### Undef
+### 3.1.4 Undef
 
 The `undef` keyword is a variable modifier that indicates that the variable can have any value (eventually includes all possible variants). So if we declare `let undef a: i32;` it means that `a` is considered as a set of all possible `i32` values.
 
 For more information, see the following article: [Specifying Algorithms Using Non-Deterministic Computations](https://www.inferara.com/en/papers/specifying-algorithms-using-non-deterministic-computations/)
 
-## Compiler Design
+## 3.2 Compiler Design
 
 `infc` is a multi-pass compiler. But since the final target of the language is a [proof-unit](./terms-and-definitions.md#proof-unit), it produces required proof modules as intermediate representations instead of different languages.
 
@@ -54,7 +54,7 @@ The compilation process consists of the following stages:
 
 ![Inference IR Building Sequence](./assets/inference-ir-building-sequence.png)
 
-## Automated Theorem Proving
+## 3.3 Automated Theorem Proving
 
 As an automated theorem proving backend, Inference uses the Coq theorem prover. The Coq type system is based on the Calculus of Inductive Constructions (CIC), which is a dependently typed lambda calculus.
 
@@ -62,7 +62,7 @@ Inference uses CIC along with first-order logic and Hoare logic to build theorie
 
 Otherwise, meaningful diagnostics are provided.
 
-## Restrictions
+## 3.4 Restrictions
 
 - The minimal addressable unit of memory in Inference is a 4-byte word (32 bits).
 - The language does not support floating-point numbers.
