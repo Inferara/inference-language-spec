@@ -8,3 +8,5 @@ Current formal specification solutions require engineers to be proficient in fun
 > If you know Rust, you can begin using Inference in 20 minutes after reading this documentation.
 
 In this repository, we assemble all required information about the language, its syntax, and its semantics. We also provide a set of examples and other useful information so you can start using Inference right away.
+
+[<kbd><br>Introduction<br><br></kbd>](./introduction.md)
