@@ -17,6 +17,7 @@ Comments are used to document the code and are ignored by the compiler. Inferenc
 - `fn`
 - `external`
 - `let`
+- `mut`
 - `total`
 - `undef`
 - `filter`

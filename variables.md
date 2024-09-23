@@ -69,6 +69,10 @@ Number literals have an actual type of `i64`. If a different size is required, t
 
 ## 7.4 Variable Definition and Assignment
 
+### 7.4.1 General Description
+
+All variables are **immutable** by default. This means that once a variable is assigned a value, it cannot be changed. To create a mutable variable, the `mut` keyword must be used. Variable names cannot shadow each other. For instance, if a function has a parameter `a`, a local variable `a` cannot be defined in the function. The same rule applies to the variable re-definition. If a variable is defined in a function, it cannot be redefined in the same function.
+
 ### 7.4.1 Block Statement
 
 #### Description
