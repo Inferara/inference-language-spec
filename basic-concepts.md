@@ -130,5 +130,5 @@ There is a [database](TODO) of correctness certificates that Inferara holds, and
 
 ---
 
-[<kbd><br>⏭️ Types<br><br></kbd>](./types.md)
 [<kbd><br>⏮️ Lexical structure<br><br></kbd>](./lexical-structure.md)
+[<kbd><br>⏭️ Types<br><br></kbd>](./types.md)

@@ -136,5 +136,5 @@ struct Account {
 
 ---
 
-[<kbd><br>⏭️ Functions<br><br></kbd>](./functions.md)
 [<kbd><br>⏮️ Statements<br><br></kbd>](./statements.md)
+[<kbd><br>⏭️ Functions<br><br></kbd>](./functions.md)

@@ -93,5 +93,5 @@ Users can define custom types in several ways:
 
 ---
 
-[<kbd><br>⏭️ Variables<br><br></kbd>](./variables.md)
 [<kbd><br>⏮️ Basic concepts<br><br></kbd>](./basic-concepts.md)
+[<kbd><br>⏭️ Variables<br><br></kbd>](./variables.md)

@@ -8,5 +8,5 @@ This concludes the revised documentation. All sections have been reviewed and up
 
 ---
 
-[<kbd><br>⏭️ Bibliography<br><br></kbd>](./bibliography.md)
 [<kbd><br>⏮️ Comments<br><br></kbd>](./comments.md)
+[<kbd><br>⏭️ Bibliography<br><br></kbd>](./bibliography.md)

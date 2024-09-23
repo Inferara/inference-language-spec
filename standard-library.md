@@ -4,5 +4,5 @@ The Inference standard library is currently under development. The standard libr
 
 ---
 
-[<kbd><br>⏭️ Comments<br><br></kbd>](./comments.md)
 [<kbd><br>⏮️ Grammar<br><br></kbd>](./grammar.md)
+[<kbd><br>⏭️ Comments<br><br></kbd>](./comments.md)

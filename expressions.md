@@ -152,5 +152,5 @@ total fn example() -> u32 {
 
 ---
 
-[<kbd><br>⏭️ Statements<br><br></kbd>](./statements.md)
 [<kbd><br>⏮️ Variables<br><br></kbd>](./variables.md)
+[<kbd><br>⏭️ Statements<br><br></kbd>](./statements.md)

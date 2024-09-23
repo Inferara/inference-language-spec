@@ -26,5 +26,5 @@ In Inference, an expression can be either an lval or an rval expression. An lval
 
 ---
 
-[<kbd><br>⏭️ General description<br><br></kbd>](./general-description.md)
 [<kbd><br>⏮️ Introduction<br><br></kbd>](./introduction.md)
+[<kbd><br>⏭️ General description<br><br></kbd>](./general-description.md)

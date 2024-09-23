@@ -73,5 +73,5 @@ Otherwise, meaningful diagnostics are provided.
 
 ---
 
-[<kbd><br>⏭️ Lexical structure<br><br></kbd>](./lexical-structure.md)
 [<kbd><br>⏮️ Terms and definitions<br><br></kbd>](./terms-and-definitions.md)
+[<kbd><br>⏭️ Lexical structure<br><br></kbd>](./lexical-structure.md)

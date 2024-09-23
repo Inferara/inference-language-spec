@@ -247,5 +247,5 @@ In Inference, an expression can be either an `lval` (left value) or an `rval` (r
 
 ---
 
-[<kbd><br>⏭️ Definitions<br><br></kbd>](./definitions.md)
 [<kbd><br>⏮️ Expressions<br><br></kbd>](./expressions.md)
+[<kbd><br>⏭️ Definitions<br><br></kbd>](./definitions.md)

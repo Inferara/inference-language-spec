@@ -40,5 +40,5 @@ Speaking about Inference as a special-purpose programming language, it is import
 
 ---
 
-[<kbd><br>⏭️ Terms and definitions<br><br></kbd>](./terms-and-definitions.md)
 [<kbd><br>⏮️ Foreword<br><br></kbd>](./foreword.md)
+[<kbd><br>⏭️ Terms and definitions<br><br></kbd>](./terms-and-definitions.md)

@@ -10,5 +10,5 @@ The shortcut `.v` is used as an alias to `Coq` or `Rocq` since the renaming was 
 
 ---
 
-[<kbd><br>⏭️ Examples<br><br></kbd>](./examples.md)
 [<kbd><br>⏮️ Standard library<br><br></kbd>](./standard-library.md)
+[<kbd><br>⏭️ Examples<br><br></kbd>](./examples.md)

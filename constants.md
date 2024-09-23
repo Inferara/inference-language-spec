@@ -29,5 +29,5 @@ total fn foo() {
 
 ---
 
-[<kbd><br>⏭️ Directives<br><br></kbd>](./directives.md)
 [<kbd><br>⏮️ Functions<br><br></kbd>](./functions.md)
+[<kbd><br>⏭️ Directives<br><br></kbd>](./directives.md)

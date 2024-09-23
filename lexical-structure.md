@@ -234,5 +234,5 @@ fn foo<T>(a: T) {
 
 ---
 
-[<kbd><br>⏭️ Basic concepts<br><br></kbd>](./basic-concepts.md)
 [<kbd><br>⏮️ General description<br><br></kbd>](./general-description.md)
+[<kbd><br>⏭️ Basic concepts<br><br></kbd>](./basic-concepts.md)

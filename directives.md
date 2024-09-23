@@ -20,5 +20,5 @@ use inference::std::algorithms::{sort, hash};
 
 ---
 
-[<kbd><br>⏭️ Grammar<br><br></kbd>](./grammar.md)
 [<kbd><br>⏮️ Constants<br><br></kbd>](./constants.md)
+[<kbd><br>⏭️ Grammar<br><br></kbd>](./grammar.md)
