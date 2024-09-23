@@ -45,7 +45,11 @@ context Hasher {
         let result_1: u8[32] = hash(data1);
         let undef data2: u8[100];
         let result_2: u8[32] = hash(data2);
-        assert((data1 == data2) => (result_1 == result_2));
+        if data1 == data2 {
+            assert(result_1 == result_2);
+        } else {
+            assert(result_1 != result_2);
+        }
     }
 
     fn proof() {

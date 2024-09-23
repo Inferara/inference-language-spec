@@ -67,7 +67,6 @@ Otherwise, meaningful diagnostics are provided.
 - The minimal addressable unit of memory in Inference is a 4-byte word (32 bits).
 - The language does not support floating-point numbers.
 - The language tends to be as explicit as possible, so no implicit type conversions are allowed, as well as no type inference.
-- The language does not support bit operations such as `&`, `|`, `^`, `<<`, `>>`.
 - The language does not support dynamically sized arrays.
 - The language does not support pointers.
 - The language does not support strings.

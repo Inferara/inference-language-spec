@@ -69,11 +69,6 @@ let c: u32 = (2 ** 32) - 1;     // 4,294,967,295
 let d: u64 = (2 ** 64) - 1;     // 18,446,744,073,709,551,615
 ```
 
-### Critical Analysis
-
-- **Issue Fixed**: Corrected the maximum values for signed and unsigned integers to prevent overflow errors.
-- **Clarification**: Specified that memory allocation is 4 bytes for all integer types due to the minimal addressable unit.
-
 ## 6.3 Array
 
 ### Description

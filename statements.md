@@ -50,28 +50,6 @@ The `filter` keyword is followed by a [block](#91-block). Semantically, `filter`
 ```inference
 total fn foo(i: i32) {
 
-    // This filter block
-    filter {
-        assert i > 0;
-    }
-
-    // Is similar to the following
-    if !(i > 0) {
-        break foo';
-    }
-}
-```
-
-### Critical Analysis
-
-- **Issue Noted**: The example uses `break foo'`, which may be unclear or undefined in the context.
-- **Fix Applied**: Clarified or replaced the example to make it consistent with the language semantics.
-
-### Revised Example
-
-```inference
-total fn foo(i: i32) {
-
     filter {
         assert i > 0;
     }
@@ -240,11 +218,6 @@ fn proof(a: Pred, b: Pred) {
     verify implies(a, b);
 }
 ```
-
-### Critical Analysis
-
-- **Clarification**: Improved explanations and corrected code examples to align with the language semantics.
-- **Issue Fixed**: Ensured that the use of `extern` is consistent and that types and functions are properly defined.
 
 # 2 Terms and Definitions
 
