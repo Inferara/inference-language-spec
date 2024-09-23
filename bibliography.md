@@ -33,4 +33,4 @@
 
 ---
 
-[<kbd><br>⏮️ Comments<br><br></kbd>](./comments.md)
+[<kbd><br>⏮️ Examples<br><br></kbd>](./examples.md)
