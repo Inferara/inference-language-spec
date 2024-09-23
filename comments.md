@@ -11,4 +11,4 @@ The shortcut `.v` is used as an alias to `Coq` or `Rocq` since the renaming was 
 ---
 
 [<kbd><br>⏭️ Bibliography<br><br></kbd>](./bibliography.md)
-[<kbd><br>⏮️ Grammar<br><br></kbd>](./grammar.md)
+[<kbd><br>⏮️ Standard library<br><br></kbd>](./standard-library.md)
