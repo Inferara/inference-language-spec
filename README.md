@@ -1,4 +1,4 @@
-![alt text](./assets/inference-logo.png)
+![alt text](./assets/inference-logo.svg)
 
 # Inference programming language specification
 
