@@ -28,6 +28,8 @@ This repository contains the specification of the Inference programming language
     - [§3.1.2](./general-description.md#312-total) Total
     - [§3.1.3](./general-description.md#313-filter) Filter
     - [§3.1.4](./general-description.md#314-undef) Undef
+      - [§3.1.4.1](./general-description.md#3141-semantics) Semantics
+      - [§3.1.4.2](./general-description.md#3142-examples) Examples
   - [§3.2](./general-description.md#32-compiler-design) Compiler Design
   - [§3.3](./general-description.md#33-automated-theorem-proving) Automated Theorem Proving
   - [§3.4](./general-description.md#34-restrictions) Restrictions
