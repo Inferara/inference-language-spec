@@ -23,3 +23,8 @@ A proof-unit is a [module](./terms-and-definitions.md#module) of proof code gene
 ## 2.6 `lval` and `rval` Expressions
 
 In Inference, an expression can be either an `lval` (left value) or an `rval` (right value) expression. An `lval` expression can appear on the left-hand side of an assignment, while an `rval` expression can exclusively appear on the right-hand side of an assignment.
+
+---
+
+[<kbd><br>⏮️ Introduction<br><br></kbd>](./introduction.md)
+[<kbd><br>⏭️ General description<br><br></kbd>](./general-description.md)
