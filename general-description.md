@@ -65,6 +65,11 @@ assert(x + 1 > x);
 
 Here, `x` can be any `i32` value. The assertion checks that adding `1` to any integer `x` will result in a value greater than `x`, which is a property that can be universally verified.
 
+> [!IMPORTANT]
+> This example requires additional attention to pay to. Since we know that `x` holds all possible `i32` values, it follows that it holds `0x7FFF` also. **Inference does not consider numeric overflows**, so let's consider two cases for `x == 0x7FFF`. If the expression `assert(x + 1 > x)` appers in the `total` block, it will make impossible to proof the totality of such block. If the expression appers inside `filter`, it simply forbit `x` holding the maximum value of its type and after the asserting, only execution paths with `x != 0x7FFF` will be considered.
+
+![`undef` for `i32` assertion](./assets/undef-i32-assert-diagram.png)
+
 ```inference
 let undef user_input: bool;
 if (user_input) {
