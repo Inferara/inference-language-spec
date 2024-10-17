@@ -191,35 +191,35 @@ The `verify` keyword can be used in the body of a proof function. When you put `
 
 ```inference
 extern fn predicate(x: SomeType) -> bool;
-type Pred = typeof(predicate);
 
-fn proof(a: Pred, b: Pred) {
+fn proof() {
     verify total {
         let undef x: SomeType;
         filter {
-            assert a(x);
+            assert predicate(x);
         }
-        assert b(x);
+        assert predicate(x);
     };
 }
 ```
+
+In this example the verifier will check if the block finishes correctly in every possible scenario.
 
 **Verification of a total function:**
 
 ```inference
 extern fn predicate(x: SomeType) -> bool;
-type Pred = typeof(predicate);
 
-total fn implies(a: Pred, b: Pred) {
+total fn implies() {
     let undef x: SomeType;
     filter {
-        assert a(x);
+        assert predicate(x);
     }
-    assert b(x);
+    assert predicate(x);
 }
 
-fn proof(a: Pred, b: Pred) {
-    verify implies(a, b);
+fn proof() {
+    verify implies();
 }
 ```
 

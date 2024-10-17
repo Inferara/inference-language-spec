@@ -85,11 +85,10 @@ let a: [i32; 3] = [1, 2, 3];
 
 ### 6.4.1 Description
 
-Users can define custom types in several ways:
+Users can define custom types in two ways:
 
-1. Using the `typeof` statement
-2. Defining an `enum` (see [Enum](./definitions.md#102-enum))
-3. Defining a `struct` (see [Struct](./definitions.md#103-struct))
+1. Defining an `enum` (see [Enum](./definitions.md#102-enum))
+2. Defining a `struct` (see [Struct](./definitions.md#103-struct))
 
 ---
 

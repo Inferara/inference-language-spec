@@ -105,10 +105,9 @@ A `loop` statement is used to execute a block of code repeatedly for a specified
 #### 7.4.3.2 Examples
 
 ```inference
-total fn foo() {
-    let a: i32 = 42;
+total fn inverse_bool_array(mut bool_arr: [bool, 10]) {
     loop 10 {
-        let b: i32 = a * 2;
+        bool_arr[i] = !bool_arr[i];
     }
 }
 ```

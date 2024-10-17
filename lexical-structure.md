@@ -34,7 +34,6 @@ Comments are used to document the code and are ignored by the compiler. Inferenc
 - `const`
 - `assert`
 - `verify`
-- `typeof`
 
 
 ## 4.3 Identifiers
@@ -57,6 +56,7 @@ let _ident : i64 = 42;
 - `filter`
 - `type`
 - `ctx`
+- `typeof`
 
 ## 4.5 Qualified identifiers
 
