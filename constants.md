@@ -2,7 +2,7 @@
 
 ## 12.1 Description
 
-Inference supports the following types of constants:
+Inference supports the following types of [constants](./definitions.md#101-constant):
 
 - [boolean](./types.md#611-boolean)
 - [i32](./types.md#613-integers)
