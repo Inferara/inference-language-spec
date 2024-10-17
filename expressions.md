@@ -67,55 +67,13 @@ total fn example() -> u32 {
 }
 ```
 
-## 8.5 `typeof`
+## 8.5 Parenthesized
 
 ### 8.5.1 Description
 
-The `typeof` expression is used to get the type of a variable or an expression. The syntax for `typeof` is the keyword `typeof` followed by the variable or expression.
-To distinguish `typeof` from other languages like C++, let's consider the following example with function pointers:
-
-```c++
-int foo(int a) {
-  return a;
-}
-
-int main() {
-  int (*f)(int) = foo;
-  return 0;
-}
-```
-
-Here, `f` is a pointer to a function that takes an `int` and returns an `int`. In Inference, the same code would look like this:
-
-```inference
-total fn foo(a: u32) -> u32 {
-  return a;
-}
-
-total fn example() -> Type {
-  let f: typeof(foo);
-  return f;
-}
-```
-
-In this example, `f` is a `Type` of a `foo` but not a pointer on its location in memory. This is so, because Inference operates with types and logical constructions, not with memory locations and pointers.
-
-### 8.5.2 Examples
-
-```inference
-total fn example() -> Type {
-  let a: u32 = 42;
-  return typeof(a);
-}
-```
-
-## 8.6 Parenthesized
-
-### 8.6.1 Description
-
 The parenthesized expression is used to group `lval` expressions and control the order of evaluation. The syntax for the parenthesized expression is the opening and closing parentheses enclosing the expression.
 
-### 8.6.2 Examples
+### 8.5.2 Examples
 
 ```inference
 total fn example() -> u32 {
@@ -123,13 +81,13 @@ total fn example() -> u32 {
 }
 ```
 
-## 8.7 Unary Operators
+## 8.6 Unary Operators
 
-### 8.7.1 Description
+### 8.6.1 Description
 
 Unary operators are operators that operate on a single operand. In Inference, only the unary minus operator (`-`) is supported. The operand of a unary expression is an expression.
 
-### 8.7.2 Examples
+### 8.6.2 Examples
 
 ```inference
 total fn example() -> i32 {
@@ -138,9 +96,9 @@ total fn example() -> i32 {
 }
 ```
 
-## 8.8 Binary Operators
+## 8.7 Binary Operators
 
-### 8.8.1 Description
+### 8.7.1 Description
 
 Binary operators are operators that operate on two operands. In Inference, the following binary operators are supported (in order of precedence):
 
@@ -169,7 +127,7 @@ Bitwise operators are available, but they are added for the sake of supporting i
 
 Left and right operands of a binary expression are expressions.
 
-### 8.8.2 Examples
+### 8.7.2 Examples
 
 ```inference
 total fn example() -> u32 {

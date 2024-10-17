@@ -138,18 +138,15 @@ This repository contains the specification of the Inference programming language
   - [§8.4](./expressions.md#84-function-call) Function Call
     - [§8.4.1](./expressions.md#841-description) Description
     - [§8.4.2](./expressions.md#842-examples) Examples
-  - [§8.5](./expressions.md#85-typeof) `typeof`
+  - [§8.5](./expressions.md#85-parenthesized) Parenthesized
     - [§8.5.1](./expressions.md#851-description) Description
     - [§8.5.2](./expressions.md#852-examples) Examples
-  - [§8.6](./expressions.md#86-parenthesized) Parenthesized
+  - [§8.6](./expressions.md#86-unary-operators) Unary Operators
     - [§8.6.1](./expressions.md#861-description) Description
     - [§8.6.2](./expressions.md#862-examples) Examples
-  - [§8.7](./expressions.md#87-unary-operators) Unary Operators
+  - [§8.7](./expressions.md#87-binary-operators) Binary Operators
     - [§8.7.1](./expressions.md#871-description) Description
     - [§8.7.2](./expressions.md#872-examples) Examples
-  - [§8.8](./expressions.md#88-binary-operators) Binary Operators
-    - [§8.8.1](./expressions.md#881-description) Description
-    - [§8.8.2](./expressions.md#882-examples) Examples
 - [§9](./statements.md) Statements
   - [§9.1](./statements.md#91-block) Block
     - [§9.1.1](./statements.md#911-description) Description
