@@ -72,6 +72,33 @@ total fn example() -> u32 {
 ### 8.5.1 Description
 
 The `typeof` expression is used to get the type of a variable or an expression. The syntax for `typeof` is the keyword `typeof` followed by the variable or expression.
+To distinguish `typeof` from other languages like C++, let's consider the following example with function pointers:
+
+```c++
+int foo(int a) {
+  return a;
+}
+
+int main() {
+  int (*f)(int) = foo;
+  return 0;
+}
+```
+
+Here, `f` is a pointer to a function that takes an `int` and returns an `int`. In Inference, the same code would look like this:
+
+```inference
+total fn foo(a: u32) -> u32 {
+  return a;
+}
+
+total fn example() -> Type {
+  let f: typeof(foo);
+  return f;
+}
+```
+
+In this example, `f` is a `Type` of a `foo` but not a pointer on its location in memory. This is so, because Inference operates with types and logical constructions, not with memory locations and pointers.
 
 ### 8.5.2 Examples
 
