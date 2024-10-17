@@ -32,7 +32,7 @@ The `filter` keyword is used to make a statement that continues only execution p
 
 ### 3.1.4 Undef
 
-The `undef` keyword is a variable modifier used in Inference to indicate that a variable can assume any possible value within its type's domain. It represents non-deterministic or unspecified values, effectively modeling all potential values that a variable of a given type can hold. This concept is particularly useful in formal specification and modeling non-deterministic behavior in programs.
+The `undef` keyword is a variable modifier used in Inference to indicate that a variable can assume any possible value within its type's domain. It represents non-deterministic or unspecified values, effectively modelling all potential values that a variable of a given type can hold. This concept is particularly useful in formal specification and modelling non-deterministic behavior in programs.
 
 The typical syntax for declaring an undef variable is:
 
@@ -44,13 +44,13 @@ In this example, `a` is declared as an `i32` (32-bit integer) variable with the 
 
 #### 3.1.4.1 Semantics
 
-- Non-Determinism: The `undef` keyword introduces non-determinism into the program by allowing a variable to take on any value within its type. This is useful for modeling scenarios where inputs or states are unpredictable or for simulating all possible execution paths.
+- Non-Determinism: The `undef` keyword introduces non-determinism into the program by allowing a variable to take on any value within its type. This is useful for modelling scenarios where inputs or states are unpredictable or for simulating all possible execution paths.
 - Universal Quantification: Conceptually, `undef` is similar to the universal quantifier $\forall$ (for all) in formal logic. It signifies that the variable should be considered as potentially holding any value from its type's domain during analysis or execution.
 - Defined Behavior: Unlike undefined behavior in languages like C++, where the result of an operation is unpredictable and potentially hazardous, `undef` variables have well-defined semantics. They are undefined in terms of which specific value they hold, but the behavior of operations involving them is specified according to the Inference language rules.
 
 **Differences from Uninitialized Variables and Undefined Behavior**
 
-Uninitialized Variables: In many languages, declaring a variable without initializing it (e.g., `int x;`) leaves it with an indeterminate value, which can lead to undefined behavior if used before assignment. However, an `undef` variable is explicitly declared to represent any value within its type, and operations on it are well-defined.
+Uninitialized Variables: In many languages, declaring a variable without initializing it (e.g., `int x;`) leaves it with an indeterminate value, which can lead to undefined behavior if used before the assignment. However, an `undef` variable is explicitly declared to represent any value within its type, and operations on it are well-defined.
 
 Undefined Behavior: Undefined behavior refers to program operations that the language specification does not define, leading to unpredictable results. The use of `undef` does not cause undefined behavior; instead, it allows for the intentional representation of any possible value.
 
@@ -66,7 +66,7 @@ assert(x + 1 > x);
 Here, `x` can be any `i32` value. The assertion checks that adding `1` to any integer `x` will result in a value greater than `x`, which is a property that can be universally verified.
 
 > [!IMPORTANT]
-> This example requires additional attention to pay to. Since we know that `x` holds all possible `i32` values, it follows that it holds `0x7FFF` also. **Inference does not consider numeric overflows**, so let's consider two cases for `x == 0x7FFF`. If the expression `assert(x + 1 > x)` appers in the `total` block, it will make impossible to proof the totality of such block. If the expression appers inside `filter`, it simply forbit `x` holding the maximum value of its type and after the asserting, only execution paths with `x != 0x7FFF` will be considered.
+> This example requires additional attention to pay. Since we know that `x` holds all possible `i32` values, it follows that it holds `0x7FFF` also. **Inference does not consider numeric overflows**, so let's take a look at two cases for `x == 0x7FFF`. If the expression `assert(x + 1 > x)` appears in the `total` block, it will make it impossible to prove such block's totality. If the expression appears inside `filter`, it simply forbids `x` holding the maximum value of its type and after the asserting, only execution paths with `x != 0x7FFF` will be considered.
 
 ![`undef` for `i32` assertion](./assets/undef-i32-assert-diagram.png)
 
