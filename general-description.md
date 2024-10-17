@@ -66,7 +66,7 @@ assert(x + 1 > x);
 Here, `x` can be any `i32` value. The assertion checks that adding `1` to any integer `x` will result in a value greater than `x`, which is a property that can be universally verified.
 
 > [!IMPORTANT]
-> This example requires additional attention to pay. Since we know that `x` holds all possible `i32` values, it follows that it holds `0x7FFF` also. **Inference does not consider numeric overflows**, so let's take a look at two cases for `x == 0x7FFF`. If the expression `assert(x + 1 > x)` appears in the `total` block, it will make it impossible to prove such block's totality. If the expression appears inside `filter`, it simply forbids `x` holding the maximum value of its type and after the asserting, only execution paths with `x != 0x7FFF` will be considered.
+> This example requires additional attention to pay. Since we know that `x` holds all possible `i32` values, it follows that it holds `0x7FFF` also. **Inference does not consider numeric overflows**, so let's take a look at two cases for `x == 0x7FFF`. If the expression `assert(x + 1 > x)` appears in the `total` block, it will make it impossible to prove such block's totality[^1]. If the expression appears inside `filter`, it simply forbids `x` holding the maximum value of its type and after the asserting, only execution paths with `x != 0x7FFF` will be considered.
 
 ![`undef` for `i32` assertion](./assets/undef-i32-assert-diagram.png)
 
@@ -133,3 +133,5 @@ Otherwise, meaningful diagnostics are provided.
 
 [<kbd><br>⏮️ Terms and definitions<br><br></kbd>](./terms-and-definitions.md)
 [<kbd><br>⏭️ Lexical structure<br><br></kbd>](./lexical-structure.md)
+
+[^1]: The reason of that is the fact that the totality of the block is proven by checking all possible execution paths. Since we know that the particular path with `x == 0x7FFF` is impossible, the block is not total.
