@@ -204,6 +204,8 @@ fn proof(a: Pred, b: Pred) {
 }
 ```
 
+In this example, the statement `type Pred = typeof(predicate);` defines a type `Pred` that is equivalent to the type of the function `predicate`. The `proof` function takes two predicates `a` and `b` and verifies that `a` implies `b` for all possible inputs `x` of type `SomeType`. It allows to define in Inference logicall properties and verify them.
+
 **Verification of a total function:**
 
 ```inference
