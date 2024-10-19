@@ -83,16 +83,34 @@ total fn example() -> u32 {
 
 ## 8.6 Unary Operators
 
-### 8.6.1 Description
+### 8.6.1 Unary minus
 
-Unary operators are operators that operate on a single operand. In Inference, only the unary minus operator (`-`) is supported. The operand of a unary expression is an expression.
+#### 8.6.1.1 Description
 
-### 8.6.2 Examples
+Unary operators are operators that operate on a single operand. The operand of a unary expression is an expression.
+
+#### 8.6.1.2 Examples
 
 ```inference
 total fn example() -> i32 {
   let a: i32 = -42;
   return a;
+}
+```
+
+### 8.6.2 Get function type
+
+#### 8.6.2.1 Description
+
+The `#` operator is used to get the type of a function. The operand of the `#` operator is a function name. The result of the `#` operator is the Predicate type. For more information, read [high-order functions](./functions.md#113-high-order-functions).
+
+#### 8.6.2.2 Examples
+
+```inference
+extern total fn hash(b: u8[100]) -> u8[32];
+
+context Hasher {
+    const hash_function: predicate = #hash;
 }
 ```
 
