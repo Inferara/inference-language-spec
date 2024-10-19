@@ -106,8 +106,11 @@ This repository contains the specification of the Inference programming language
     - [§6.3](./types.md#63-array) Array
       - [§6.3.1](./types.md#631-description) Description
       - [§6.3.2](./types.md#632-examples) Examples
-    - [§6.4](./types.md#64-user-defined-types) User-defined Types
+    - [§6.4](./types.md#64-predicate) Predicate
       - [§6.4.1](./types.md#641-description) Description
+      - [§6.4.2](./types.md#642-examples) Examples
+    - [§6.5](./types.md#64-user-defined-types) User-defined Types
+      - [§6.5.1](./types.md#641-description) Description
 - [§7](./variables.md) Variables
   - [§7.1](./variables.md#71-general-description) General Description
   - [§7.2](./variables.md#72-variable-categories) Variable Categories
@@ -145,8 +148,12 @@ This repository contains the specification of the Inference programming language
     - [§8.5.1](./expressions.md#851-description) Description
     - [§8.5.2](./expressions.md#852-examples) Examples
   - [§8.6](./expressions.md#86-unary-operators) Unary Operators
-    - [§8.6.1](./expressions.md#861-description) Description
-    - [§8.6.2](./expressions.md#862-examples) Examples
+    - [§8.6.1](./expressions.md#861-unary-minus) Unary minus
+      - [§8.6.1.1](./expressions.md#8611-description) Description
+      - [§8.6.1.2](./expressions.md#8612-examples) Examples
+    - [§8.6.2](./expressions.md#862-get-function-type) Get Function Type
+      - [§8.6.2.1](./expressions.md#8621-description) Description
+      - [§8.6.2.2](./expressions.md#8622-examples) Examples
   - [§8.7](./expressions.md#87-binary-operators) Binary Operators
     - [§8.7.1](./expressions.md#871-description) Description
     - [§8.7.2](./expressions.md#872-examples) Examples
@@ -211,6 +218,9 @@ This repository contains the specification of the Inference programming language
   - [§11.2](./functions.md#112-external-function) External Function
     - [§11.2.1](./functions.md#1121-description) Description
     - [§11.2.2](./functions.md#1122-examples) Examples
+  - [§11.3](./functions.md#113-high-order-functions) High-order Functions
+    - [§11.3.1](./functions.md#1131-description) Description
+    - [§11.3.2](./functions.md#1132-examples) Examples
 - [§12](./constants.md) Constants
   - [§12.1](./constants.md#121-description) Description
   - [§12.2](./constants.md#122-examples) Examples
