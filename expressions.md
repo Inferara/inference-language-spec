@@ -87,7 +87,7 @@ total fn example() -> u32 {
 
 Unary operators are operators that operate on a single operand. In Inference, only the unary minus operator (`-`) is supported. The operand of a unary expression is an expression.
 
-#### 8.6.2 Examples
+### 8.6.2 Examples
 
 ```inference
 total fn example() -> i32 {
