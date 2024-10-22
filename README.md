@@ -145,12 +145,8 @@ This repository contains the specification of the Inference programming language
     - [§8.5.1](./expressions.md#851-description) Description
     - [§8.5.2](./expressions.md#852-examples) Examples
   - [§8.6](./expressions.md#86-unary-operators) Unary Operators
-    - [§8.6.1](./expressions.md#861-unary-minus) Unary minus
-      - [§8.6.1.1](./expressions.md#8611-description) Description
-      - [§8.6.1.2](./expressions.md#8612-examples) Examples
-    - [§8.6.2](./expressions.md#862-get-function-type) Get Function Type
-      - [§8.6.2.1](./expressions.md#8621-description) Description
-      - [§8.6.2.2](./expressions.md#8622-examples) Examples
+    - [§8.6.1](./expressions.md#861-description) Description
+    - [§8.6.2](./expressions.md#862-examples) Examples
   - [§8.7](./expressions.md#87-binary-operators) Binary Operators
     - [§8.7.1](./expressions.md#871-description) Description
     - [§8.7.2](./expressions.md#872-examples) Examples
