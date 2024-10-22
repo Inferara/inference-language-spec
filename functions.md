@@ -93,7 +93,7 @@ use { hash } from "./cryptography.0.wasm";
 
 context HashContext {
 
-    type HashFunction: fn(u8[100]) -> u8[32] = hash;
+    type HashFunction = fn(u8[100]) -> u8[32];
 
     total fn verify(hash_f: HashFunction) -> () {
         let undef data1: u8[100];
@@ -114,7 +114,7 @@ context HashContext {
 }
 ```
 
-Function references can be defined on the context level but such references must be `const` and have a type signature. The `hash_function` is a reference to the `hash` function from the external module. The `verify` function takes a function as an argument and verifies its behavior. The `verify_hash` function is a helper function that verifies the `hash` function from the external module.
+A type of a function can be defined using [`type`](./statements.md#97-type-definition) statement. `HashFunction` in the example is an alias for the `hash` function type (its signature). Hence, it can be used in the type annotations but cannot be called as a function.
 
 ```inference
 
