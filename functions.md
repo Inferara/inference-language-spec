@@ -93,9 +93,9 @@ use { hash } from "./cryptography.0.wasm";
 
 context HashContext {
 
-    const hash_function: fn(u8[100]) -> u8[32] = hash;
+    type HashFunction: fn(u8[100]) -> u8[32] = hash;
 
-    total fn verify(hash_f: hash_function) -> () {
+    total fn verify(hash_f: HashFunction) -> () {
         let undef data1: u8[100];
         let result_1: u8[32] = hash_f(data1);
         let undef data2: u8[100];
