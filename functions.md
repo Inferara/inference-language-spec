@@ -67,7 +67,7 @@ In Inference, functions are the first-class citizens. This means that functions 
 ### 11.3.2 Examples
 
 ```inference
-fn bubble_sort(arr: i32[10], compare_function: (i32, i32) -> i32) -> () {
+fn bubble_sort(arr: i32[10], compare_function: fn(i32, i32) -> i32) -> () {
     let n: i32 = 10;
     let i: i32 = 0;
     loop n {
@@ -117,7 +117,7 @@ context HashContext {
 Operator [`#`](./expressions.md#862-get-function-type) (a pictogram for a table or a memory cell) is used to get the type of the function. Fucntinon type is a function signature (attributes and return value). [`predicate`](./types.md#64-predicate) is an embedded type that represents a general function type. It can be used to automaticaly deduce function types. Alternatively, the qualified function type can be used as a type of a `predicate`.
 
 ```inference
-const hash_function: predicate((u8[100]) -> u8[32]) = #hash;
+const hash_function: predicate(fn(u8[100]) -> u8[32]) = #hash;
 ```
 
 > [!IMPORTANT]

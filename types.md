@@ -93,7 +93,7 @@ Another intuition about a parameter-less `predicate` is a quntified type $\foral
 
 ```inference
 const hash_function_auto: predicate = #hash;
-const hash_function_explicit: predicate((u8[100]) -> u8[32]) = #hash;
+const hash_function_explicit: predicate(fn(u8[100]) -> u8[32]) = #hash;
 ```
 
 `hash_function_auto` holds the type of the `hash` function and the actual signature in this case is deduced by Inference. `hash_function_explicit` holds the type of the `hash` function with an explicit signature specification.
