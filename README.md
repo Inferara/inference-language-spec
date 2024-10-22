@@ -106,11 +106,8 @@ This repository contains the specification of the Inference programming language
     - [§6.3](./types.md#63-array) Array
       - [§6.3.1](./types.md#631-description) Description
       - [§6.3.2](./types.md#632-examples) Examples
-    - [§6.4](./types.md#64-predicate) Predicate
+    - [§6.4](./types.md#64-user-defined-types) User-defined Types
       - [§6.4.1](./types.md#641-description) Description
-      - [§6.4.2](./types.md#642-examples) Examples
-    - [§6.5](./types.md#64-user-defined-types) User-defined Types
-      - [§6.5.1](./types.md#641-description) Description
 - [§7](./variables.md) Variables
   - [§7.1](./variables.md#71-general-description) General Description
   - [§7.2](./variables.md#72-variable-categories) Variable Categories

@@ -81,35 +81,14 @@ An array is a linear segment of memory (also known as a vector or sequence). Sin
 let a: [i32; 3] = [1, 2, 3];
 ```
 
-## 6.4 Predicate
+## 6.4 User-Defined Types
 
 ### 6.4.1 Description
-
-A predicate is an embedded type that represents a function type. Comparing to C-like languages, a `predicate` is not a function pointer. The actual instantion of a `predicate` is a matter or the compiling process and execution platform dependant. A developer can think about a `predicate` as a type-level variable that represents a function type, generic or particular.
-
-Another intuition about a parameter-less `predicate` is a quntified type $\forall(\text{function type})$.
-
-### 6.4.2 Examples
-
-```inference
-const hash_function_auto: predicate = #hash;
-const hash_function_explicit: predicate(fn(u8[100]) -> u8[32]) = #hash;
-```
-
-`hash_function_auto` holds the type of the `hash` function and the actual signature in this case is deduced by Inference. `hash_function_explicit` holds the type of the `hash` function with an explicit signature specification.
-
-> [!NOTE]
-> The explicit signature specification is always more preferable.
-
-## 6.5 User-Defined Types
-
-### 6.5.1 Description
 
 Users can define custom types in two ways:
 
 1. Defining an `enum` (see [Enum](./definitions.md#102-enum))
 2. Defining a `struct` (see [Struct](./definitions.md#103-struct))
-3. Defining a `predicate` (see [high-order functions](./functions.md#113-high-order-functions))
 
 ---
 

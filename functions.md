@@ -93,7 +93,7 @@ use { hash } from "./cryptography.0.wasm";
 
 context HashContext {
 
-    const hash_function: predicate = #hash;
+    const hash_function: fn(u8[100]) -> u8[32] = hash;
 
     total fn verify(hash_f: hash_function) -> () {
         let undef data1: u8[100];
@@ -114,14 +114,7 @@ context HashContext {
 }
 ```
 
-Operator [`#`](./expressions.md#862-get-function-type) (a pictogram for a table or a memory cell) is used to get the type of the function. Fucntinon type is a function signature (attributes and return value). [`predicate`](./types.md#64-predicate) is an embedded type that represents a general function type. It can be used to automaticaly deduce function types. Alternatively, the qualified function type can be used as a type of a `predicate`.
-
-```inference
-const hash_function: predicate(fn(u8[100]) -> u8[32]) = #hash;
-```
-
-> [!IMPORTANT]
-> `hash_function` and `predicate` type are not variables, they do not appear on the stack and in the memory. They are used to address functions types, functinos and type-checking. You can think about them as a type-level variables.
+Function references can be defined on the context level but such references must be `const` and have a type signature. The `hash_function` is a reference to the `hash` function from the external module. The `verify` function takes a function as an argument and verifies its behavior. The `verify_hash` function is a helper function that verifies the `hash` function from the external module.
 
 ```inference
 
@@ -133,11 +126,13 @@ total fn subtract(a: i32, b: i32) -> i32 {
     return a - b;
 }
 
-assert (#add == #subtract);
+let plus: fn(i32, i32) -> i32 = add;
+let minus: fn(i32, i32) -> i32 = subtract;
+
+assert (plus == minus);
 ```
 
-Consequently (see example 1), the `#add` and `#subtract` are the same type, and the assertion is correct.
-
+Function references types are inferred from the function signature. The `plus` and `minus` variables are references to the `add` and `subtract` functions, respectively. The assertion checks if the `plus` and `minus` functions are equal.
 
 ---
 
