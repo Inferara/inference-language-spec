@@ -88,10 +88,18 @@ A block of code `{}` is a typical syntax location where variables are defined an
 ```inference
 total fn foo() {
     let a: i32 = 42;
-    let b: bool = true;
 
-    loop a {
-        let c: i32 = a * 2;
+    let mut b: bool = true;
+    let mut i: i32 = 10;
+    let mut acc: i32 = 0; 
+
+    loop i {
+        i = i + 1;
+        b = i % 2 == 0;
+        if b {        
+            let c: i32 = a * 2;
+            acc = acc + c;
+        }
     }
 }
 ```
@@ -106,8 +114,10 @@ A `loop` statement is used to execute a block of code repeatedly for a specified
 
 ```inference
 total fn inverse_bool_array(mut bool_arr: [bool, 10]) {
+    let mut i: i32 = 0;
     loop 10 {
         bool_arr[i] = !bool_arr[i];
+        i = i + 1;
     }
 }
 ```
