@@ -4,7 +4,7 @@
 
 ### 8.1.1 Description
 
-The assign expression is used to assign a value, or generally speaking, the result of an expression evaluation to a variable or to the `lval` expression. The syntax for the assign expression is the variable name followed by the assignment operator (`=`) and the expression.
+The assign expression is used to assign a value, or generally speaking, the result of an expression evaluation to a variable or the `lval` expression. The syntax for the assign expression is the variable name followed by the assignment operator (`=`) and the expression.
 
 ### 8.1.2 Examples
 
@@ -20,7 +20,7 @@ total fn example() -> u32 {
 
 ### 8.2.1 Description
 
-Member access is an expression that allows you to access the fields of a struct. The syntax for member access is the dot operator (`.`) followed by the name of the field or element.
+Member access is an expression allowing you to access a struct's fields. The syntax for member access is the dot operator (`.`) followed by the name of the field or element.
 
 ### 8.2.2 Examples
 
@@ -39,12 +39,12 @@ total fn get_balance(account: Account) -> u64 {
 
 ### 8.3.1 Description
 
-Array index access is an expression that allows you to access the elements of an array. The syntax for array index access is square brackets (`[]`) enclosing the index of the element.
+Array index access is an expression that allows you to access the elements of an array. The syntax for array index access is square brackets (`[]`) enclosing the element's index.
 
 ### 8.3.2 Examples
 
 ```inference
-total fn get_element(arr: u32[10], index: u32) -> u32 {
+total fn get_element(arr: [u32; 10], index: u32) -> u32 {
   return arr[index];
 }
 ```
@@ -117,7 +117,7 @@ Binary operators are operators that operate on two operands. In Inference, the f
 - `&&` (logical AND)
 - `||` (logical OR)
 
-Bitwise operators are available, but they are added for the sake of supporting imported code. For instance, if an external function which is a part of spec returns a bit packed value, we need a way to unpack such a union. Other possible reasons for using bitwise operators in a specification like memory or computation optimization are not relevant because a spec is not an execution unit.
+Bitwise operators are available, but they are added to support imported code. For instance, if an external function that is part of a specification returns a bit-packed value, we need a way to unpack such a union. Other possible reasons for using bitwise operators in a specification, like memory or computation optimization, are not relevant because a specification is not an execution unit.
 
 - `<<` (shift one bit left)
 - `>>` (shift one bit right)
