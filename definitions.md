@@ -39,7 +39,7 @@ For detailed information about external functions, see the [Functions](./functio
 ### 10.3.2 Examples
 
 ```inference
-extern fn external_function(a: u32, b: u32) -> u32;
+external fn external_function(a: u32, b: u32) -> u32;
 ```
 
 ## 10.4 Type
@@ -68,26 +68,26 @@ Contexts may contain definitions of constants and context-level variables, struc
 
 ```inference
 context AuctionSpec {  
-  const MAX_BID: u64 = 1000;
-  const MIN_BID: u64 = 100;
-  
-  struct Bid {
-    bidder: Address;
-    amount: u64;
-  }
-  
-  enum AuctionState {
-    Open,
-    Closed,
-  }
-  
-  total fn is_valid_bid(bid: Bid) -> bool {
-    return bid.amount >= MIN_BID && bid.amount <= MAX_BID;
-  }
+    const MAX_BID: u64 = 1000;
+    const MIN_BID: u64 = 100;
 
-  total fn is_auction_open(state: AuctionState) -> bool {
-    return state == AuctionState::Open;
-  }
+    struct Bid {
+      bidder: Address;
+      amount: u64;
+    }
+
+    enum AuctionState {
+      Open,
+      Closed
+    }
+
+    total fn is_valid_bid(bid: Bid) -> bool {
+      return bid.amount >= MIN_BID && bid.amount <= MAX_BID;
+    }
+
+    total fn is_auction_open(state: AuctionState) -> bool {
+      return state == AuctionState::Open;
+    }
 }
 ```
 
@@ -129,7 +129,7 @@ struct Account {
   balance: u64;
 
   total fn can_withdraw(amount: u64) -> bool {
-    ctx.balance >= amount;
+    return ctx.balance >= amount;
   }
 }
 ```

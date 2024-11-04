@@ -20,10 +20,16 @@ Constants can be defined in the following structures:
 ## 12.2 Examples
 
 ```inference
-total fn foo() {
-    const x: i32 = 10;
-    const y: bool = true;
-    const z: u32 = 0;
+context Constants {
+    const a: i32 = 10;
+    const b: bool = true;
+    const c: u32 = 0;
+
+    fn define_local_constants() {
+        const d: i32 = 10;
+        const e: bool = true;
+        const f: u32 = 0;
+    }
 }
 ```
 

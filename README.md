@@ -51,16 +51,13 @@ This repository contains the specification of the Inference programming language
   - [§4.6](./lexical-structure.md#46-member-access) Member Access
     - [§4.6.1](./lexical-structure.md#461-description) Description
     - [§4.6.2](./lexical-structure.md#462-examples) Examples
-  - [§4.7](./lexical-structure.md#47-literals)
-    - [§4.7.1](./lexical-structure.md#471-bool)
+  - [§4.7](./lexical-structure.md#47-literals) Literals
+    - [§4.7.1](./lexical-structure.md#471-bool) Bool
       - [§4.7.1.1](./lexical-structure.md#4711-description) Description
       - [§4.7.1.2](./lexical-structure.md#4712-examples) Examples
-    - [§4.7.2](./lexical-structure.md#472-number)
+    - [§4.7.2](./lexical-structure.md#472-unit) Unit
       - [§4.7.2.1](./lexical-structure.md#4721-description) Description
       - [§4.7.2.2](./lexical-structure.md#4722-examples) Examples
-    - [§4.7.3](./lexical-structure.md#473-unit)
-      - [§4.7.3.1](./lexical-structure.md#4731-description) Description
-      - [§4.7.3.2](./lexical-structure.md#4732-examples) Examples
   - [§4.8](./lexical-structure.md#48-right-arrow) Right Arrow
     - [§4.8.1](./lexical-structure.md#481-description) Description
     - [§4.8.2](./lexical-structure.md#482-examples) Examples

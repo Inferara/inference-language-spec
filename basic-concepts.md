@@ -38,17 +38,19 @@ fn test_sum() {
 In Inference, you can write a specification that asserts the correctness of `sum` for all inputs:
 
 ```inference
-extern fn sum(a: i32, b: i32) -> i32;
+    external fn sum(a: i32, b: i32) -> i32;
+    external fn sub(i32, i32) -> i32;
 
-total fn sum_spec() {
-    let undef a: i32;
-    let undef b: i32;
-    assert(sum(a, b) == a + b);
-}
+    total fn sum_sub_spec() {
+        let undef a: i32;
+        let undef b: i32;
+        assert(sum(a, b) == a + b);
+        assert(sub(a, b) == a - b);
+    }
 
-fn proof() {
-    verify sum_spec();
-}
+    fn proof() {
+        verify sum_sub_spec();
+    }
 ```
 
 In this example, `sum_spec` is a total function that, using `undef`, considers all possible values of `a` and `b`, and asserts that `sum(a, b)` equals `a + b` for all of them.

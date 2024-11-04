@@ -72,23 +72,24 @@ Here, `x` can be any `i32` value. The assertion checks that adding `1` to any in
 
 ```inference
 let undef user_input: bool;
-if (user_input) {
-    // Handle true case
+
+if user_input {
+    /// Handle true case
 } else {
-    // Handle false case
+    /// Handle false case
 }
 ```
 In programs where input values are not known ahead of time or can vary widely, `undef` variables can model these uncertainties. In this code, it is assumed that `user_input` can be either `true` or `false`, and both branches need to be considered during testing or analysis.
 
 ```inference
-let undef choice: i32;
+let undef mut choice: i32;
 choice = choice % 3;
 if (choice == 0) {
-    // Handle case 0
+    /// Handle case 0
 } else if (choice == 1) {
-    // Handle case 1
+    /// Handle case 1
 } else {
-    // Handle case 2
+    /// Handle case 2
 }
 ```
 
