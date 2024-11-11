@@ -26,6 +26,7 @@ Comments are used to document the code and are ignored by the compiler. Inferenc
 - `use`
 - `for`
 - `if`
+- `break`
 - `else`
 - `struct`
 - `enum`
@@ -79,9 +80,18 @@ The member access operator `.` is used to access fields and methods of a struct.
 ### 4.6.2 Examples
 
 ```inference
-let a: Account = Account { address: 42 };
+struct Account {
+    address: u32;
 
-let b: u32 = a.address;
+    fn new(addr: u32) -> Account {
+        ctx.address = addr;
+    }
+}
+
+total fn main() {
+    let a: Account = Account::new(42);
+    let b: u32 = a.address;
+}
 ```
 
 ## 4.7 Literals
@@ -99,25 +109,13 @@ let a: bool = true;
 let b: bool = false;
 ```
 
-### 4.7.2 Number
+### 4.7.2 Unit
 
 #### 4.7.2.1 Description
 
-`number` is a numeric type that represents a number. Numbers can be integers numbers only.
-
-#### 4.7.2.2 Examples
-
-```inference
-let a: number = 42;
-```
-
-### 4.7.3 Unit
-
-#### 4.7.3.1 Description
-
 `unit` is a [type](./types.md#6-unit) that has only one value: `()`. It is used to represent the absence of a value.
 
-#### 4.7.3.2 Examples
+#### 4.7.2.2 Examples
 
 ```inference
 let a: unit = ();
@@ -132,7 +130,7 @@ The right arrow `->` is used to specify the return type of a function.
 ### 4.8.2 Examples
 
 ```inference
-fn add(a: u32, b: u32) -> u32 {
+total fn add(a: u32, b: u32) -> u32 {
     return a + b;
 }
 ```
@@ -179,7 +177,7 @@ See also; [Types](./types.md#6-unit)
 #### 4.10.2.2 Examples
 
 ```inference
-fn foo(a: u32, b: u32) -> u32 {
+total fn foo(a: u32, b: u32) -> u32 {
     return a + b;
 }
 ```
@@ -214,7 +212,7 @@ See also: [Types](./types.md#63-user-defined-types)
 #### 4.10.4.2 Examples
 
 ```inference
-fn foo<T>(a: T) {
+total fn foo<T>(a: T) {
     /// code block
 }
 ```

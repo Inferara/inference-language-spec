@@ -22,7 +22,7 @@ total fn sum(a: u32, b: u32) -> u32 {
 }
 
 context Bridge {
-  // Context-specific functions
+  /// Context-specific functions
 }
 ```
 
@@ -37,14 +37,14 @@ External functions are an entry point to the actual implementation of the system
 ### 11.2.2 Examples
 
 ```inference
-extern total fn hash(b: u8[100]) -> u8[32];
+external total fn ideal_hash(b: [u8;100]) -> [u8;32];
 
 context Hasher {
     total fn hash_verifier() {
-        let undef data1: u8[100];
-        let result_1: u8[32] = hash(data1);
-        let undef data2: u8[100];
-        let result_2: u8[32] = hash(data2);
+        let undef data1: [u8;100];
+        let result_1: [u8;32] = ideal_hash(data1);
+        let undef data2: [u8;100];
+        let result_2: [u8;32] = ideal_hash(data2);
         if data1 == data2 {
             assert(result_1 == result_2);
         } else {
@@ -58,6 +58,12 @@ context Hasher {
 }
 ```
 
+> [!NOTE]
+> The `ideal_hash` is supposed to be an _ideal_ in terms of collisions absence.
+
+> [!NOTE]
+> The expression `data1 == data2` with operator `==` and two arrays works similarly to C++. It comapres two arrays element-wise.
+
 ## 11.3 High-Order Functions
 
 ### 11.3.1 Description
@@ -67,7 +73,7 @@ In Inference, functions are the first-class citizens. This means that functions 
 ### 11.3.2 Examples
 
 ```inference
-fn bubble_sort(arr: i32[10], compare_function: fn(i32, i32) -> i32) -> () {
+fn bubble_sort(arr: [i32;10], compare_function: fn(left: i32, right: i32) -> i32) -> () {
     let n: i32 = 10;
     let i: i32 = 0;
     loop n {
@@ -88,18 +94,17 @@ fn bubble_sort(arr: i32[10], compare_function: fn(i32, i32) -> i32) -> () {
 This example demonstrates a high-order function `bubble_sort` that takes an array of integers and a comparison function as arguments. The comparison function is used to determine the order of elements in the array. The `bubble_sort` function sorts the array using the comparison function provided.
 
 ```inference
-
 use { hash } from "./cryptography.0.wasm";
 
 context HashContext {
 
-    type HashFunction = fn(u8[100]) -> u8[32];
+    type HashFunction = fn([u8; 100]) -> [u8; 32];
 
-    total fn verify(hash_f: HashFunction) -> () {
-        let undef data1: u8[100];
-        let result_1: u8[32] = hash_f(data1);
-        let undef data2: u8[100];
-        let result_2: u8[32] = hash_f(data2);
+    total fn verify_hash_transitivity(hash_f: HashFunction) -> () {
+        let undef data1: [u8; 100];
+        let result_1: [u8; 32] = hash_f(data1);
+        let undef data2: [u8; 100];
+        let result_2: [u8; 32] = hash_f(data2);
         if data1 == data2 {
             assert(result_1 == result_2);
         } else {
@@ -108,16 +113,14 @@ context HashContext {
     }
 
     total fn verify_hash() -> () {
-        verify(hash);
+        verify_hash_transitivity(hash);
     }
-
 }
 ```
 
-A type of a function can be defined using [`type`](./statements.md#97-type-definition) statement. `HashFunction` in the example is an alias for the `hash` function type (its signature). Hence, it can be used in the type annotations but cannot be called as a function.
+A type of a function can be defined using [`type`](./statements.md#97-type-definition) statement. `HashFunction` in the example is an alias for the `hash` function type (its signature). Hence, it can be used in the type annotations but cannot be called as a function. TODO: review me
 
 ```inference
-
 total fn add(a: i32, b: i32) -> i32 {
     return a + b;
 }
@@ -126,10 +129,12 @@ total fn subtract(a: i32, b: i32) -> i32 {
     return a - b;
 }
 
-let plus: fn(i32, i32) -> i32 = add;
-let minus: fn(i32, i32) -> i32 = subtract;
+total fn example() {
+  let plus: fn(i32, i32) -> i32 = add;
+  let minus: fn(i32, i32) -> i32 = subtract;
 
-assert (plus == minus);
+  assert (plus == minus);
+}
 ```
 
 Function references types are inferred from the function signature. The `plus` and `minus` variables are references to the `add` and `subtract` functions, respectively. The assertion checks if the `plus` and `minus` functions are equal.

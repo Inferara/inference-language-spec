@@ -9,21 +9,21 @@ A block is a sequence of statements enclosed in curly braces `{}`. Blocks are us
 ### 9.1.2 Examples
 
 ```inference
-fn foo() {
-    // This is the function body block
+total fn foo() {
+    /// This is the function body block
 }
 
 fn bar() {
     let flag: bool = true;
     if flag {
-        // This is the 'if' block
+        /// This is the 'if' block
     } else {
-        // This is the 'else' block
+        /// This is the 'else' block
     }
 
     let i: i32 = 10;
     loop i {
-        // This is the loop block
+        /// This is the loop block
     }
 }
 ```
@@ -52,16 +52,16 @@ The `filter` keyword is followed by a [block](#91-block). Semantically, `filter`
 ### 9.3.2 Examples
 
 ```inference
-total fn foo(i: i32) {
+total fn foo(i: i32) -> () {
 
     filter {
         assert i > 0;
     }
 
-    // This is equivalent to:
+    /// This is equivalent to:
     if !(i > 0) {
-        // Terminate the function or handle the case accordingly
-        return;
+        /// Terminate the function or handle the case accordingly
+        return ();
     }
 }
 ```
@@ -75,19 +75,19 @@ The `loop` statement is used to perform a certain number of iterations repetitiv
 ### 9.4.2 Examples
 
 ```inference
-fn foo() {
+fn loop_example() {
     loop 10 {
-        // This block will be executed 10 times
+        /// This block will be executed 10 times
     }
 
     loop 0 {
-        // This block will not be executed
+        /// This block will not be executed
     }
 
     let i: i32 = 10;
     loop i {
-        // This block will be executed 10 times
-        // Modifying 'i' inside the loop is not allowed
+        /// This block will be executed 10 times
+        /// Modifying 'i' inside the loop is not allowed
     }
 }
 ```
@@ -95,10 +95,10 @@ fn foo() {
 The special case of using `loop` is the infinite loop, which **must** be inside a `filter` statement and **must** contain a `break` statement to exit. Infinite loops are parameterized by the [unit](./types.md#61-unit) type as a special case.
 
 ```inference
-total fn foo() {
+total fn infinite_loop_example() {
     filter {
         loop () {
-            // Infinite loop body
+            /// Infinite loop body
             break;
         }
     }
@@ -117,9 +117,9 @@ The `if` statement is used to execute a block of code if a condition is true. If
 fn foo() {
     let flag: bool = true;
     if flag {
-        // This block will be executed
+        /// This block will be executed
     } else {
-        // This block will not be executed
+        /// This block will not be executed
     }
 }
 ```
@@ -148,7 +148,7 @@ Here, `undef` for `x` splits the execution path of the non-deterministic computa
 total fn foo() {
     let x: i32 = 10;
     let undef y: i32;
-    // 'y' can be any possible i32 value
+    /// 'y' can be any possible i32 value
 }
 ```
 
@@ -190,7 +190,7 @@ The `verify` keyword can be used in the body of a proof function. When you put `
 **Verification of a total block:**
 
 ```inference
-extern fn predicate(x: SomeType) -> bool;
+external fn predicate(x: SomeType) -> bool;
 
 fn proof() {
     verify total {
@@ -208,7 +208,7 @@ In this example the verifier will check if the block finishes correctly in every
 **Verification of a total function:**
 
 ```inference
-extern fn predicate(x: SomeType) -> bool;
+external fn predicate(x: SomeType) -> bool;
 
 total fn implies() {
     let undef x: SomeType;
