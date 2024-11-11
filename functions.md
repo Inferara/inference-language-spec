@@ -37,14 +37,14 @@ External functions are an entry point to the actual implementation of the system
 ### 11.2.2 Examples
 
 ```inference
-external total fn hash(b: [u8;100]) -> [u8;32];
+external total fn ideal_hash(b: [u8;100]) -> [u8;32];
 
 context Hasher {
     total fn hash_verifier() {
         let undef data1: [u8;100];
-        let result_1: [u8;32] = hash(data1);
+        let result_1: [u8;32] = ideal_hash(data1);
         let undef data2: [u8;100];
-        let result_2: [u8;32] = hash(data2);
+        let result_2: [u8;32] = ideal_hash(data2);
         if data1 == data2 {
             assert(result_1 == result_2);
         } else {
@@ -57,6 +57,12 @@ context Hasher {
     }
 }
 ```
+
+> [!NOTE]
+> The `ideal_hash` is supposed to be an _ideal_ in terms of collisions absence.
+
+> [!NOTE]
+> The expression `data1 == data2` with operator `==` and two arrays works similarly to C++. It comapres two arrays element-wise.
 
 ## 11.3 High-Order Functions
 
@@ -112,7 +118,7 @@ context HashContext {
 }
 ```
 
-A type of a function can be defined using [`type`](./statements.md#97-type-definition) statement. `HashFunction` in the example is an alias for the `hash` function type (its signature). Hence, it can be used in the type annotations but cannot be called as a function.
+A type of a function can be defined using [`type`](./statements.md#97-type-definition) statement. `HashFunction` in the example is an alias for the `hash` function type (its signature). Hence, it can be used in the type annotations but cannot be called as a function. TODO: review me
 
 ```inference
 total fn add(a: i32, b: i32) -> i32 {
