@@ -1,6 +1,6 @@
 # Annex D Examples
 
-*To be developed.*
+- [Merkle Tree formal specification](https://github.com/Inferara/merkle-tree-wasm-spec)
 
 ---
 
