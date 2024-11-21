@@ -32,7 +32,7 @@ total fn sum(a: u32, b: u32) -> u32 {
 
 ### 10.3.1 Description
 
-External functions are functions that are defined outside of the current module or context. They are used to interact with the external environment, such as calling functions from other modules. External functions are declared using the `extern` keyword followed by the function signature.
+External functions are functions that are defined outside of the current module or spec. They are used to interact with the external environment, such as calling functions from other modules. External functions are declared using the `extern` keyword followed by the function signature.
 
 For detailed information about external functions, see the [Functions](./functions.md#11-external-function) section.
 
@@ -56,18 +56,18 @@ For detailed information about embedded types, see the [Types](./types.md) secti
 type Address = u32;
 ```
 
-## 10.5 Context
+## 10.5 Spec
 
 ### 10.5.1 Description
 
-A context is an abstract _module_ representation. By module, we mean a scoped set of imports, definitions, and functions. Contexts are used to group related definitions and functions together and provide a way to organize the specification.
+A spec is an abstract _module_ representation. By module, we mean a scoped set of imports, definitions, and functions. Contexts are used to group related definitions and functions together and provide a way to organize the specification.
 
-Contexts may contain definitions of constants and context-level variables, structs, enums, and functions. Nested contexts are not allowed.
+Contexts may contain definitions of constants and spec-level variables, structs, enums, and functions. Nested contexts are not allowed.
 
 ### 10.5.2 Examples
 
 ```inference
-context AuctionSpec {  
+spec AuctionSpec {  
     const MAX_BID: u64 = 1000;
     const MIN_BID: u64 = 100;
 
@@ -119,7 +119,7 @@ enum ContextType {
 
 A struct in Inference is a user-defined algebraic data type that allows you to define a group of variables under a single name. The underlying data structure of a struct is a record, which is a collection of fields or members. Each field can have a different type, and the fields are accessed using the dot operator.
 
-Along with the fields, a struct can also have methods that define the behavior of the struct. These methods can be used to manipulate the fields of the struct or perform some operations on them. The methods are defined inside the struct block and can access the fields of the struct using the `ctx` keyword.
+Along with the fields, a struct can also have methods that define the behavior of the struct. These methods can be used to manipulate the fields of the struct or perform some operations on them. The methods are defined inside the struct block and can access the fields of the struct using the `self` keyword.
 
 ### 10.7.2 Examples
 
@@ -129,7 +129,7 @@ struct Account {
   balance: u64;
 
   total fn can_withdraw(amount: u64) -> bool {
-    return ctx.balance >= amount;
+    return self.balance >= amount;
   }
 }
 ```

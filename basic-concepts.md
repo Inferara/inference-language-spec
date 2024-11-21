@@ -8,14 +8,14 @@ $$
 \text{Specification} = \text{Property}_1 \land \text{Property}_2 \land \ldots \land \text{Property}_n
 $$
 
-In Inference, the specification is defined as a [context](./definitions.md#101-context). Every context is then compiled into a [module](./terms-and-definitions.md#module) and into a [proof-unit](./terms-and-definitions.md#proof-unit). This modular structure enables Inference to support super-specifications, where a super-specification is a set of specifications combined as a conjunction of all specifications.
+In Inference, the specification is defined as a [spec](./definitions.md#101-spec). Every spec is then compiled into a [module](./terms-and-definitions.md#module) and into a [proof-unit](./terms-and-definitions.md#proof-unit). This modular structure enables Inference to support super-specifications, where a super-specification is a set of specifications combined as a conjunction of all specifications.
 
 $$
 \text{Super-specification} = \text{Specification}_1 \land \text{Specification}_2 \land \ldots \land \text{Specification}_n
 $$
 
 > [!IMPORTANT]
-> **Super-specification (SS)** allows the description of the whole blockchain behavior and the behavior of a DApp in the context of its direct or indirect interaction with other DApps in the system.
+> **Super-specification (SS)** allows the description of the whole blockchain behavior and the behavior of a DApp in the spec of its direct or indirect interaction with other DApps in the system.
 
 ## 5.2 Specification Is Not a Program
 
