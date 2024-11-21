@@ -6,7 +6,7 @@
 
 Functions in Inference are the basic blocks used to build the specification. They are used to describe the behavior of the system in functional terms. A function is a matter of verification; hence, it is the only possible argument of the [verify](./statements.md#9-verify) expression statement.
 
-Functions can be defined at the top level of the program, inside a [context](./definitions.md#101-context), or inside a [struct](./definitions.md#103-struct) definition. In the latter case, the function is considered a method of the struct and acquires access to struct fields.
+Functions can be defined at the top level of the program, inside a [spec](./definitions.md#101-spec), or inside a [struct](./definitions.md#103-struct) definition. In the latter case, the function is considered a method of the struct and acquires access to struct fields.
 
 ### 11.1.2 Modifiers
 
@@ -21,8 +21,8 @@ total fn sum(a: u32, b: u32) -> u32 {
   return a + b;
 }
 
-context Bridge {
-  /// Context-specific functions
+spec Bridge {
+  /// Spec-specific functions
 }
 ```
 
@@ -30,7 +30,7 @@ context Bridge {
 
 ### 11.2.1 Description
 
-External functions are functions that are defined outside of the current specification or context. They are used to interact with the external environment, such as calling functions from other modules or libraries. External functions are declared using the `extern` keyword followed by the function signature.
+External functions are functions that are defined outside of the current specification or spec. They are used to interact with the external environment, such as calling functions from other modules or libraries. External functions are declared using the `extern` keyword followed by the function signature.
 
 External functions are an entry point to the actual implementation of the system. This means the specification is a description of the system behavior, and the external functions are the actual implementation of the system. A specification can exist without the linked external implementation, but if it is desired to verify the correctness of the implementation, the external functions must be provided.
 
@@ -39,7 +39,7 @@ External functions are an entry point to the actual implementation of the system
 ```inference
 external total fn ideal_hash(b: [u8;100]) -> [u8;32];
 
-context Hasher {
+spec Hasher {
     total fn hash_verifier() {
         let undef data1: [u8;100];
         let result_1: [u8;32] = ideal_hash(data1);
@@ -96,7 +96,7 @@ This example demonstrates a high-order function `bubble_sort` that takes an arra
 ```inference
 use { hash } from "./cryptography.0.wasm";
 
-context HashContext {
+spec HashContext {
 
     type HashFunction = fn([u8; 100]) -> [u8; 32];
 

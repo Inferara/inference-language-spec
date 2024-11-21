@@ -14,13 +14,13 @@ Inference supports the following types of [constants](./definitions.md#101-const
 
 Constants can be defined in the following structures:
 
-- [context](./definitions.md#101-context)
+- [spec](./definitions.md#101-spec)
 - [function](./functions.md)
 
 ## 12.2 Examples
 
 ```inference
-context Constants {
+spec Constants {
     const a: i32 = 10;
     const b: bool = true;
     const c: u32 = 0;

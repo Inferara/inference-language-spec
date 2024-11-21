@@ -47,7 +47,7 @@ fn foo() -> i32 {
 
 ### 9.3.1 Description
 
-The `filter` keyword is followed by a [block](#91-block). Semantically, `filter` converts [traps](https://webassembly.github.io/spec/core/intro/overview.html) and proven infinite loops into the successful completion of the closest `total` context (understood in terms of dynamic, not lexical scope). Regarding unwinding the call stack, handling traps inside `filter` is similar to exception handling in other languages (termination propagates up through activation frames until the point of handling) but differs in that `filter` doesn't retain any information about the cause and context of failure.
+The `filter` keyword is followed by a [block](#91-block). Semantically, `filter` converts [traps](https://webassembly.github.io/spec/core/intro/overview.html) and proven infinite loops into the successful completion of the closest `total` spec (understood in terms of dynamic, not lexical scope). Regarding unwinding the call stack, handling traps inside `filter` is similar to exception handling in other languages (termination propagates up through activation frames until the point of handling) but differs in that `filter` doesn't retain any information about the cause and spec of failure.
 
 ### 9.3.2 Examples
 
@@ -183,7 +183,7 @@ fn foo() {
 
 ### 9.9.1 Description
 
-The `verify` keyword can be used in the body of a proof function. When you put `verify` in front of a non-deterministic block or expression marked with `total`, it means this block must be checked to ensure it always finishes correctly in the current deterministic context. If it can be confirmed that the block finishes correctly in every possible scenario, the `verify` process ignores any non-deterministic effects and continues normally. If it can't be confirmed, the verification process will not finish.
+The `verify` keyword can be used in the body of a proof function. When you put `verify` in front of a non-deterministic block or expression marked with `total`, it means this block must be checked to ensure it always finishes correctly in the current deterministic spec. If it can be confirmed that the block finishes correctly in every possible scenario, the `verify` process ignores any non-deterministic effects and continues normally. If it can't be confirmed, the verification process will not finish.
 
 ### 9.9.2 Examples
 

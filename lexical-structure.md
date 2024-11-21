@@ -31,7 +31,7 @@ Comments are used to document the code and are ignored by the compiler. Inferenc
 - `struct`
 - `enum`
 - `type`
-- `context`
+- `spec`
 - `const`
 - `assert`
 - `verify`
@@ -56,7 +56,7 @@ let _ident : i64 = 42;
 - `proof`
 - `filter`
 - `type`
-- `ctx`
+- `self`
 - `typeof`
 
 ## 4.5 Qualified identifiers
@@ -68,7 +68,7 @@ A qualified identifier is a sequence of identifiers separated by `::`. It is use
 ### 4.5.2 Examples
 
 ```inference
-let a: context::AuctionSpec = context::AuctionSpec::new();
+let a: spec::AuctionSpec = spec::AuctionSpec::new();
 ```
 
 ## 4.6 Member access
@@ -84,7 +84,7 @@ struct Account {
     address: u32;
 
     fn new(addr: u32) -> Account {
-        ctx.address = addr;
+        self.address = addr;
     }
 }
 
@@ -169,7 +169,7 @@ fn foo() {
 
 #### 4.10.2.1 Description
 
-Parentheses `()` are used to group expressions and arguments in function calls. Also a `()` outside of a function definition context is interpreted as a single token and is used to represent the unit type.
+Parentheses `()` are used to group expressions and arguments in function calls. Also a `()` outside of a function definition spec is interpreted as a single token and is used to represent the unit type.
 
 See also: [Functions](./functions.md#11-function-definition)
 See also; [Types](./types.md#6-unit)

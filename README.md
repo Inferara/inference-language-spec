@@ -190,7 +190,7 @@ This repository contains the specification of the Inference programming language
   - [§10.4](./definitions.md#104-type) Type
     - [§10.4.1](./definitions.md#1041-description) Description
     - [§10.4.2](./definitions.md#1042-examples) Examples
-  - [§10.5](./definitions.md#105-context) Context
+  - [§10.5](./definitions.md#105-spec) Spec
     - [§10.5.1](./definitions.md#1051-description) Description
     - [§10.5.2](./definitions.md#1052-examples) Examples
   - [§10.6](./definitions.md#106-enum) Enum
