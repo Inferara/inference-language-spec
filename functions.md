@@ -4,7 +4,7 @@
 
 ### 11.1.1 Description
 
-Functions in Inference are the basic blocks used to build the specification. They are used to describe the behavior of the system in functional terms. A function is a matter of verification; hence, it is the only possible argument of the [verify](./statements.md#9-verify) expression statement.
+Functions in Inference are the basic blocks used to build the specification. They are used to describe the behavior of the system in functional terms. A function is a matter of verification.
 
 Functions can be defined at the top level of the program, inside a [spec](./definitions.md#101-spec), or inside a [struct](./definitions.md#103-struct) definition. In the latter case, the function is considered a method of the struct and acquires access to struct fields.
 
@@ -53,7 +53,7 @@ spec Hasher {
     }
 
     fn proof() {
-        verify hash_verifier();
+        hash_verifier();
     }
 }
 ```
@@ -100,7 +100,7 @@ spec HashContext {
 
     type HashFunction = fn([u8; 100]) -> [u8; 32];
 
-    total fn verify_hash_transitivity(hash_f: HashFunction) -> () {
+    fn verify_hash_transitivity(hash_f: HashFunction) -> () {
         let undef data1: [u8; 100];
         let result_1: [u8; 32] = hash_f(data1);
         let undef data2: [u8; 100];
@@ -112,7 +112,7 @@ spec HashContext {
         }
     }
 
-    total fn verify_hash() -> () {
+    fn verify_hash() -> () {
         verify_hash_transitivity(hash);
     }
 }
@@ -121,15 +121,15 @@ spec HashContext {
 A type of a function can be defined using [`type`](./statements.md#97-type-definition) statement. `HashFunction` in the example is an alias for the `hash` function type (its signature). Hence, it can be used in the type annotations but cannot be called as a function. TODO: review me
 
 ```inference
-total fn add(a: i32, b: i32) -> i32 {
+fn add(a: i32, b: i32) -> i32 {
     return a + b;
 }
 
-total fn subtract(a: i32, b: i32) -> i32 {
+fn subtract(a: i32, b: i32) -> i32 {
     return a - b;
 }
 
-total fn example() {
+fn example() {
   let plus: fn(i32, i32) -> i32 = add;
   let minus: fn(i32, i32) -> i32 = subtract;
 

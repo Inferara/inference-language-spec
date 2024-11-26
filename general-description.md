@@ -13,18 +13,18 @@ One of the most important concepts that allows covering all possible execution p
 
 The following keywords are used for that:
 
-- [verify](./statements.md#9-verify)
-- [total](./functions.md#111-total)
-- [filter](./statements.md#9-filter)
-- [undef](./statements.md#911-undef)
+- [total](./statements.md#93-total)
+- [traverse](./statements.md#94-traverse)
+- [filter](./statements.md#95-filter)
+- [undef](./statements.md#9821-undef)
 
-### 3.1.1 Verify
+### 3.1.1 Total
 
-The `verify` keyword is used to create an expression that tells a prover that the function this expression is applied to must be proven by a proof assistant.
+`total` is a block modifier that indicates that the ...
 
-### 3.1.2 Total
+### 3.1.2 Traverse
 
-`total` is a function modifier that indicates that the function is total, i.e., it is guaranteed to terminate for all possible inputs (in contrast to [partial functions](https://en.wikipedia.org/wiki/Partial_function)).
+`traverse` is a block modifier that indicates that the ...
 
 ### 3.1.3 Filter
 

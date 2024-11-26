@@ -24,7 +24,7 @@ Local variables are variables defined within the scope of a function. They are n
 #### 7.2.1.2 Examples
 
 ```inference
-total fn foo() {
+fn foo() {
     let a: i32 = 42;
     let b: bool = true;
 }
@@ -39,7 +39,7 @@ Array elements are the individual items within an array. All array elements must
 #### 7.2.2.2 Examples
 
 ```inference
-total fn foo() {
+fn foo() {
     let a: [i32; 3] = [1, 2, 3];
     let b: [bool; 2] = [true, false];
 }
@@ -61,7 +61,7 @@ The only exception to this rule is when a variable has the `undef` modifier. In 
 ### 7.3.2 Examples
 
 ```inference
-total fn foo() {
+fn foo() {
     let undef len: u32;
     let undef arr: [i32; len];
 }
@@ -86,7 +86,7 @@ A block of code `{}` is a typical syntax location where variables are defined an
 #### 7.4.2.2 Examples
 
 ```inference
-total fn foo() {
+fn foo() {
     let a: i32 = 42;
 
     let mut b: bool = true;
@@ -113,7 +113,7 @@ A `loop` statement is used to execute a block of code repeatedly for a specified
 #### 7.4.3.2 Examples
 
 ```inference
-total fn inverse_bool_array(mut bool_arr: [bool; 10]) {
+fn inverse_bool_array(mut bool_arr: [bool; 10]) {
     let mut i: i32 = 0;
     loop 10 {
         bool_arr[i] = !bool_arr[i];

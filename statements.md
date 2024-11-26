@@ -9,7 +9,7 @@ A block is a sequence of statements enclosed in curly braces `{}`. Blocks are us
 ### 9.1.2 Examples
 
 ```inference
-total fn foo() {
+fn foo() {
     /// This is the function body block
 }
 
@@ -43,16 +43,26 @@ fn foo() -> i32 {
 }
 ```
 
-## 9.3 Filter
+## 9.3 Total
 
-### 9.3.1 Description
+The `total` keyword is followed by a [block](#91-block). Semantically, `total` is a logical analogue of for all $\forall$ quantifier.
 
-The `filter` keyword is followed by a [block](#91-block). Semantically, `filter` converts [traps](https://webassembly.github.io/spec/core/intro/overview.html) and proven infinite loops into the successful completion of the closest `total` spec (understood in terms of dynamic, not lexical scope). Regarding unwinding the call stack, handling traps inside `filter` is similar to exception handling in other languages (termination propagates up through activation frames until the point of handling) but differs in that `filter` doesn't retain any information about the cause and spec of failure.
+## 9.4 Traverse
 
-### 9.3.2 Examples
+The `traverse` keyword is followed by a [block](#91-block). Semantically, `traverse` is a logical analogue of exists $\exists$ quantifier.
+
+## 9.5 Filter
+
+### 9.5.1 Description
+
+The `filter` keyword is followed by a [block](#91-block). Semantically, `filter` converts [traps](https://webassembly.github.io/spec/core/intro/overview.html) and proven infinite loops into the successful completion of the closest `total` block (understood in terms of dynamic, not lexical scope). Regarding unwinding the call stack, handling traps inside `filter` is similar to exception handling in other languages (termination propagates up through activation frames until the point of handling) but differs in that `filter` doesn't retain any information about the cause and spec of failure.
+
+`filter` is not a representation of any logical quantifier and makes sense only when it is embedded into the `total` block as a mechanism of execution paths (that are not satisfied with the pre-conditions) filtering.
+
+### 9.5.2 Examples
 
 ```inference
-total fn foo(i: i32) -> () {
+fn foo(i: i32) -> () {
 
     filter {
         assert i > 0;
@@ -66,13 +76,13 @@ total fn foo(i: i32) -> () {
 }
 ```
 
-## 9.4 Loop
+## 9.6 Loop
 
-### 9.4.1 Description
+### 9.6.1 Description
 
 The `loop` statement is used to perform a certain number of iterations repetitively. It is configured by a numeric literal or a variable. The loop body is a block of code executed in each iteration. The loop cannot be parameterized by a negative number. If a loop is parameterized by a variable, the variable must be initialized before the loop.
 
-### 9.4.2 Examples
+### 9.6.2 Examples
 
 ```inference
 fn loop_example() {
@@ -95,7 +105,7 @@ fn loop_example() {
 The special case of using `loop` is the infinite loop, which **must** be inside a `filter` statement and **must** contain a `break` statement to exit. Infinite loops are parameterized by the [unit](./types.md#61-unit) type as a special case.
 
 ```inference
-total fn infinite_loop_example() {
+fn infinite_loop_example() {
     filter {
         loop () {
             /// Infinite loop body
@@ -105,13 +115,13 @@ total fn infinite_loop_example() {
 }
 ```
 
-## 9.5 If
+## 9.7 If
 
-### 9.5.1 Description
+### 9.7.1 Description
 
 The `if` statement is used to execute a block of code if a condition is true. If the condition is false, an optional `else` block can be executed. The condition is an expression that must explicitly evaluate to a Boolean value.
 
-### 9.5.2 Examples
+### 9.7.2 Examples
 
 ```inference
 fn foo() {
@@ -124,15 +134,15 @@ fn foo() {
 }
 ```
 
-## 9.6 Variable Definition
+## 9.8 Variable Definition
 
-### 9.6.1 Description
+### 9.8.1 Description
 
 Variable definition is a statement that declares a variable and optionally initializes it with a value. The type of the variable must be explicitly specified.
 
-### 9.6.2 Modifiers
+### 9.8.2 Modifiers
 
-#### 9.6.2.1 `undef`
+#### 9.8.2.1 `undef`
 
 When a variable is declared with the `undef` modifier, it has a type but omits initialization. Declaration of an undefined variable may appear only inside blocks or functions with non-deterministic semantics (with [total](./functions.md#111-total) or `filter` modifiers).
 
@@ -142,84 +152,40 @@ let undef x: i32;
 
 Here, `undef` for `x` splits the execution path of the non-deterministic computation into sub-paths. Each sub-path considers one of every possible `i32` value.
 
-### 9.6.3 Examples
+### 9.8.3 Examples
 
 ```inference
-total fn foo() {
+fn foo() {
     let x: i32 = 10;
     let undef y: i32;
     /// 'y' can be any possible i32 value
 }
 ```
 
-## 9.7 Type Definition
+## 9.9 Type Definition
 
-### 9.7.1 Description
+### 9.9.1 Description
 
 The type definition statement is a way to create a type alias or reference an existing type.
 
-### 9.7.2 Examples
+### 9.9.2 Examples
 
 ```inference
 type Address = u32;
 ```
 
-## 9.8 Assert
+## 9.10 Assert
 
-### 9.8.1 Description
+### 9.10.1 Description
 
 The `assert` statement is used to check a condition and generate properties for the verifier. If the condition is false, the verifier will find a contradiction.
 
-### 9.82 Examples
+### 9.10.2 Examples
 
 ```inference
 fn foo() {
     let flag: u32 = 0;
     assert(flag <= 0);
-}
-```
-
-## 9.9 Verify
-
-### 9.9.1 Description
-
-The `verify` keyword can be used in the body of a proof function. When you put `verify` in front of a non-deterministic block or expression marked with `total`, it means this block must be checked to ensure it always finishes correctly in the current deterministic spec. If it can be confirmed that the block finishes correctly in every possible scenario, the `verify` process ignores any non-deterministic effects and continues normally. If it can't be confirmed, the verification process will not finish.
-
-### 9.9.2 Examples
-
-**Verification of a total block:**
-
-```inference
-external fn predicate(x: SomeType) -> bool;
-
-fn proof() {
-    verify total {
-        let undef x: SomeType;
-        filter {
-            assert predicate(x);
-        }
-        assert predicate(x);
-    };
-}
-```
-
-In this example the verifier will check if the block finishes correctly in every possible scenario.
-
-**Verification of a total function:**
-
-```inference
-external fn predicate(x: SomeType) -> bool;
-
-total fn implies() {
-    let undef x: SomeType;
-    filter {
-        assert predicate(x);
-    }
-    assert predicate(x);
-}
-
-fn proof() {
-    verify implies();
 }
 ```
 

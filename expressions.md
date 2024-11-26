@@ -9,7 +9,7 @@ The assign expression is used to assign a value, or generally speaking, the resu
 ### 8.1.2 Examples
 
 ```inference
-total fn example() -> u32 {
+fn example() -> u32 {
   let a: u32 = 42;
   let b: u32 = a;
   return b;
@@ -30,7 +30,7 @@ struct Account {
   balance: u64;
 }
 
-total fn get_balance(account: Account) -> u64 {
+fn get_balance(account: Account) -> u64 {
   return account.balance;
 }
 ```
@@ -44,7 +44,7 @@ Array index access is an expression that allows you to access the elements of an
 ### 8.3.2 Examples
 
 ```inference
-total fn get_element(arr: [u32; 10], index: u32) -> u32 {
+fn get_element(arr: [u32; 10], index: u32) -> u32 {
   return arr[index];
 }
 ```
@@ -58,11 +58,11 @@ A function call is an expression that allows you to call a function with the spe
 ### 8.4.2 Examples
 
 ```inference
-total fn sum(a: u32, b: u32) -> u32 {
+fn sum(a: u32, b: u32) -> u32 {
   return a + b;
 }
 
-total fn example() -> u32 {
+fn example() -> u32 {
   return sum(1, 2);
 }
 ```
@@ -76,7 +76,7 @@ The parenthesized expression is used to group `lval` expressions and control the
 ### 8.5.2 Examples
 
 ```inference
-total fn example() -> u32 {
+fn example() -> u32 {
   return (1 + 2) * 3;
 }
 ```
@@ -90,7 +90,7 @@ Unary operators are operators that operate on a single operand. In Inference, on
 ### 8.6.2 Examples
 
 ```inference
-total fn example() -> i32 {
+fn example() -> i32 {
   let a: i32 = -42;
   return a;
 }
@@ -130,7 +130,7 @@ Left and right operands of a binary expression are expressions.
 ### 8.7.2 Examples
 
 ```inference
-total fn example() -> u32 {
+fn example() -> u32 {
   return 1 + 2 * 3;
 }
 ```

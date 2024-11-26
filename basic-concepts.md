@@ -49,7 +49,7 @@ In Inference, you can write a specification that asserts the correctness of `sum
     }
 
     fn proof() {
-        verify sum_sub_spec();
+        sum_sub_spec();
     }
 ```
 
@@ -69,18 +69,25 @@ In this analogy, the Inference proof is akin to a mathematical proof, whereas sy
 
 Inference leverages non-deterministic execution to model and reason about all possible execution paths of a program. Non-determinism allows the specification to consider every possible value a variable might take, enabling comprehensive verification.
 
-In Inference, non-determinism is introduced using the `undef` keyword for variables and the `total` keyword for functions. An `undef` variable represents all possible values of its type, and a `total` function is defined for all possible inputs and must terminate for all of them.
+In Inference, non-determinism is introduced using the `undef` keyword for variables and the `total`/`traverse` keywords for blocks of code. An `undef` variable represents all possible values of its type. A `total` block terminates successfully only if its body terminates for all possible combinations of values of `undef` variables, introduced inside it. A `traverse` block terminates successfully if there is at least one combination of values of `undef` variables, introduced inside it, that leads to termination.
+
+In fact, totality is asserted for every execution path entering the `total` block.
 
 For example:
 
 ```inference
-total fn example_spec() {
-    let undef x: i32;
-    assert(x + 1 > x);
+fn foo() {
+    filter {
+        let undef x: u32;
+        total {
+            let undef y: u32;
+            ///<do some checking for x and y>
+        }
+    }
 }
 ```
 
-Here, `x` can be any integer, and the assertion must hold for all possible values of `x`.
+After the `total` block only those execution paths will remain in which `x` has values for which the total block does not fail for any `y`.
 
 ## 5.5 Platform-Specific Execution
 

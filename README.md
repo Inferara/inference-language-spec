@@ -27,8 +27,8 @@ This repository contains the specification of the Inference programming language
   - [§2.6](./terms-and-definitions.md#26-lval-and-rval-expressions) `lval` and `rval` Expressions
 - [§3](./general-description.md) General description
   - [§3.1](./general-description.md#31-non-deterministic-computations) Non-Deterministic Computations
-    - [§3.1.1](./general-description.md#311-verify) Verify
-    - [§3.1.2](./general-description.md#312-total) Total
+    - [§3.1.1](./general-description.md#311-total) Total
+    - [§3.1.2](./general-description.md#312-traverse) Traverse
     - [§3.1.3](./general-description.md#313-filter) Filter
     - [§3.1.4](./general-description.md#314-undef) Undef
       - [§3.1.4.1](./general-description.md#3141-semantics) Semantics
@@ -174,9 +174,6 @@ This repository contains the specification of the Inference programming language
   - [§9.8](./statements.md#98-assert) Assert
     - [§9.8.1](./statements.md#981-description) Description
     - [§9.8.2](./statements.md#982-examples) Examples
-  - [§9.9](./statements.md#99-verify) Verify
-    - [§9.9.1](./statements.md#991-description) Description
-    - [§9.9.2](./statements.md#992-examples) Examples
 - [§10](./definitions.md) Definitions
   - [§10.1](./definitions.md#101-constant) Constant
     - [§10.1.1](./definitions.md#1011-description) Description
