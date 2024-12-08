@@ -24,7 +24,6 @@
 - Formal Languages and Automata. Encyclopedia of Mathematics. [URL](https://encyclopediaofmath.org/wiki/Formal_languages_and_automata)
 - Finite Automaton. Encyclopedia of Mathematics. [URL](https://encyclopediaofmath.org/wiki/Automaton,_finite)
 - Why Writing Software Is Hard … and Why Math (Alone) Won’t Help Us. [URL](https://pron.github.io/posts/correctness-and-complexity)
-- Total Functional Programming. Wikipedia. [URL](https://en.wikipedia.org/wiki/Total_functional_programming)
 - Unrelated-Machines Scheduling. Wikipedia. [URL](https://en.wikipedia.org/wiki/Unrelated-machines_scheduling)
 
 ## E.4 Links

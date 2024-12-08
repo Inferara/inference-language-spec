@@ -23,7 +23,7 @@ For detailed information about functions, see the [Functions](./functions.md) se
 ### 10.2.2 Examples
 
 ```inference
-total fn sum(a: u32, b: u32) -> u32 {
+fn sum(a: u32, b: u32) -> u32 {
   return a + b;
 }
 ```
@@ -81,11 +81,11 @@ spec AuctionSpec {
       Closed
     }
 
-    total fn is_valid_bid(bid: Bid) -> bool {
+    fn is_valid_bid(bid: Bid) -> bool {
       return bid.amount >= MIN_BID && bid.amount <= MAX_BID;
     }
 
-    total fn is_auction_open(state: AuctionState) -> bool {
+    fn is_auction_open(state: AuctionState) -> bool {
       return state == AuctionState::Open;
     }
 }
@@ -128,7 +128,7 @@ struct Account {
   address: Address;
   balance: u64;
 
-  total fn can_withdraw(amount: u64) -> bool {
+  fn can_withdraw(amount: u64) -> bool {
     return self.balance >= amount;
   }
 }
