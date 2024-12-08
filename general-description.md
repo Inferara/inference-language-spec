@@ -13,22 +13,22 @@ One of the most important concepts that allows covering all possible execution p
 
 The following keywords are used for that:
 
-- [total](./statements.md#93-total)
-- [traverse](./statements.md#94-traverse)
-- [filter](./statements.md#95-filter)
+- [forall](./statements.md#93-forall)
+- [exists](./statements.md#94-exists)
+- [assume](./statements.md#95-assume)
 - [undef](./statements.md#9821-undef)
 
-### 3.1.1 Total
+### 3.1.1 Forall
 
-`total` is a block modifier that indicates that the ...
+`forall` is a block modifier that indicates that the ...
 
-### 3.1.2 Traverse
+### 3.1.2 Exists
 
-`traverse` is a block modifier that indicates that the ...
+`exists` is a block modifier that indicates that the ...
 
-### 3.1.3 Filter
+### 3.1.3 Assume
 
-The `filter` keyword is used to make a statement that continues only execution paths conforming to a given precondition. For instance, if some property needs to be checked only for the even values of $\mathbb{N}$, we can prepend it with a filter to retain only needed variants as follows: `filter { assert (N % 2 == 0); }`.
+The `assume` keyword is used to make a statement that continues only execution paths conforming to a given precondition. For instance, if some property needs to be checked only for the even values of $\mathbb{N}$, we can prepend it with a assume to retain only needed variants as follows: `assume { assert (N % 2 == 0); }`.
 
 ### 3.1.4 Undef
 
@@ -66,7 +66,7 @@ assert(x + 1 > x);
 Here, `x` can be any `i32` value. The assertion checks that adding `1` to any integer `x` will result in a value greater than `x`, which is a property that can be universally verified.
 
 > [!IMPORTANT]
-> This example requires additional attention to pay. Since we know that `x` holds all possible `i32` values, it follows that it holds `0x7FFF` also. **Inference does not consider numeric overflows**, so let's take a look at two cases for `x == 0x7FFF`. If the expression `assert(x + 1 > x)` appears in the `total` block, it will make it impossible to prove such block's totality[^1]. If the expression appears inside `filter`, it simply forbids `x` holding the maximum value of its type and after the asserting, only execution paths with `x != 0x7FFF` will be considered.
+> This example requires additional attention to pay. Since we know that `x` holds all possible `i32` values, it follows that it holds `0x7FFF` also. **Inference does not consider numeric overflows**, so let's take a look at two cases for `x == 0x7FFF`. If the expression `assert(x + 1 > x)` appears in the `forall` block, it will make it impossible to prove such block's totality[^1]. If the expression appears inside `assume`, it simply forbids `x` holding the maximum value of its type and after the asserting, only execution paths with `x != 0x7FFF` will be considered.
 
 ![`undef` for `i32` assertion](./assets/undef-i32-assert-diagram.png)
 

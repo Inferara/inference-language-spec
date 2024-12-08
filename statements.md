@@ -43,28 +43,28 @@ fn foo() -> i32 {
 }
 ```
 
-## 9.3 Total
+## 9.3 Forall
 
-The `total` keyword is followed by a [block](#91-block). Semantically, `total` is a logical analogue of for all $\forall$ quantifier.
+The `forall` keyword is followed by a [block](#91-block). Semantically, `forall` is a logical analogue of for all $\forall$ quantifier.
 
-## 9.4 Traverse
+## 9.4 Exists
 
-The `traverse` keyword is followed by a [block](#91-block). Semantically, `traverse` is a logical analogue of exists $\exists$ quantifier.
+The `exists` keyword is followed by a [block](#91-block). Semantically, `exists` is a logical analogue of exists $\exists$ quantifier.
 
-## 9.5 Filter
+## 9.5 Assume
 
 ### 9.5.1 Description
 
-The `filter` keyword is followed by a [block](#91-block). Semantically, `filter` converts [traps](https://webassembly.github.io/spec/core/intro/overview.html) and proven infinite loops into the successful completion of the closest `total` block (understood in terms of dynamic, not lexical scope). Regarding unwinding the call stack, handling traps inside `filter` is similar to exception handling in other languages (termination propagates up through activation frames until the point of handling) but differs in that `filter` doesn't retain any information about the cause and spec of failure.
+The `assume` keyword is followed by a [block](#91-block). Semantically, `assume` converts [traps](https://webassembly.github.io/spec/core/intro/overview.html) and proven infinite loops into the successful completion of the closest `forall` block (understood in terms of dynamic, not lexical scope). Regarding unwinding the call stack, handling traps inside `assume` is similar to exception handling in other languages (termination propagates up through activation frames until the point of handling) but differs in that `assume` doesn't retain any information about the cause and spec of failure.
 
-`filter` is not a representation of any logical quantifier and makes sense only when it is embedded into the `total` block as a mechanism of execution paths (that are not satisfied with the pre-conditions) filtering.
+`assume` is not a representation of any logical quantifier and makes sense only when it is embedded into the `forall` block as a mechanism of execution paths (that are not satisfied with the pre-conditions) filtering.
 
 ### 9.5.2 Examples
 
 ```inference
 fn foo(i: i32) -> () {
 
-    filter {
+    assume {
         assert i > 0;
     }
 
@@ -102,11 +102,11 @@ fn loop_example() {
 }
 ```
 
-The special case of using `loop` is the infinite loop, which **must** be inside a `filter` statement and **must** contain a `break` statement to exit. Infinite loops are parameterized by the [unit](./types.md#61-unit) type as a special case.
+The special case of using `loop` is the infinite loop, which **must** be inside a `assume` statement and **must** contain a `break` statement to exit. Infinite loops are parameterized by the [unit](./types.md#61-unit) type as a special case.
 
 ```inference
 fn infinite_loop_example() {
-    filter {
+    assume {
         loop () {
             /// Infinite loop body
             break;
@@ -144,7 +144,7 @@ Variable definition is a statement that declares a variable and optionally initi
 
 #### 9.8.2.1 `undef`
 
-When a variable is declared with the `undef` modifier, it has a type but omits initialization. Declaration of an undefined variable may appear only inside blocks or functions with non-deterministic semantics (with [total](./functions.md#111-total) or `filter` modifiers).
+When a variable is declared with the `undef` modifier, it has a type but omits initialization. Declaration of an undefined variable may appear only inside blocks or functions with non-deterministic semantics (with [forall](./functions.md#111-forall) or `assume` modifiers).
 
 ```inference
 let undef x: i32;

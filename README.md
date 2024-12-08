@@ -27,9 +27,9 @@ This repository contains the specification of the Inference programming language
   - [§2.6](./terms-and-definitions.md#26-lval-and-rval-expressions) `lval` and `rval` Expressions
 - [§3](./general-description.md) General description
   - [§3.1](./general-description.md#31-non-deterministic-computations) Non-Deterministic Computations
-    - [§3.1.1](./general-description.md#311-total) Total
-    - [§3.1.2](./general-description.md#312-traverse) Traverse
-    - [§3.1.3](./general-description.md#313-filter) Filter
+    - [§3.1.1](./general-description.md#311-forall) Forall
+    - [§3.1.2](./general-description.md#312-exists) Exists
+    - [§3.1.3](./general-description.md#313-assume) Assume
     - [§3.1.4](./general-description.md#314-undef) Undef
       - [§3.1.4.1](./general-description.md#3141-semantics) Semantics
       - [§3.1.4.2](./general-description.md#3142-examples) Examples
@@ -154,7 +154,7 @@ This repository contains the specification of the Inference programming language
   - [§9.2](./statements.md#92-return) Return
     - [§9.2.1](./statements.md#921-description) Description
     - [§9.2.2](./statements.md#922-examples) Examples
-  - [§9.3](./statements.md#93-filter) Filter
+  - [§9.3](./statements.md#93-assume) Assume
     - [§9.3.1](./statements.md#931-description) Description
     - [§9.3.2](./statements.md#932-examples) Examples
   - [§9.4](./statements.md#94-loop) Loop
@@ -200,7 +200,7 @@ This repository contains the specification of the Inference programming language
   - [§11.1](./functions.md#111-function-definition) Function Definition
     - [§11.1.1](./functions.md#1111-description) Description
     - [§11.1.2](./functions.md#1112-modifiers) Modifiers
-        - [§11.1.2.1](./functions.md#11121-total) `total`
+        - [§11.1.2.1](./functions.md#11121-forall) `forall`
     - [§11.1.3](./functions.md#1113-examples) Examples
   - [§11.2](./functions.md#112-external-function) External Function
     - [§11.2.1](./functions.md#1121-description) Description

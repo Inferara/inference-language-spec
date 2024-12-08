@@ -10,14 +10,14 @@ Functions can be defined at the top level of the program, inside a [spec](./defi
 
 ### 11.1.2 Modifiers
 
-#### 11.1.2.1 `total`
+#### 11.1.2.1 `forall`
 
-The `total` keyword is used to specify that the function is total. A total function is a function that is defined for all possible inputs. In other words, a total function is a function that is guaranteed to terminate for all possible inputs.
+The `forall` keyword is used to specify that the function is forall. A forall-marked block in a function defines for all possible inputs. In other words, a forall-marked function is a function that is guaranteed to successfully terminate for all possible inputs.
 
 ### 11.1.3 Examples
 
 ```inference
-total fn sum(a: u32, b: u32) -> u32 {
+fn sum(a: u32, b: u32) -> u32 forall {
   return a + b;
 }
 
@@ -37,10 +37,10 @@ External functions are an entry point to the actual implementation of the system
 ### 11.2.2 Examples
 
 ```inference
-external total fn ideal_hash(b: [u8;100]) -> [u8;32];
+external forall fn ideal_hash(b: [u8;100]) -> [u8;32];
 
 spec Hasher {
-    total fn hash_verifier() {
+    forall fn hash_verifier() {
         let undef data1: [u8;100];
         let result_1: [u8;32] = ideal_hash(data1);
         let undef data2: [u8;100];

@@ -41,7 +41,7 @@ In Inference, you can write a specification that asserts the correctness of `sum
     external fn sum(a: i32, b: i32) -> i32;
     external fn sub(i32, i32) -> i32;
 
-    total fn sum_sub_spec() {
+    forall fn sum_sub_spec() {
         let undef a: i32;
         let undef b: i32;
         assert(sum(a, b) == a + b);
@@ -53,7 +53,7 @@ In Inference, you can write a specification that asserts the correctness of `sum
     }
 ```
 
-In this example, `sum_spec` is a total function that, using `undef`, considers all possible values of `a` and `b`, and asserts that `sum(a, b)` equals `a + b` for all of them.
+In this example, `sum_spec` is a forall function that, using `undef`, considers all possible values of `a` and `b`, and asserts that `sum(a, b)` equals `a + b` for all of them.
 
 ## 5.3 Execution Model
 
@@ -69,25 +69,26 @@ In this analogy, the Inference proof is akin to a mathematical proof, whereas sy
 
 Inference leverages non-deterministic execution to model and reason about all possible execution paths of a program. Non-determinism allows the specification to consider every possible value a variable might take, enabling comprehensive verification.
 
-In Inference, non-determinism is introduced using the `undef` keyword for variables and the `total`/`traverse` keywords for blocks of code. An `undef` variable represents all possible values of its type. A `total` block terminates successfully only if its body terminates for all possible combinations of values of `undef` variables, introduced inside it. A `traverse` block terminates successfully if there is at least one combination of values of `undef` variables, introduced inside it, that leads to termination.
+In Inference, non-determinism is introduced using the `undef` keyword for variables and the `forall`/`exists` keywords for blocks of code. An `undef` variable represents all possible values of its type. A `forall` block terminates successfully only if its body terminates for all possible combinations of values of `undef` variables, introduced inside it. A `exists` block terminates successfully if there is at least one combination of values of `undef` variables, introduced inside it, that leads to successful termination (not abort).
 
-In fact, totality is asserted for every execution path entering the `total` block.
+In fact, the totality is asserted for each execution path entering the `forall` block. When a `assume` block appears inside a `forall` block it equals to the `let assume that...` statement.
 
 For example:
 
 ```inference
 fn foo() {
-    filter {
-        let undef x: u32;
-        total {
-            let undef y: u32;
+    assume {
+        let x: u32 = undef;
+        forall {
+            let y: u32 = undef;
+            foobar(param1 : undef, param2: 5);
             ///<do some checking for x and y>
         }
     }
 }
 ```
 
-After the `total` block only those execution paths will remain in which `x` has values for which the total block does not fail for any `y`.
+After the `forall` block only those execution paths will remain in which `x` has values for which the `forall` block does not fail for any `y`.
 
 ## 5.5 Platform-Specific Execution
 

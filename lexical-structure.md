@@ -18,11 +18,11 @@ Comments are used to document the code and are ignored by the compiler. Inferenc
 - `external`
 - `let`
 - `mut`
-- `total`
-- `traverse`
+- `forall`
+- `exists`
 - `loop`
 - `undef`
-- `filter`
+- `assume`
 - `return`
 - `from`
 - `use`
@@ -55,7 +55,7 @@ let _ident : i64 = 42;
 
 - `constructor`
 - `proof`
-- `filter`
+- `assume`
 - `type`
 - `self`
 - `typeof`
