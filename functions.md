@@ -17,7 +17,7 @@ The `forall` keyword is used to specify that the function is forall. A forall-ma
 ### 11.1.3 Examples
 
 ```inference
-fn sum(a: u32, b: u32) -> u32 forall {
+fn sum(a: u32, b: u32) -> u32 {
   return a + b;
 }
 
@@ -37,10 +37,10 @@ External functions are an entry point to the actual implementation of the system
 ### 11.2.2 Examples
 
 ```inference
-external forall fn ideal_hash(b: [u8;100]) -> [u8;32];
+external fn ideal_hash(b: [u8;100]) -> [u8;32];
 
 spec Hasher {
-    forall fn hash_verifier() {
+    fn hash_verifier() forall {
         let undef data1: [u8;100];
         let result_1: [u8;32] = ideal_hash(data1);
         let undef data2: [u8;100];
@@ -112,7 +112,7 @@ spec HashContext {
         }
     }
 
-    fn verify_hash() -> () {
+    fn verify_hash() -> () forall {
         verify_hash_transitivity(hash);
     }
 }

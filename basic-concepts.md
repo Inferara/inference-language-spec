@@ -41,7 +41,7 @@ In Inference, you can write a specification that asserts the correctness of `sum
     external fn sum(a: i32, b: i32) -> i32;
     external fn sub(i32, i32) -> i32;
 
-    forall fn sum_sub_spec() {
+    fn sum_sub_spec() forall {
         let undef a: i32;
         let undef b: i32;
         assert(sum(a, b) == a + b);
@@ -53,7 +53,7 @@ In Inference, you can write a specification that asserts the correctness of `sum
     }
 ```
 
-In this example, `sum_spec` is a forall function that, using `undef`, considers all possible values of `a` and `b`, and asserts that `sum(a, b)` equals `a + b` for all of them.
+In this example, `sum_spec` is a forall-marked function that, using `undef`, considers all possible values of `a` and `b`, and asserts that `sum(a, b)` equals `a + b` for all of them.
 
 ## 5.3 Execution Model
 
