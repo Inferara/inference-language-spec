@@ -20,11 +20,11 @@ The following keywords are used for that:
 
 ### 3.1.1 Forall
 
-`forall` is a block modifier that indicates that the ...
+`forall` (execution paths) is a block modifier that indicates that the execution inside sucessfully terminates for all possible inputs.
 
 ### 3.1.2 Exists
 
-`exists` is a block modifier that indicates that the ...
+`exists` (an execution path) is a block modifier that indicates that the execution inside has at least one sucsessful termination path for a possible inputs combination.
 
 ### 3.1.3 Assume
 
@@ -32,7 +32,7 @@ The `assume` keyword is used to make a statement that continues only execution p
 
 ### 3.1.4 Undef
 
-The `undef` keyword is a variable special variable marker used in Inference to indicate that a variable can assume any possible value within its type's domain. It represents non-deterministic or unspecified values, effectively modelling all potential values that a variable of a given type can hold. This concept is particularly useful in formal specification and modelling non-deterministic behavior in programs.
+The `undef` keyword is a variable special variable marker used in Inference to indicate that a variable value assume having any possible value within its type's domain. It represents non-deterministic or unspecified values, effectively modelling all potential values that a variable of a given type can hold. This concept is particularly useful in formal specification and modelling non-deterministic behavior in programs.
 
 The typical syntax for declaring an undef variable is:
 
@@ -45,12 +45,12 @@ In this example, `a` is declared as an `i32` (32-bit integer) variable with the 
 #### 3.1.4.1 Semantics
 
 - Non-Determinism: The `undef` keyword introduces non-determinism into the program by allowing a variable to take on any value within its type. This is useful for modelling scenarios where inputs or states are unpredictable or for simulating all possible execution paths.
-- Universal Quantification: Conceptually, `undef` is similar to the universal quantifier $\forall$ (for all) in formal logic. It signifies that the variable should be considered as potentially holding any value from its type's domain during analysis or execution.
+- Universal Quantification: Conceptually, `undef` is similar to the universal quantifier $\forall$ (for all) in formal logic. It signifies that the variable should be considered as potentially holding any value from its type's domain during analysis or execution. However, this quantification is only applied to the variable values. The operational $\forall$ semantics is represented by the `forall` block modifier in Inference.
 - Defined Behavior: Unlike undefined behavior in languages like C++, where the result of an operation is unpredictable and potentially hazardous, `undef` variables have well-defined semantics. They are undefined in terms of which specific value they hold, but the behavior of operations involving them is specified according to the Inference language rules.
 
 **Differences from Uninitialized Variables and Undefined Behavior**
 
-Uninitialized Variables: In many languages, declaring a variable without initializing it (e.g., `int x;`) leaves it with an indeterminate value, which can lead to undefined behavior if used before the assignment. However, an `undef` variable is explicitly declared to represent any value within its type, and operations on it are well-defined.
+Uninitialized Variables: In many languages, declaring a variable without initializing it (e.g., `int x;`) leaves it with an indeterminate value, which can lead to undefined behavior if used before the assignment. However, an `undef` variable is explicitly declared to represent any all possible values within its type, and operations on them are well-defined.
 
 Undefined Behavior: Undefined behavior refers to program operations that the language specification does not define, leading to unpredictable results. The use of `undef` does not cause undefined behavior; instead, it allows for the intentional representation of any possible value.
 
@@ -63,10 +63,10 @@ let x: i32 = undef;
 assert(x + 1 > x);
 ```
 
-Here, `x` can be any `i32` value. The assertion checks that adding `1` to any integer `x` will result in a value greater than `x`, which is a property that can be universally verified.
+Here, `x` can hold any `i32` value. The assertion checks that adding `1` to any integer `x` will result in a value greater than `x`, which is a property that can be universally verified.
 
 > [!IMPORTANT]
-> This example requires additional attention to pay. Since we know that `x` holds all possible `i32` values, it follows that it holds `0x7FFF` also. **Inference does not consider numeric overflows**, so let's take a look at two cases for `x == 0x7FFF`. If the expression `assert(x + 1 > x)` appears in the `forall` block, it will make it impossible to prove such block's totality[^1]. If the expression appears inside `assume`, it simply forbids `x` holding the maximum value of its type and after the asserting, only execution paths with `x != 0x7FFF` will be considered.
+> This example requires additional attention to pay. Since we know that `x` holds all possible `i32` values, it follows that it holds `0x7FFF` also. **Inference does not consider numeric overflows**, so let's take a look at two cases for `x == 0x7FFF`. If the expression `assert(x + 1 > x)` appears in the `forall` block, it will make it impossible to prove such block's sucessful termination[^1]. If the expression appears inside an `assume` block, it simply forbids `x` holding the maximum value of its type and after the asserting, only execution paths with `x != 0x7FFF` will be considered.
 
 ![`undef` for `i32` assertion](./assets/undef-i32-assert-diagram.png)
 
@@ -93,11 +93,11 @@ if (choice == 0) {
 }
 ```
 
-Algorithms that rely on randomization or non-deterministic choices can use `undef` to represent the variability in their behavior. This models all possible cases among three options.
+Algorithms that rely on randomization or non-deterministic choices can use `undef` to represent the variability in their behavior. This approach models all possible cases among three options.
 
 ## 3.2 Compiler Design
 
-`infc` is a multi-pass compiler. But since the final target of the language is a [proof-unit](./terms-and-definitions.md#proof-unit), it produces required proof modules as intermediate representations instead of different languages.
+`infc` is a multi-pass compiler. But since the final target of the language is a [proof-unit](./terms-and-definitions.md#proof-unit), it produces required proof modules as intermediate representations.
 
 The compilation process consists of the following stages:
 
@@ -135,4 +135,4 @@ Otherwise, meaningful diagnostics are provided.
 [<kbd><br>⏮️ Terms and definitions<br><br></kbd>](./terms-and-definitions.md)
 [<kbd><br>⏭️ Lexical structure<br><br></kbd>](./lexical-structure.md)
 
-[^1]: The reason of that is the fact that the totality of the block is proven by checking all possible execution paths. Since we know that the particular path with `x == 0x7FFF` is impossible, the block is not total.
+[^1]: The reason of that is the fact that the totality of the block is proven by checking all possible execution paths. Since we know that the particular path with `x == 0x7FFF` is impossible, the block is not sealed.

@@ -20,9 +20,9 @@ Comments are used to document the code and are ignored by the compiler. Inferenc
 - `mut`
 - `forall`
 - `exists`
-- `loop`
 - `undef`
 - `assume`
+- `loop`
 - `return`
 - `from`
 - `use`
@@ -36,6 +36,8 @@ Comments are used to document the code and are ignored by the compiler. Inferenc
 - `spec`
 - `const`
 - `assert`
+- `self`
+- `type`
 
 
 ## 4.3 Identifiers
@@ -55,9 +57,6 @@ let _ident : i64 = 42;
 
 - `constructor`
 - `proof`
-- `assume`
-- `type`
-- `self`
 - `typeof`
 
 ## 4.5 Qualified identifiers

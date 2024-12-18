@@ -52,7 +52,7 @@ fn foo() {
 Inference, as a language for formal specification, is intended for use in critical system components.
 
 > [!WARNING]
-> No default values are allowed for variables.
+> No default values are allowed.
 
 Each variable must be assigned a value before it is used.
 
