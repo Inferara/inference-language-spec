@@ -55,15 +55,22 @@ fn get_element(arr: [u32; 10], index: u32) -> u32 {
 
 A function call is an expression that allows you to call a function with the specified arguments. The syntax for a function call is the function name followed by the arguments enclosed in parentheses.
 
+A function can be called with an explicit argument name but in this case all arguments must be named.
+
+For functions with the body marked as `foral`, the arguments can be passed as `undef` to indicate that the execution paths analysis will be conducted for all possible values of the argument.
+
 ### 8.4.2 Examples
 
 ```inference
-fn sum(a: u32, b: u32) -> u32 {
+fn sum(a: u32, b: u32) -> u32 forall {
   return a + b;
 }
 
 fn example() -> u32 {
-  return sum(1, 2);
+  let x: u32 = sum(1, 2);
+  let y: u32 = sum(a: 1, b: 2);
+  let z: u32 = sum(undef, undef);
+  return sum(a: undef, b: undef);
 }
 ```
 

@@ -17,7 +17,7 @@ The `forall` keyword is used to specify that the function is forall. A forall-ma
 ### 11.1.3 Examples
 
 ```inference
-fn sum(a: u32, b: u32) -> u32 {
+fn sum(a: u32, b: u32) -> u32 forall {
   return a + b;
 }
 
@@ -118,7 +118,7 @@ spec HashContext {
 }
 ```
 
-A type of a function can be defined using [`type`](./statements.md#97-type-definition) statement. `HashFunction` in the example is an alias for the `hash` function type (its signature). Hence, it can be used in the type annotations but cannot be called as a function. TODO: review me
+A type of a function can be defined using [`type`](./statements.md#97-type-definition) statement. `HashFunction` in the example is an alias for the `hash` function type (its signature). Hence, it can be used in the type annotations but cannot be called as a function.
 
 ```inference
 fn add(a: i32, b: i32) -> i32 {

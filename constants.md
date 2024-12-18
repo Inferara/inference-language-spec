@@ -4,7 +4,7 @@
 
 Inference supports the following types of [constants](./definitions.md#101-constant):
 
-- [boolean](./types.md#611-boolean)
+- [bool](./types.md#611-boolean)
 - [i32](./types.md#613-integers)
 - [i64](./types.md#613-integers)
 - [u32](./types.md#613-unsigned-integers)
