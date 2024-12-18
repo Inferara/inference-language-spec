@@ -140,14 +140,14 @@ fn foo() {
 
 Variable definition is a statement that declares a variable and optionally initializes it with a value. The type of the variable must be explicitly specified.
 
-### 9.8.2 Modifiers
+### 9.8.2 Value Modifiers
 
 #### 9.8.2.1 `undef`
 
 When a variable is declared with the `undef` modifier, it has a type but omits initialization. Declaration of an undefined variable may appear only inside blocks or functions with non-deterministic semantics (with [forall](./functions.md#111-forall) or `assume` modifiers).
 
 ```inference
-let undef x: i32;
+let x: i32 = undef;
 ```
 
 Here, `undef` for `x` splits the execution path of the non-deterministic computation into sub-paths. Each sub-path considers one of every possible `i32` value.
@@ -157,7 +157,7 @@ Here, `undef` for `x` splits the execution path of the non-deterministic computa
 ```inference
 fn foo() {
     let x: i32 = 10;
-    let undef y: i32;
+    let y: i32 = undef;
     /// 'y' can be any possible i32 value
 }
 ```

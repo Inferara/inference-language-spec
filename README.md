@@ -165,7 +165,7 @@ This repository contains the specification of the Inference programming language
     - [§9.5.2](./statements.md#952-examples) Examples
   - [§9.6](./statements.md#96-variable-definition) Variable Definition
     - [§9.6.1](./statements.md#961-description) Description
-    - [§9.6.2](./statements.md#962-modifiers) Modifiers
+    - [§9.6.2](./statements.md#962-value-modifiers) Value Modifiers
         - [§9.6.2.1](./statements.md#9621-undef) `undef`
     - [§9.6.3](./statements.md#963-examples) Examples
   - [§9.7](./statements.md#97-type-definition) Type Definition

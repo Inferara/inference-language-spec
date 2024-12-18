@@ -41,9 +41,9 @@ external fn ideal_hash(b: [u8;100]) -> [u8;32];
 
 spec Hasher {
     fn hash_verifier() forall {
-        let undef data1: [u8;100];
+        let data1: [u8;100] = undef;
         let result_1: [u8;32] = ideal_hash(data1);
-        let undef data2: [u8;100];
+        let data2: [u8;100] = undef;
         let result_2: [u8;32] = ideal_hash(data2);
         if data1 == data2 {
             assert(result_1 == result_2);
@@ -101,9 +101,9 @@ spec HashContext {
     type HashFunction = fn([u8; 100]) -> [u8; 32];
 
     fn verify_hash_transitivity(hash_f: HashFunction) -> () {
-        let undef data1: [u8; 100];
+        let data1: [u8; 100] = undef;
         let result_1: [u8; 32] = hash_f(data1);
-        let undef data2: [u8; 100];
+        let data2: [u8; 100] = undef;
         let result_2: [u8; 32] = hash_f(data2);
         if data1 == data2 {
             assert(result_1 == result_2);

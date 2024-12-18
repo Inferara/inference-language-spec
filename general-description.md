@@ -32,15 +32,15 @@ The `assume` keyword is used to make a statement that continues only execution p
 
 ### 3.1.4 Undef
 
-The `undef` keyword is a variable modifier used in Inference to indicate that a variable can assume any possible value within its type's domain. It represents non-deterministic or unspecified values, effectively modelling all potential values that a variable of a given type can hold. This concept is particularly useful in formal specification and modelling non-deterministic behavior in programs.
+The `undef` keyword is a variable special variable marker used in Inference to indicate that a variable can assume any possible value within its type's domain. It represents non-deterministic or unspecified values, effectively modelling all potential values that a variable of a given type can hold. This concept is particularly useful in formal specification and modelling non-deterministic behavior in programs.
 
 The typical syntax for declaring an undef variable is:
 
 ```inference
-let undef a: i32;
+let a: i32 = undef;
 ```
 
-In this example, `a` is declared as an `i32` (32-bit integer) variable with the `undef` modifier. This means that a is not assigned a specific value but is considered to represent any possible `i32` value.
+In this example, `a` is declared as an `i32` (32-bit integer) variable with the value marked as `undef`. This means that a is not assigned a specific value but is considered to represent any possible `i32` value.
 
 #### 3.1.4.1 Semantics
 
@@ -59,7 +59,7 @@ For more information, see the following article: [Specifying Algorithms Using No
 #### 3.1.4.2 Examples
 
 ```inference
-let undef x: i32;
+let x: i32 = undef;
 assert(x + 1 > x);
 ```
 
@@ -71,7 +71,7 @@ Here, `x` can be any `i32` value. The assertion checks that adding `1` to any in
 ![`undef` for `i32` assertion](./assets/undef-i32-assert-diagram.png)
 
 ```inference
-let undef user_input: bool;
+let user_input: bool = undef;
 
 if user_input {
     /// Handle true case
@@ -82,7 +82,7 @@ if user_input {
 In programs where input values are not known ahead of time or can vary widely, `undef` variables can model these uncertainties. In this code, it is assumed that `user_input` can be either `true` or `false`, and both branches need to be considered during testing or analysis.
 
 ```inference
-let undef mut choice: i32;
+let mut choice: i32 = undef;
 choice = choice % 3;
 if (choice == 0) {
     /// Handle case 0
