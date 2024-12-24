@@ -13,34 +13,89 @@ One of the most important concepts that allows covering all possible execution p
 
 The following keywords are used for that:
 
+- [uzumaki](./statements.md#9821-uzumaki)
 - [forall](./statements.md#93-forall)
 - [exists](./statements.md#94-exists)
 - [assume](./statements.md#95-assume)
-- [uzumaki](./statements.md#9821-uzumaki)
 
-### 3.1.1 Forall
+### 3.1.1 Uzumaki
 
-`forall` (execution paths) is a block modifier that indicates that the execution inside sucessfully terminates for all possible inputs.
+The `@` keyword (pronounced as u-zu-ma-ki うずまき) is a primitive expression that can occupy `rval` slot of any primitive type serving as a point of non-deterministic branching of passing computation. Its evaluation split execution path into finite set of subpaths, each of which differs from the others only by `@`'s result, collectively covering all possible values that given type can hold. Representing undetermined values, this construct lays foundation for every formal specification, idiomatically expressed in Inferara through modelling non-deterministic behavior of covered functions and modules. As classical imperative programming paradigm doesn't have operational semantics for non-deterministic computations, `@` can be evaluated only inside specilized quantified contexts explained below.
 
-### 3.1.2 Exists
+### 3.1.2 Forall
 
-`exists` (an execution path) is a block modifier that indicates that the execution inside has at least one sucsessful termination path for a possible inputs combination.
-
-### 3.1.3 Assume
-
-The `assume` keyword is used to make a statement that continues only execution paths conforming to a given precondition. For instance, if some property needs to be checked only for the even values of $\mathbb{N}$, we can prepend it with a assume to retain only needed variants as follows: `assume { assert (N % 2 == 0); }`.
-
-### 3.1.4 Uzumaki
-
-The `@` keyword (pronounced as u-zu-ma-ki うずまき) is a variable special variable marker used in Inference to indicate that a variable value assume having any possible value within its type's domain. It represents non-deterministic or unspecified values, effectively modelling all potential values that a variable of a given type can hold. This concept is particularly useful in formal specification and modelling non-deterministic behavior in programs.
-
-The typical syntax for declaring an undefined variable is:
+`forall` (execution paths) is a quantifying block construct that passes control down the flow without any side effects, iff the execution of its body sucessfully terminates for all possible non-deterministic paths emanating from evaluation of `@`s inside. For example:
 
 ```inference
-let a: i32 = @;
+forall {
+    /// Here computation splits into 2^32 subpaths,
+    /// with `x` holding distinct value on each
+    let x: u32 = @;
+
+    /// Here each computation splits further, independently
+    /// checking both required properties for every possible
+    /// value of `x` on separate execution paths.
+    if @ { check_foo(x); }
+    else { check_bar(x); }
+}
+
+/// This point is reached iff both functions terminate
+/// successfully on every possible input value.
+print('Success!');
 ```
 
-In this example, `a` is declared as an `i32` (32-bit integer) variable with the value marked as `@`. This means that `a` is not assigned with a specific value but it is considered to represent any possible `i32` value.
+Take note that each execution path of non-deterministic computation is completely isolated from its neighbors. Nothing that happens through computation of `check_foo` function can affect any aspect of `check_bar` computation and vice versa. Moreover, this holds here for the computations of calls to the same function with different arguments too. Practically, you can percieve non-deterministic branching as act of passing duplicated state of whole execution context in its entirety to every spawned subpath. Also, it's worth underlining that quantifying blocks like `forall` are dismissing all changes made to such duplicated contexts on the way of its body execution, taking into account only totality of their successfull termination - for each execution path that enters `forall` block, no more then one continuation may exit it, and if that happens, it has same effect as if `nop` statement was in its place.
+
+### 3.1.3 Exists
+
+`exists` (an execution path) is a quantifying block construct that passes control down the flow without any side effects, iff the execution of its body has at least one sucsessfully terminating non-deterministic path. Similarly:
+
+```inference
+exists {
+    /// Here computation splits into 2^32 subpaths,
+    /// with `x` holding distinct value on each
+    let x: u32 = @;
+
+    /// Here each computation splits further, independently
+    /// checking both required properties for every possible
+    /// value of `x` on separate execution paths.
+    if @ { check_foo(x); }
+    else { check_bar(x); }
+}
+
+/// This point is reached iff one of the functions terminate
+/// successfully on at least one possible input value.
+print('Success!');
+```
+
+Rules of execution path isolation and dismissal of side effects for `exists` are the same as for `forall`. One computation enters, no more then one exits, and if so, continuation recieves untouched execution context.
+
+### 3.1.4 Assume
+
+The `assume` block construct propagates down the control flow only execution paths which successfully complete its body, while absorbing all internal failuers (be it outright traps, or neverending cycles) that would otherwize preemptively fail enclosing quantifying block. Practically it can be used to limit property checking to situations conforming to a given precondition. For instance, if some property needs to be checked only for the even values of $\mathbb{N}$, we can prepend it with a assume to retain only needed variants as follows: `assume { assert (N % 2 == 0); }`. Take note that it makes sense only inside `forall` quantification context, as transforming failures into preemptive successfull termination of `exists`' body is not very useful. For example:
+
+```inference
+forall {
+    /// Here computation splits into 2^32 subpaths,
+    /// with `x` holding distinct value on each
+    let x: u32 = @;
+
+    /// Here we filter only execution paths, where given
+    /// precondition is met, indicated by successfull termination
+    /// of function.
+    assume { check_foo(x); }
+
+    /// Here we check given implication of precondition above
+    check_bar(x);
+}
+
+/// This point is reached iff every value of x that successfully
+/// pass through `check_foo` also successfully pass through
+/// `check_bar`.
+print('Success!');
+```
+
+Take note, TODO...
 
 #### 3.1.4.1 Semantics
 
