@@ -23,9 +23,9 @@ SMT solvers are the most common tools used in formal methods. They are used to c
 
 Model checking, especially the $TLA^+$ model checker, is another formal method used to check the correctness of the program. It is based on temporal logic and is used to check the correctness of algorithms for distributed systems.
 
-Automated theorem proving is a technique used to prove the correctness of the program by using logical formulas and a set of theories, axioms, and rules of inference. The most common theorem provers are `Isabelle`, `Coq`, `Agda`, etc.
+Computer-assisted theorem proving is a technique used to prove the correctness of the program by manually combining logical formulas and a set of theories, axioms, and rules of inference, which correct application is validated automatically by specialized logical framework. The most common theorem provers are `Isabelle`, `Coq`, `Agda`, etc.
 
-Inference uses the automated theorem proving technique to check the correctness of the program. It uses internally developed theories and internal techniques allowing automatically generating axioms and theorems along with the properties (defined in the spec) proofs. The Inference theory system is based on first-order logic, intuitionistic logic, Hoare logic, and extends it with non-deterministic computational theory used to describe an abstract virtual machine.
+Inference is designed with the computer-assisted theorem proving technique in mind. It uses internally developed theories and internal techniques allowing automatically generating axioms and theorems along with the properties (defined in the spec) proofs. The Inference theory system is based on first-order logic, intuitionistic logic, Hoare logic, working together to extend any properly formalized abstract virtual machine with non-deterministic computations used to describe properties of code to specify.
 
 > [!NOTE]
 > For more information, read Inferara [papers](https://inferara.com/papers).
