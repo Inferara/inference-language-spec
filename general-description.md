@@ -95,7 +95,7 @@ forall {
 print('Success!');
 ```
 
-Take note, TODO...
+It's important to remember that `assume` is not a quantifier by itself, so it has no meaningful use without enclosing `forall` block, for which it merely denotes local change of failure interpretetion rules. For same reason `assume` blocks (unlike quantifers `forall` and `exists`) retain all changes to machine state along execution paths going through its body.
 
 #### 3.1.4.1 Semantics
 
