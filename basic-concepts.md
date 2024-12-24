@@ -42,8 +42,8 @@ In Inference, you can write a specification that asserts the correctness of `sum
     external fn sub(i32, i32) -> i32;
 
     fn sum_sub_spec() forall {
-        let a: i32 = undef;
-        let b: i32 = undef;
+        let a: i32 = @;
+        let b: i32 = @;
         assert(sum(a, b) == a + b);
         assert(sub(a, b) == a - b);
     }
@@ -53,7 +53,7 @@ In Inference, you can write a specification that asserts the correctness of `sum
     }
 ```
 
-In this example, `sum_sub_spec` is a forall-marked function that, using `undef` keyword to say that `a` and `b` are considered for all their possible values and asserts that `sum(a, b)` equals `a + b` for all possible execution paths.
+In this example, `sum_sub_spec` is a forall-marked function that, using `@` (uzumaki) keyword to say that `a` and `b` are considered for all their possible values and asserts that `sum(a, b)` equals `a + b` for all possible execution paths.
 
 ## 5.3 Execution Model
 
@@ -69,7 +69,7 @@ In this analogy, the Inference proof is akin to a mathematical proof, whereas sy
 
 Inference leverages non-deterministic execution to model and reason about all possible execution paths of a program. Non-determinism allows the specification to consider every possible value a variable might take, enabling comprehensive verification.
 
-In Inference, non-determinism is introduced using the `undef` keyword for variables value and the `forall`/`exists` keywords for blocks of code. An `undef` variable represents all possible values of its type. A `forall` block terminates successfully only if its body terminates for **all possible combinations** of values of `undef` variables, introduced inside it. An `exists` block terminates successfully if there is **at least one** combination of values of `undef` variables, introduced inside it, that leads to successful termination (not abort).
+In Inference, non-determinism is introduced using the `@` (pronounce as `uzumaki`) keyword for variables value and the `forall`/`exists` keywords for blocks of code. An `@` variable represents all possible values of its type. A `forall` block terminates successfully only if its body terminates for **all possible combinations** of values of `@` variables, introduced inside it. An `exists` block terminates successfully if there is **at least one** combination of values of `@` variables, introduced inside it, that leads to successful termination (not abort).
 
 In fact, the sucessfull termination is asserted for each execution path entering the `forall` block. When an `assume` block appears inside the `forall` block it equals to the `let assume that...` statement.
 
@@ -81,10 +81,10 @@ For example:
 ```inference
 fn foo() {
     assume {
-        let x: u32 = undef;
+        let x: u32 = @;
         forall {
-            let y: u32 = undef;
-            foobar(param1 : undef, param2: 5);
+            let y: u32 = @;
+            foobar(param1 : @, param2: 5);
             ///<do some checking for x and y>
         }
     }

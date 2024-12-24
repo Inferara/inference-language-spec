@@ -30,7 +30,7 @@ This repository contains the specification of the Inference programming language
     - [§3.1.1](./general-description.md#311-forall) Forall
     - [§3.1.2](./general-description.md#312-exists) Exists
     - [§3.1.3](./general-description.md#313-assume) Assume
-    - [§3.1.4](./general-description.md#314-undef) Undef
+    - [§3.1.4](./general-description.md#314-uzumaki) Uzumaki
       - [§3.1.4.1](./general-description.md#3141-semantics) Semantics
       - [§3.1.4.2](./general-description.md#3142-examples) Examples
   - [§3.2](./general-description.md#32-compiler-design) Compiler Design
@@ -166,7 +166,7 @@ This repository contains the specification of the Inference programming language
   - [§9.6](./statements.md#96-variable-definition) Variable Definition
     - [§9.6.1](./statements.md#961-description) Description
     - [§9.6.2](./statements.md#962-value-modifiers) Value Modifiers
-        - [§9.6.2.1](./statements.md#9621-undef) `undef`
+        - [§9.6.2.1](./statements.md#9621-uzumaki) Uzumaki
     - [§9.6.3](./statements.md#963-examples) Examples
   - [§9.7](./statements.md#97-type-definition) Type Definition
     - [§9.7.1](./statements.md#971-description) Description

@@ -56,14 +56,14 @@ Inference, as a language for formal specification, is intended for use in critic
 
 Each variable must be assigned a value before it is used.
 
-The only exception to this rule is when a variable has the `undef` value. In this case, it is assumed that all possible values for the variable are considered.
+The only exception to this rule is when a variable has the `@` value. In this case, it is assumed that all possible values for the variable are considered.
 
 ### 7.3.2 Examples
 
 ```inference
 fn foo() {
-    let len: u32 = undef;
-    let arr: [i32; len] = undef;
+    let len: u32 = @;
+    let arr: [i32; len] = @;
 }
 ```
 
@@ -73,7 +73,7 @@ Number literals have an actual type of `i64`. If a different size is required, t
 
 ### 7.4.1 Description
 
-All variables are **immutable** by default. This means that once a variable is assigned a value, it cannot be changed. To create a mutable variable, the `mut` keyword must be used. However, `mut` keyword in not allowed for `undef` variable values.
+All variables are **immutable** by default. This means that once a variable is assigned a value, it cannot be changed. To create a mutable variable, the `mut` keyword must be used. However, `mut` keyword in not allowed for `@` variable values.
 
 Variable names cannot shadow each other. For instance, if a function has a parameter `a`, a local variable `a` cannot be defined in the function. The same rule applies to the variable re-definition. If a variable is defined in a function, it cannot be redefined in the same function.
 

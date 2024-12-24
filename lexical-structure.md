@@ -20,7 +20,7 @@ Comments are used to document the code and are ignored by the compiler. Inferenc
 - `mut`
 - `forall`
 - `exists`
-- `undef`
+- `@`
 - `assume`
 - `loop`
 - `return`
@@ -58,6 +58,7 @@ let _ident : i64 = 42;
 - `constructor`
 - `proof`
 - `typeof`
+- `uzumaki`
 
 ## 4.5 Qualified identifiers
 

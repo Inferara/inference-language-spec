@@ -142,22 +142,22 @@ Variable definition is a statement that declares a variable and optionally initi
 
 ### 9.8.2 Value Modifiers
 
-#### 9.8.2.1 `undef`
+#### 9.8.2.1 Uzumaki
 
-When a variable is declared with the `undef` modifier, it has a type but omits initialization. Declaration of an undefined variable may appear only inside blocks or functions with non-deterministic semantics (with [forall](./functions.md#111-forall) or `assume` modifiers).
+When a variable is declared with the `@` modifier, it has a type but omits initialization. Declaration of an undefined variable may appear only inside blocks or functions with non-deterministic semantics (with [forall](./functions.md#111-forall) or `assume` modifiers).
 
 ```inference
-let x: i32 = undef;
+let x: i32 = @;
 ```
 
-Here, `undef` for `x` splits the execution path of the non-deterministic computation into sub-paths. Each sub-path considers one of every possible `i32` value.
+Here, `@` for `x` splits the execution path of the non-deterministic computation into sub-paths. Each sub-path considers one of every possible `i32` value.
 
 ### 9.8.3 Examples
 
 ```inference
 fn foo() {
     let x: i32 = 10;
-    let y: i32 = undef;
+    let y: i32 = @;
     /// 'y' can be any possible i32 value
 }
 ```
