@@ -41,7 +41,7 @@ forall {
 
 /// This point is reached iff both functions terminate
 /// successfully on every possible input value.
-print('Success!');
+print("Success!");
 ```
 
 Take note that each execution path of non-deterministic computation is completely isolated from its neighbors. Nothing that happens through computation of `check_foo` function can affect any aspect of `check_bar` computation and vice versa. Moreover, this holds here for the computations of calls to the same function with different arguments too. Practically, you can percieve non-deterministic branching as act of passing duplicated state of whole execution context in its entirety to every spawned subpath. Also, it's worth underlining that quantifying blocks like `forall` are dismissing all changes made to such duplicated contexts on the way of its body execution, taking into account only totality of their successfull termination - for each execution path that enters `forall` block, no more then one continuation may exit it, and if that happens, it has same effect as if `nop` statement was in its place.
@@ -65,7 +65,7 @@ exists {
 
 /// This point is reached iff one of the functions terminate
 /// successfully on at least one possible input value.
-print('Success!');
+print("Success!");
 ```
 
 Rules of execution path isolation and dismissal of side effects for `exists` are the same as for `forall`. One computation enters, no more then one exits, and if so, continuation recieves untouched execution context.
@@ -92,7 +92,7 @@ forall {
 /// This point is reached iff every value of x that successfully
 /// pass through `check_foo` also successfully pass through
 /// `check_bar`.
-print('Success!');
+print("Success!");
 ```
 
 It's important to remember that `assume` is not a quantifier by itself, so it has no meaningful use without enclosing `forall` block, for which it merely denotes local change of failure interpretetion rules. For same reason `assume` blocks (unlike quantifers `forall` and `exists`) retain all changes to machine state along execution paths going through its body.
