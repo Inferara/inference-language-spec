@@ -62,7 +62,7 @@ The `assume` keyword is followed by a [block](#91-block). Semantically, `assume`
 ### 9.5.2 Examples
 
 ```inference
-fn foo(i: i32) -> () {
+fn foo(i: i32) -> () forall {
 
     assume {
         assert i > 0;
