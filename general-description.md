@@ -15,8 +15,8 @@ The following keywords are used for that:
 
 - [uzumaki](./statements.md#9821-uzumaki)
 - [forall](./statements.md#93-forall)
-- [exists](./statements.md#94-exists)
 - [assume](./statements.md#95-assume)
+- [exists](./statements.md#94-exists)
 
 ### 3.1.1 Uzumaki
 
@@ -46,33 +46,9 @@ print("Success!");
 
 Take note that each execution path of non-deterministic computation is completely isolated from its neighbors. Nothing that happens through computation of `check_foo` function can affect any aspect of `check_bar` computation and vice versa. Moreover, this holds here for the computations of calls to the same function with different arguments too. Practically, you can percieve non-deterministic branching as act of passing duplicated state of whole execution context in its entirety to every spawned subpath. Also, it's worth underlining that quantifying blocks like `forall` are dismissing all changes made to such duplicated contexts on the way of its body execution, taking into account only totality of their successfull termination - for each execution path that enters `forall` block, no more then one continuation may exit it, and if that happens, it has same effect as if `nop` statement was in its place.
 
-### 3.1.3 Exists
+### 3.1.3 Assume
 
-`exists` (an execution path) is a quantifying block construct that passes control down the flow without any side effects, iff the execution of its body has at least one sucsessfully terminating non-deterministic path. Similarly:
-
-```inference
-exists {
-    /// Here computation splits into 2^32 subpaths,
-    /// with `x` holding distinct value on each
-    let x: u32 = @;
-
-    /// Here each computation splits further, independently
-    /// checking both required properties for every possible
-    /// value of `x` on separate execution paths.
-    if @ { check_foo(x); }
-    else { check_bar(x); }
-}
-
-/// This point is reached iff one of the functions terminate
-/// successfully on at least one possible input value.
-print("Success!");
-```
-
-Rules of execution path isolation and dismissal of side effects for `exists` are the same as for `forall`. One computation enters, no more then one exits, and if so, continuation recieves untouched execution context.
-
-### 3.1.4 Assume
-
-The `assume` block construct propagates down the control flow only execution paths which successfully complete its body, while absorbing all internal failuers (be it outright traps, or neverending cycles) that would otherwize preemptively fail enclosing quantifying block. Practically it can be used to limit property checking to situations conforming to a given precondition. For instance, if some property needs to be checked only for the even values of $\mathbb{N}$, we can prepend it with a assume to retain only needed variants as follows: `assume { assert (N % 2 == 0); }`. Take note that it makes sense only inside `forall` quantification context, as transforming failures into preemptive successfull termination of `exists`' body is not very useful. For example:
+The `assume` block construct propagates down the control flow only execution paths which successfully complete its body, while absorbing all internal failuers (be it outright traps, or neverending cycles) that would otherwize preemptively fail enclosing quantifying block. Practically it can be used to limit property checking to situations conforming to a given precondition. Take note that it makes sense only inside `forall` quantification context, as transforming failures into preemptive successfull termination of `exists`' body is not very useful. For example:
 
 ```inference
 forall {
@@ -96,6 +72,55 @@ print("Success!");
 ```
 
 It's important to remember that `assume` is not a quantifier by itself, so it has no meaningful use without enclosing `forall` block, for which it merely denotes local change of failure interpretetion rules. For same reason `assume` blocks (unlike quantifers `forall` and `exists`) retain all changes to machine state along execution paths going through its body.
+
+### 3.1.4 Exists
+
+`exists` (an execution path) is a quantifying block construct that passes control down the flow without any side effects, iff the execution of its body has at least one sucsessfully terminating non-deterministic path. Similarly:
+
+```inference
+exists {
+    /// Here computation splits into 2^32 subpaths,
+    /// with `x` holding distinct value on each
+    let x: u32 = @;
+
+    /// Here each computation splits further, independently
+    /// checking both required properties for every possible
+    /// value of `x` on separate execution paths.
+    if @ { check_foo(x); }
+    else { check_bar(x); }
+}
+
+/// This point is reached iff one of the functions terminate
+/// successfully on at least one possible input value.
+print("Success!");
+```
+
+Rules of execution path isolation and dismissal of side effects for `exists` are the same as for `forall`. One computation enters, no more then one exits, and if so, continuation recieves untouched execution context.
+
+### 3.1.5 Unique
+
+The `unique` block construct propagates down the control flow only execution paths that do mandatory choice of single value on every `@` evaluation in its body. It should be seen as local strengthening of `exists` quantifier it is embedded in. For example:
+
+```inference
+forall {
+    /// Here computation splits into 2^32 subpaths,
+    /// with `x` holding distinct value on each.
+    let x: u32 = @;
+
+    /// Here we leave only values, obeying `check_foo` property.
+    check_foo(x);
+
+    /// Here we check that there is only one pre-image of `x`
+    /// in the domain of function `bar`.
+    exists unique { assert(bar(@) == x); }
+}
+
+/// This point is reached iff every value of `x` that successfully
+/// pass through `check_foo` there is only one `y` such as `bar(y) == x`.
+print("Success!");
+```
+
+Similarly to `assume`, `unique` retain all changes to machine state along execution path going through its body.
 
 #### 3.1.4.1 Semantics
 
