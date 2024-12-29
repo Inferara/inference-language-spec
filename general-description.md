@@ -108,7 +108,7 @@ forall {
     let x: u32 = @;
 
     /// Here we leave only values, obeying `check_foo` property.
-    check_foo(x);
+    assume { check_foo(x); }
 
     /// Here we check that there is only one pre-image of `x`
     /// in the domain of function `bar`.
