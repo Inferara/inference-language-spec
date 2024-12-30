@@ -9,6 +9,8 @@ Inference is a formal specification language that aims to provide a straightforw
 
 ## 3.1 Non-Deterministic Computations
 
+Cornerstone idea behind Inference is utilization of non-determinism as a method to express general statements about classical deterministic computations. At face value non-deterministic specification can be seen as a formal generalization of unit testing methodology, which can be roughly defined as writing additional snippets of code (in the same or almost the same language as main codebase) that express programmer's intentions about behavior of individual program components, and then using some sort of auomated process to check if actual implementation corresponds to stated intentions. The established methodology suggests stating intentions as individual cases feeding specific hand-picked input data to subject functions in order to check their behavior against reference results. This process is technologically primitive, as in majority of cases you can run test suites on the same platform program itself is targeted for and no additional features are required, but such simplicity comes with embedded flaw - no matter how comprehensive your test suite is, you can never be sure if program behaves correctly in cases that are outside of its neccesarily limited coverage.
+
 One of the most important concepts that allows covering all possible execution paths is non-deterministic computation. Inference provides a way to specify and manage non-deterministic computations in the program.
 
 The following keywords are used for that:
