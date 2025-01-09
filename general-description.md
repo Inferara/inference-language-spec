@@ -9,11 +9,9 @@ Inference is a formal specification language that aims to provide a straightforw
 
 ## 3.1 Non-Deterministic Computations
 
-Cornerstone idea behind Inference is utilization of non-determinism as a method to express general statements about classical deterministic computations. At face value non-deterministic specification can be seen as a formal generalization of unit testing methodology, which can be roughly defined as writing additional snippets of code (in the same or almost the same language as main codebase) that express programmer's intentions about behavior of individual program components, and then using some sort of auomated process to check if actual implementation corresponds to stated intentions. The established methodology suggests stating intentions as individual cases feeding specific hand-picked input data to subject functions in order to check their behavior against reference results. This process is technologically primitive, as in majority of cases you can run test suites on the same platform program itself is targeted for and no additional features are required, but such simplicity comes with embedded flaw - no matter how comprehensive your test suite is, you can never be sure if program behaves correctly in cases that are outside of its neccesarily limited coverage.
+Cornerstone idea behind Inference is utilization of non-determinism as a method to express general statements about classical deterministic computations. At face value non-deterministic specification can be seen as a formal generalization of unit testing methodology, which we roughly define as expressing programmer's intentions about behavior of individual program components with additional snippets of code (in the same or almost the same language as main codebase), and then using some sort of auomated process to check if actual implementation corresponds to stated intentions. The established methodology suggests stating intentions as individual cases feeding specific hand-picked input data to subject functions in order to check their behavior against reference results. This process is technologically primitive, as it relies on straightforward execution of wrapped calls to tested code, but such simplicity comes with embedded flaw - no matter how comprehensive your test suite is, you can never be sure if program behaves correctly in cases that are outside of its neccesarily limited coverage.
 
-One of the most important concepts that allows covering all possible execution paths is non-deterministic computation. Inference provides a way to specify and manage non-deterministic computations in the program.
-
-The following keywords are used for that:
+Inference addresses that problem by offering programmer to express statements about algorithm behavior that are much more general comparing to simplistic "given this specific input, function must return this specific output" and its variations. That is done through extending classical imperative exection model with idioms of non-determinism and logical quantification represented by the following keywords:
 
 - [uzumaki](./statements.md#9821-uzumaki)
 - [forall](./statements.md#93-forall)
@@ -124,7 +122,9 @@ print("Success!");
 
 Similarly to `assume`, `unique` retain all changes to machine state along execution path going through its body.
 
-#### 3.1.4.1 Semantics
+### 3.1.6 Semantics
+
+Naturally, non-deterministic computations do not have operational semantics in practical sense - you can't simply call `forall` block to check if it indeed terminates. So, comparing to classical testsuites, non-deterministic specification is harder to verify <TODO>
 
 - Non-Determinism: The `@` keyword introduces non-determinism into the program by declaring that a variable all possible values within its type. This is useful for modelling scenarios where inputs or states are unpredictable or for simulating all possible execution paths.
 - Universal Quantification: Conceptually, `@` is similar to the universal quantifier $\forall$ (for all) in formal logic. It signifies that the variable should be considered as potentially holding any value from its type's domain during analysis or execution. However, this quantification is only applied to the variable values. The operational $\forall$ semantics is represented by the `forall` block modifier in Inference.
@@ -138,7 +138,7 @@ Undefined Behavior: Undefined behavior refers to program operations that the lan
 
 For more information, see the following article: [Specifying Algorithms Using Non-Deterministic Computations](https://www.inferara.com/en/papers/specifying-algorithms-using-non-deterministic-computations/)
 
-#### 3.1.4.2 Examples
+### 3.1.7 Examples
 
 ```inference
 let x: i32 = @;
