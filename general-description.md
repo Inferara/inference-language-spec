@@ -205,6 +205,3 @@ Otherwise, meaningful diagnostics are provided.
 
 [<kbd><br>⏮️ Terms and definitions<br><br></kbd>](./terms-and-definitions.md)
 [<kbd><br>⏭️ Lexical structure<br><br></kbd>](./lexical-structure.md)
-
-[^1]: The reason of that is the fact that the totality of the block is proven by checking all possible execution paths. Since we know that the particular path with `x == 0x7FFF` is impossible, the block is not sealed.
-[^2]: Raph Levien. [With Undefined Behavior, Anything is Possible](https://raphlinus.github.io/programming/rust/2018/08/17/undefined-behavior.html)
