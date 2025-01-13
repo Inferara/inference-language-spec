@@ -86,7 +86,8 @@ exists {
     /// Here each computation splits further, independently
     /// checking both required properties for every possible
     /// value of `x` on separate execution paths.
-    if @ { check_foo(x); }
+    let flag: bool = @;
+    if flag { check_foo(x); }
     else { check_bar(x); }
 }
 
