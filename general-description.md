@@ -124,58 +124,47 @@ Similarly to `assume`, `unique` retain all changes to machine state along execut
 
 ### 3.1.6 Semantics
 
-Naturally, non-deterministic computations do not have operational semantics in practical sense - you can't simply call `forall` block to check if it indeed terminates. So, comparing to classical testsuites, non-deterministic specification is harder to verify <TODO>
+From the first glance, operational semantics of non-deterministic computations may look impractical - generally, you can't simply call `forall` block to check if it indeed terminates on every possible combination of `@` values, which means that, comparing to classical testsuites, non-deterministic specification is not so straightforward to verify. Intended compilation target of Inferara code is not a classical executable binary, but a theory for Coq proof assistent, where verification of stated properties can be achieved through formal reasoning about structure of execution tree. This additional complexity is compensated by granting programmer ability to formulate statments of general nature powerful enough to precisely delineate correct behavior of algorithm on every possible execution path.
 
-- Non-Determinism: The `@` keyword introduces non-determinism into the program by declaring that a variable all possible values within its type. This is useful for modelling scenarios where inputs or states are unpredictable or for simulating all possible execution paths.
-- Universal Quantification: Conceptually, `@` is similar to the universal quantifier $\forall$ (for all) in formal logic. It signifies that the variable should be considered as potentially holding any value from its type's domain during analysis or execution. However, this quantification is only applied to the variable values. The operational $\forall$ semantics is represented by the `forall` block modifier in Inference.
-- Defined Behavior: Unlike undefined behavior in languages like C++, where the result of an operation is unpredictable and potentially can be hazardous, `@` variables have well-defined semantics. They are undefined in terms of which specific value they hold, but the behavior of operations involving them is specified according to the Inference language rules.
-
-**Differences from Uninitialized Variables and Undefined Behavior**
-
-Uninitialized Variables: In many languages, declaring a variable without initializing it (e.g., `int x;`) leaves it with an indeterminate value, which can lead to undefined behavior if used before the assignment. However, an `@` variable is explicitly declared to represent any all possible values within its type, and operations on them are well-defined.
-
-Undefined Behavior: Undefined behavior refers to program operations that the language specification does not define, leading to unpredictable results[^2]. The use of `@` does not cause undefined behavior; instead, it allows for the intentional representation of any possible value.
+It is important to differentiate between non-determinism as a model of execution and undetermined behaviour as it is usually understood in the classical imperative paradigm. Unlike undefined behavior in languages like C++, where it denotes unpredictable and potentially hazardous unambiguousness, `@` variables actually have well-defined semantics. They are undefined in terms of which specific value they hold, but the behavior of operations involving them is specified according to the language rules. It is optimal to percieve undefined values of Inference the same way we percieve unbound variables in logical formulas, as sets of possibilities delimiting domain space of expressions under $\forall$ and $\exists$ quantors, which essence in Inference is captured by `forall` and `exists` keywords.
 
 For more information, see the following article: [Specifying Algorithms Using Non-Deterministic Computations](https://www.inferara.com/en/papers/specifying-algorithms-using-non-deterministic-computations/)
 
 ### 3.1.7 Examples
 
 ```inference
-let x: i32 = @;
-assert(x + 1 > x);
-```
+external fn factor(u32) -> u32;
 
-Here, `x` can hold any `i32` value. The assertion checks that adding `1` to any integer `x` will result in a value greater than `x`, which is a property that can be universally verified.
-
-> [!IMPORTANT]
-> This example requires additional attention to pay. Since we know that `x` holds all possible `i32` values, it follows that it holds `0x7FFF` also. **Inference does not consider numeric overflows**, so let's take a look at two cases for `x == 0x7FFF`. If the expression `assert(x + 1 > x)` appears in the `forall` block, it will make it impossible to prove such block's sucessful termination[^1]. If the expression appears inside an `assume` block, it simply forbids `x` holding the maximum value of its type and after the asserting, only execution paths with `x != 0x7FFF` will be considered.
-
-![`@` for `i32` assertion](./assets/uzumaki-i32-assert-diagram.png)
-
-```inference
-let user_input: bool = @;
-
-if user_input {
-    /// Handle true case
-} else {
-    /// Handle false case
+fn denom(n: u32, m: u32) {
+  assert(m > 1 && m < n && n % m == 0);
 }
-```
-In programs where input values are not known ahead of time or can vary widely, `@` variables can model these uncertainties. In this code, it is assumed that `user_input` can be either `true` or `false`, and both branches need to be considered during testing or analysis.
 
-```inference
-let mut choice: i32 = @;
-choice = choice % 3;
-if (choice == 0) {
-    /// Handle case 0
-} else if (choice == 1) {
-    /// Handle case 1
-} else {
-    /// Handle case 2
+fn factor_finds_denom() forall {
+  let n: u32 = @;
+  assume { exists { denom(n, @); } }
+  denom(n, factor(n));
+}
+
+fn prime(n: u32) forall {
+  let m: u32 = @;
+  if m > 1 && m < n { assert(n % m); }
+}
+
+fn factor_detects_primes() forall {
+  let n: u32 = @;
+  assume { prime(n); }
+  assert(!factor(n));
+}
+
+fn factor_spec() {
+  factor_finds_denom();
+  factor_detects_primes();
 }
 ```
 
-Algorithms that rely on randomization or non-deterministic choices can use `@` to represent the variability in their behavior. This approach models all possible cases among three options.
+Here we make two statements about exernal function `factor` that is supposed to return any nontrivial denominator of its argument, or `0` if there is none. Let's start with `forall`-quantified procedure `factor_finds_denom`. Firstly, it assigns undefined value to variable `n`, requiring success for every possible `u32` member. Then it assumes existence of nontrivial denominator of `n`, preemptively succeeding execution paths where assumption doesn't hold. Finally, it checks if return value of `factor(n)` is indeed nontrivial denominator of `n`. Similarly, `forall`-quantified procedure `factor_detects_primes` begins with memorization of undefined value in the `n` variable. Next, it assumes that `n` dosn't have any nontrivial factions using another quantified procedure `prime`. It concludes its statement with assertion, that in such case function `factor` returns `0`.
+
+Stepping back and looking at the overall structure of given code, we can hardly ignore similarities with classical testing - basically, here we see "testsuite" consisting of two cases that, due to their generality, together are covering whole domain of specified function, pinpointing its behavior exactly. Take note, that here we only see the specification of function in question, while, what needs to be done in order to confirm adherence of particular `factor` implementation to stated specification, stays out of our scope for now.
 
 ## 3.2 Compiler Design
 
