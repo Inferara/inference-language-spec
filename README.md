@@ -24,7 +24,6 @@ This repository contains the specification of the Inference programming language
   - [§2.3](./terms-and-definitions.md#23-module) Module
   - [§2.4](./terms-and-definitions.md#24-theory) Theory
   - [§2.5](./terms-and-definitions.md#25-proof-unit) Proof-Unit
-  - [§2.6](./terms-and-definitions.md#26-lval-and-rval-expressions) `lval` and `rval` Expressions
 - [§3](./general-description.md) General description
   - [§3.1](./general-description.md#31-non-deterministic-computations) Non-Deterministic Computations
     - [§3.1.1](./general-description.md#311-forall) Forall

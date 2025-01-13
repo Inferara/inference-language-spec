@@ -10,12 +10,12 @@ Since security is paramount for Web3 applications, exhaustive security assessmen
 Technical bugs and the overall work correctness can be tested by:
 
 - Unit tests
-- Fuzzing and invariants
+- Fuzz and invariant tests
 - Integration tests
 
 Unit tests are the most common and widely used. They help developers check if a given input to the program produces the expected output.
 
-Fuzzing and invariants are used to check the program's behavior under a set of inputs in order to either check that the fuzzer is not able to find an input that makes the program produce unexpected output or, in the case of invariants, to check that the fuzzer is not able to find a set of inputs that turns the program into an invalid state. Both of these techniques use brute force to produce the input.
+Fuzz and invariant test are used to check the program's behavior under a set of inputs in order to either check that the fuzzer is not able to find an input that makes the program produce unexpected output or, in the case of invariants, to check that the fuzzer is not able to find a set of inputs that turns the program into an invalid state. Both of these techniques use brute force to produce the input.
 
 More sophisticated techniques, which fall under the umbrella term "formal methods," use mathematical logic (often first-order logic) to interpret a program flow in logical terms and deduce the correctness of these formulas according to the provided properties claimed for the program from the developer.
 
@@ -23,7 +23,7 @@ SMT solvers are the most common tools used in formal methods. They are used to c
 
 Model checking, especially the $TLA^+$ model checker, is another formal method used to check the correctness of the program. It is based on temporal logic and is used to check the correctness of algorithms for distributed systems.
 
-Computer-assisted theorem proving is a technique used to prove the correctness of the program by manually combining logical formulas and a set of theories, axioms, and rules of inference, which correct application is validated automatically by specialized logical framework. The most common theorem provers are `Isabelle`, `Coq`, `Agda`, etc.
+Computer-assisted theorem proving is a technique used to prove the correctness of the program by manually combining logical formulas and a set of theories, axioms, and rules of inference, which correct application is validated automatically by specialized logical framework. The most common theorem provers are `Isabelle`, `Rocq`, `Agda`, etc.
 
 Inference is designed with the computer-assisted theorem proving technique in mind. It uses internally developed theories and internal techniques allowing automatically generating axioms and theorems along with the properties (defined in the spec) proofs. The Inference theory system is based on first-order logic, intuitionistic logic, Hoare logic, working together to extend any properly formalized abstract virtual machine with non-deterministic computations used to describe properties of code to specify.
 
