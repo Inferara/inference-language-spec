@@ -146,33 +146,38 @@ This repository contains the specification of the Inference programming language
   - [§8.7](./expressions.md#87-binary-operators) Binary Operators
     - [§8.7.1](./expressions.md#871-description) Description
     - [§8.7.2](./expressions.md#872-examples) Examples
-- [§9](./statements.md) Statements
+- [§9](./statements.md#9-statements) Statements
   - [§9.1](./statements.md#91-block) Block
     - [§9.1.1](./statements.md#911-description) Description
     - [§9.1.2](./statements.md#912-examples) Examples
   - [§9.2](./statements.md#92-return) Return
     - [§9.2.1](./statements.md#921-description) Description
     - [§9.2.2](./statements.md#922-examples) Examples
-  - [§9.3](./statements.md#93-assume) Assume
-    - [§9.3.1](./statements.md#931-description) Description
-    - [§9.3.2](./statements.md#932-examples) Examples
-  - [§9.4](./statements.md#94-loop) Loop
-    - [§9.4.1](./statements.md#941-description) Description
-    - [§9.4.2](./statements.md#942-examples) Examples
-  - [§9.5](./statements.md#95-if) If
+  - [§9.3](./statements.md#93-forall) Forall
+  - [§9.4](./statements.md#94-exists) Exists
+  - [§9.5](./statements.md#95-assume) Assume
     - [§9.5.1](./statements.md#951-description) Description
     - [§9.5.2](./statements.md#952-examples) Examples
-  - [§9.6](./statements.md#96-variable-definition) Variable Definition
+  - [§9.6](./statements.md#96-unique) Unique
     - [§9.6.1](./statements.md#961-description) Description
-    - [§9.6.2](./statements.md#962-value-modifiers) Value Modifiers
-        - [§9.6.2.1](./statements.md#9621-uzumaki) Uzumaki
-    - [§9.6.3](./statements.md#963-examples) Examples
-  - [§9.7](./statements.md#97-type-definition) Type Definition
+    - [§9.6.2](./statements.md#962-examples) Examples
+  - [§9.7](./statements.md#97-loop) Loop
     - [§9.7.1](./statements.md#971-description) Description
     - [§9.7.2](./statements.md#972-examples) Examples
-  - [§9.8](./statements.md#98-assert) Assert
+  - [§9.8](./statements.md#98-if) If
     - [§9.8.1](./statements.md#981-description) Description
     - [§9.8.2](./statements.md#982-examples) Examples
+  - [§9.9](./statements.md#99-variable-definition) Variable Definition
+    - [§9.9.1](./statements.md#991-description) Description
+    - [§9.9.2](./statements.md#992-value-modifiers) Value Modifiers
+      - [§9.9.2.1](./statements.md#9921-uzumaki) Uzumaki
+    - [§9.9.3](./statements.md#993-examples) Examples
+  - [§9.10](./statements.md#910-type-definition) Type Definition
+    - [§9.10.1](./statements.md#9101-description) Description
+    - [§9.10.2](./statements.md#9102-examples) Examples
+  - [§9.11](./statements.md#911-assert) Assert
+    - [§9.11.1](./statements.md#9111-description) Description
+    - [§9.11.2](./statements.md#9112-examples) Examples
 - [§10](./definitions.md) Definitions
   - [§10.1](./definitions.md#101-constant) Constant
     - [§10.1.1](./definitions.md#1011-description) Description
