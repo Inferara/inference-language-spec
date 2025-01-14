@@ -14,15 +14,11 @@ A module is an assembled distributable unit of code that can be used independent
 
 ## 2.4 Theory
 
-A theory is a set of definitions, inductive types, axioms, theorems, and proofs that describe the behavior of a system. A theory is written in `.v` files and can consist of multiple files.
+A theory is a set of definitions, inductive types, axioms, theorems, and proofs that describe the behavior of a system. A theory is written in theorem-prover language files and can consist of multiple files.
 
 ## 2.5 Proof-Unit
 
 A proof-unit is a [module](./terms-and-definitions.md#module) of proof code generated from the Inference spec and contains attached required theories to build the proof.
-
-## 2.6 `lval` and `rval` Expressions
-
-In Inference, an expression can be either an `lval` (left value) or an `rval` (right value) expression. An `lval` expression can appear on the left-hand side of an assignment, while an `rval` expression can exclusively appear on the right-hand side of an assignment.
 
 ---
 

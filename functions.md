@@ -4,20 +4,20 @@
 
 ### 11.1.1 Description
 
-Functions in Inference are the basic blocks used to build the specification. They are used to describe the behavior of the system in functional terms. A function is a matter of verification; hence, it is the only possible argument of the [verify](./statements.md#9-verify) expression statement.
+Functions in Inference are the basic blocks used to build the specification. They are used to describe the behavior of the system in functional terms. A function is a matter of verification.
 
 Functions can be defined at the top level of the program, inside a [spec](./definitions.md#101-spec), or inside a [struct](./definitions.md#103-struct) definition. In the latter case, the function is considered a method of the struct and acquires access to struct fields.
 
 ### 11.1.2 Modifiers
 
-#### 11.1.2.1 `total`
+#### 11.1.2.1 `forall`
 
-The `total` keyword is used to specify that the function is total. A total function is a function that is defined for all possible inputs. In other words, a total function is a function that is guaranteed to terminate for all possible inputs.
+The `forall` keyword is used to specify that the function is forall. A forall-marked block in a function defines for all possible inputs. In other words, a forall-marked function is a function that is guaranteed to successfully terminate for all possible inputs.
 
 ### 11.1.3 Examples
 
 ```inference
-total fn sum(a: u32, b: u32) -> u32 {
+fn sum(a: u32, b: u32) -> u32 forall {
   return a + b;
 }
 
@@ -37,13 +37,13 @@ External functions are an entry point to the actual implementation of the system
 ### 11.2.2 Examples
 
 ```inference
-external total fn ideal_hash(b: [u8;100]) -> [u8;32];
+external fn ideal_hash(b: [u8;100]) -> [u8;32];
 
 spec Hasher {
-    total fn hash_verifier() {
-        let undef data1: [u8;100];
+    fn hash_verifier() forall {
+        let data1: [u8;100] = @;
         let result_1: [u8;32] = ideal_hash(data1);
-        let undef data2: [u8;100];
+        let data2: [u8;100] = @;
         let result_2: [u8;32] = ideal_hash(data2);
         if data1 == data2 {
             assert(result_1 == result_2);
@@ -53,7 +53,7 @@ spec Hasher {
     }
 
     fn proof() {
-        verify hash_verifier();
+        hash_verifier();
     }
 }
 ```
@@ -100,10 +100,10 @@ spec HashContext {
 
     type HashFunction = fn([u8; 100]) -> [u8; 32];
 
-    total fn verify_hash_transitivity(hash_f: HashFunction) -> () {
-        let undef data1: [u8; 100];
+    fn verify_hash_transitivity(hash_f: HashFunction) -> () {
+        let data1: [u8; 100] = @;
         let result_1: [u8; 32] = hash_f(data1);
-        let undef data2: [u8; 100];
+        let data2: [u8; 100] = @;
         let result_2: [u8; 32] = hash_f(data2);
         if data1 == data2 {
             assert(result_1 == result_2);
@@ -112,24 +112,24 @@ spec HashContext {
         }
     }
 
-    total fn verify_hash() -> () {
+    fn verify_hash() -> () forall {
         verify_hash_transitivity(hash);
     }
 }
 ```
 
-A type of a function can be defined using [`type`](./statements.md#97-type-definition) statement. `HashFunction` in the example is an alias for the `hash` function type (its signature). Hence, it can be used in the type annotations but cannot be called as a function. TODO: review me
+A type of a function can be defined using [`type`](./statements.md#97-type-definition) statement. `HashFunction` in the example is an alias for the `hash` function type (its signature). Hence, it can be used in the type annotations but cannot be called as a function.
 
 ```inference
-total fn add(a: i32, b: i32) -> i32 {
+fn add(a: i32, b: i32) -> i32 {
     return a + b;
 }
 
-total fn subtract(a: i32, b: i32) -> i32 {
+fn subtract(a: i32, b: i32) -> i32 {
     return a - b;
 }
 
-total fn example() {
+fn example() {
   let plus: fn(i32, i32) -> i32 = add;
   let minus: fn(i32, i32) -> i32 = subtract;
 

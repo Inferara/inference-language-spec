@@ -24,7 +24,7 @@ Local variables are variables defined within the scope of a function. They are n
 #### 7.2.1.2 Examples
 
 ```inference
-total fn foo() {
+fn foo() {
     let a: i32 = 42;
     let b: bool = true;
 }
@@ -39,7 +39,7 @@ Array elements are the individual items within an array. All array elements must
 #### 7.2.2.2 Examples
 
 ```inference
-total fn foo() {
+fn foo() {
     let a: [i32; 3] = [1, 2, 3];
     let b: [bool; 2] = [true, false];
 }
@@ -52,18 +52,18 @@ total fn foo() {
 Inference, as a language for formal specification, is intended for use in critical system components.
 
 > [!WARNING]
-> No default values are allowed for variables.
+> No default values are allowed.
 
 Each variable must be assigned a value before it is used.
 
-The only exception to this rule is when a variable has the `undef` modifier. In this case, it is assumed that all possible values for the variable are considered.
+The only exception to this rule is when a variable has the `@` value. In this case, it is assumed that all possible values for the variable are considered.
 
 ### 7.3.2 Examples
 
 ```inference
-total fn foo() {
-    let undef len: u32;
-    let undef arr: [i32; len];
+fn foo() {
+    let len: u32 = @;
+    let arr: [i32; len] = @;
 }
 ```
 
@@ -73,7 +73,7 @@ Number literals have an actual type of `i64`. If a different size is required, t
 
 ### 7.4.1 Description
 
-All variables are **immutable** by default. This means that once a variable is assigned a value, it cannot be changed. To create a mutable variable, the `mut` keyword must be used. However, `mut` keyword in not allowed for `undef` variables.
+All variables are **immutable** by default. This means that once a variable is assigned a value, it cannot be changed. To create a mutable variable, the `mut` keyword must be used. However, `mut` keyword in not allowed for `@` variable values.
 
 Variable names cannot shadow each other. For instance, if a function has a parameter `a`, a local variable `a` cannot be defined in the function. The same rule applies to the variable re-definition. If a variable is defined in a function, it cannot be redefined in the same function.
 
@@ -86,7 +86,7 @@ A block of code `{}` is a typical syntax location where variables are defined an
 #### 7.4.2.2 Examples
 
 ```inference
-total fn foo() {
+fn foo() {
     let a: i32 = 42;
 
     let mut b: bool = true;
@@ -113,7 +113,7 @@ A `loop` statement is used to execute a block of code repeatedly for a specified
 #### 7.4.3.2 Examples
 
 ```inference
-total fn inverse_bool_array(mut bool_arr: [bool; 10]) {
+fn inverse_bool_array(mut bool_arr: [bool; 10]) {
     let mut i: i32 = 0;
     loop 10 {
         bool_arr[i] = !bool_arr[i];

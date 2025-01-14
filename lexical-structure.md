@@ -18,9 +18,11 @@ Comments are used to document the code and are ignored by the compiler. Inferenc
 - `external`
 - `let`
 - `mut`
-- `total`
-- `undef`
-- `filter`
+- `forall`
+- `exists`
+- `@`
+- `assume`
+- `loop`
 - `return`
 - `from`
 - `use`
@@ -34,7 +36,8 @@ Comments are used to document the code and are ignored by the compiler. Inferenc
 - `spec`
 - `const`
 - `assert`
-- `verify`
+- `self`
+- `type`
 
 
 ## 4.3 Identifiers
@@ -54,10 +57,8 @@ let _ident : i64 = 42;
 
 - `constructor`
 - `proof`
-- `filter`
-- `type`
-- `self`
 - `typeof`
+- `uzumaki`
 
 ## 4.5 Qualified identifiers
 
@@ -88,7 +89,7 @@ struct Account {
     }
 }
 
-total fn main() {
+fn main() {
     let a: Account = Account::new(42);
     let b: u32 = a.address;
 }
@@ -130,7 +131,7 @@ The right arrow `->` is used to specify the return type of a function.
 ### 4.8.2 Examples
 
 ```inference
-total fn add(a: u32, b: u32) -> u32 {
+fn add(a: u32, b: u32) -> u32 {
     return a + b;
 }
 ```
@@ -177,7 +178,7 @@ See also; [Types](./types.md#6-unit)
 #### 4.10.2.2 Examples
 
 ```inference
-total fn foo(a: u32, b: u32) -> u32 {
+fn foo(a: u32, b: u32) -> u32 {
     return a + b;
 }
 ```
@@ -212,7 +213,7 @@ See also: [Types](./types.md#63-user-defined-types)
 #### 4.10.4.2 Examples
 
 ```inference
-total fn foo<T>(a: T) {
+fn foo<T>(a: T) {
     /// code block
 }
 ```
