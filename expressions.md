@@ -57,7 +57,7 @@ A function call is an expression that allows you to call a function with the spe
 
 A function can be called with an explicit argument name but in this case all arguments must be named.
 
-For functions with the body marked as `foral`, the arguments can be passed as `@` to indicate that the execution paths analysis will be conducted for all possible values of the argument.
+For functions with the body marked as `forall`, the arguments can be passed as `@` to indicate that the execution paths analysis will be conducted for all possible values of the argument.
 
 ### 8.4.2 Examples
 
