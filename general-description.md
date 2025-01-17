@@ -77,7 +77,7 @@ It's important to keep in mind that `assume` is not a quantifier by itself, so i
 
 ### 3.1.4 Exists
 
-`exists` (an execution path) is a quantifying block that passes control down the flow without any side effects, iff the execution of its body has at least one sucsessfully terminating non-deterministic path. Similarly:
+`exists` (an execution path) is a quantifying block that passes control down the flow without any side effects, iff the execution of its body has at least one successfully terminating non-deterministic path. Similarly:
 
 ```inference
 exists {
