@@ -102,7 +102,7 @@ The rules regarding execution path isolation and dismissal of side effects for `
 
 ### 3.1.5 Unique
 
-The `unique` block propagates down the control flow only for those execution paths that do mandatory choice of single value on every `@` evaluation in its body. It should be seen as local strengthening of `exists` quantifier it is embedded in. For example:
+The `unique` block propagates down the control flow only for those execution paths that do mandatory choice of single value on every `@` evaluation in its body. It should be seen as a local strengthening of the `exists` quantifier it is embedded in. For example:
 
 ```inference
 forall {
@@ -123,7 +123,7 @@ forall {
 print("Success!");
 ```
 
-Similarly to `assume` `unique` retain all changes in the machine state along execution path going through its body.
+Similarly to `assume`, `unique` retains all changes in the machine state along execution path going through its body.
 
 ### 3.1.6 Semantics
 
