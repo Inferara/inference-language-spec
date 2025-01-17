@@ -50,7 +50,7 @@ Note that each execution path of non-deterministic computation is completely iso
 
 ### 3.1.3 Assume
 
-The `assume` block that propagates down the control flow only for those execution paths which successfully complete its body, while absorbing all internal failuers (be it outright traps, or neverending cycles) that would otherwize preemptively fail enclosing quantifying block. Practically it can be used to limit property checking to situations conforming to a given precondition. Take note that it makes sense only inside `forall` quantification context, as transforming failures into preemptive successfull termination of `exists`' body is not very useful. For example:
+The `assume` block propagates down the control flow only for those execution paths that complete its body while absorbing all internal failures (be it outright traps, or neverending cycles) that would otherwise preemptively fail the enclosing quantifying block. Practically, it can be used to limit property checking to situations conforming to a given precondition. Take note that it makes sense only inside the `forall` quantification context, as transforming failures into preemptive successful termination of `exists`' body is not very useful. For example:
 
 ```inference
 forall {
