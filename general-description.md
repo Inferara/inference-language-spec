@@ -98,7 +98,7 @@ exists {
 print("Success!");
 ```
 
-Rules of execution path isolation and dismissal of side effects for `exists` are the same as for `forall`. One computation enters, no more then one exits, and if so, continuation recieves untouched execution context.
+The rules regarding execution path isolation and dismissal of side effects for `exists` are the same as for `forall`. One computation enters, no more then one exits, and if so, the continuation recieves an untouched execution context.
 
 ### 3.1.5 Unique
 
