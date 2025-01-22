@@ -103,7 +103,7 @@ So when Inference reasons about the DApp, it reasons about the DApp itself, and 
 
 ## 5.6 Poly-Blockchain Design
 
-Inference is a low-level language by nature because property definitions must be straightforward and unambiguous. From the proof-unit viewpoint, the execution model follows the command set of a certain platform—for example, WASM. This means that if a blockchain uses WASM as a compilation target, then compiled DApp modules can be linked to the Inference modules, and proofs can be constructed.
+Inference is a low-level language because property definitions must be straightforward and unambiguous. From the proof-unit viewpoint, the execution model follows the command set of a certain platform—for example, WASM. This means that if a blockchain uses WASM as a compilation target, then compiled DApp modules can be linked to the Inference modules, and proofs can be constructed.
 
 For reference, the following blockchains use WASM as a compilation target:
 
