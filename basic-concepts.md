@@ -61,7 +61,7 @@ Now, as we see, the spec is not an execution unit because it is not compiled to 
 
 Essentially, the theory describes how a virtual machine (VM) works, its memory state, and operations. It contains a description of how operations are executed, how memory is managed, how the stack is used, and so on. It is worth highlighting that the proof theory is not similar to symbolic execution. The symbolic execution technique actually executes commands and works with the memory state, while the proof theory is a way to describe what happens with memory after a command is executed without having this memory in the real world.
 
-For illustration, consider the well-known formula of energy $E=mc^2$. This formula is a property of one aspect of how the universe works. In order to prove this formula, other formulas and theories are used. But the formula itself is not proven by experiment simply because an experiment cannot cover all possible combinations of $m$ and $c$ to ensure the formula is correct for all possible values.
+For illustration, consider the well-known formula of energy $E=mc^2$. This formula is a property of one aspect of how the universe works. In order to prove this formula, other formulas and theories are used. However, the formula itself is not proven by experiment simply because an experiment cannot cover all possible combinations of $m$ and $c$ to ensure the formula is correct for all possible values.
 
 In this analogy, the Inference proof is akin to a mathematical proof, whereas symbolic execution is akin to an experimental approach.
 
