@@ -91,7 +91,7 @@ fn foo() {
 }
 ```
 
-After the `forall` block only those execution paths will remain in which `x` has values for which the `forall` block does not fail for any `y`.
+After the `forall` block, only the execution paths where `x` has values for which the `forall` block does not fail for any `y` will remain.
 
 ## 5.5 Platform-Specific Execution
 
