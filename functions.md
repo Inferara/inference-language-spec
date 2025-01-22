@@ -118,7 +118,7 @@ spec HashContext {
 }
 ```
 
-A type of a function can be defined using [`type`](./statements.md#97-type-definition) statement. `HashFunction` in the example is an alias for the `hash` function type (its signature). Hence, it can be used in the type annotations but cannot be called as a function.
+The type of a function can be defined using [`type`](./statements.md#97-type-definition) statement. In the example, `HashFunction` is an alias for the `hash` function type (its signature). Hence, it can be used in type annotations but cannot be called as a function.
 
 ```inference
 fn add(a: i32, b: i32) -> i32 {
