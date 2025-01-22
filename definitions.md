@@ -60,9 +60,9 @@ type Address = u32;
 
 ### 10.5.1 Description
 
-A spec is an abstract _module_ representation. By module, we mean a scoped set of imports, definitions, and functions. Contexts are used to group related definitions and functions together and provide a way to organize the specification.
+A spec is an abstract _module_ representation. By module, we mean a scoped set of imports, definitions, and functions. Specs are used to group related definitions and functions together and provide a way to organize the program specification as a whole.
 
-Contexts may contain definitions of constants and spec-level variables, structs, enums, and functions. Nested contexts are not allowed.
+Specs may contain definitions of constants, structs, enums, and functions. Nested specs are not allowed.
 
 ### 10.5.2 Examples
 
