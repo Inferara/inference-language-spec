@@ -49,7 +49,7 @@ fn foo() {
 
 ### 7.3.1 Description
 
-Inference, as a language for formal specification, is intended for use in critical system components.
+Inference, as a language for formal specification, is intended for use in critical system components. Hence,
 
 > [!WARNING]
 > No default values are allowed.
