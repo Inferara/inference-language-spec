@@ -80,7 +80,7 @@ fn foo(i: i32) -> () forall {
 
 ### 9.6.1 Description
 
-The `unique` keyword is followed by a [block](#91-block). It should be embedded in the `exists` block to locally strengthen its execution semantics. By wrapping code block in `unique` modifier we make additional restriction on execution paths entering it to continue after its closing bracket. If and only if every combination of `@` values encountered through block execution either leads it to failure or to states of success indistinguishable from each other, `unique` block succeeds with this exit state.
+The `unique` keyword is followed by a [block](#91-block). It should be embedded in the `exists` block to locally strengthen its execution semantics. By wrapping a code block in a `unique` modifier, we add a restriction on execution paths entering it to continue after its closing bracket. If and only if every combination of `@` values encountered through block execution either leads it to failure or to states of success indistinguishable from each other, `unique` block succeeds with this exit state.
 
 As `unique` doesn't erase changes to machine state upon exit, it is not a quantifier and can't be used in deterministic code or inside quantifiers otside of `exists`.
 
