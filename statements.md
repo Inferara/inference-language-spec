@@ -57,7 +57,7 @@ The `exists` keyword is followed by a [block](#91-block). Semantically, `exists`
 
 The `assume` keyword is followed by a [block](#91-block). Semantically, `assume` converts [traps](https://webassembly.github.io/spec/core/intro/overview.html) and proven infinite loops into the successful completion of the closest `forall` block (understood in terms of dynamic, not lexical scope). Regarding unwinding the call stack, handling traps inside `assume` is similar to exception handling in other languages (termination propagates up through activation frames until the point of handling) but differs in that `assume` doesn't retain any information about the cause and spec of failure.
 
-`assume` is not a representation of any logical quantifier and makes sense only when it is embedded into the `forall` block as a mechanism of execution paths (that are not satisfied with the pre-conditions) filtering.
+`assume` is not a representation of any logical quantifier and makes sense only when it is embedded into the `forall` block as a mechanism of filtering execution paths (that are not satisfied with the pre-conditions).
 
 ### 9.5.2 Examples
 
