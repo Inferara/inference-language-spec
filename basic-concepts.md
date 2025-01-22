@@ -19,7 +19,7 @@ $$
 
 ## 5.2 Specification Is Not a Program
 
-Despite using the Inference programming language, a specification is a formula, not a program. Inference is designed to be very similar to usual imperative programming languages, providing a convenient way to write specifications.
+Inference is designed to be very similar to imperative programming languages, providing a convenient way to write specifications. Despite this, a specification is a formula, _not a program_.
 
 However, the imperative flavor of Inference unlocks another powerful feature: **writing formal specifications in Inference is as easy as writing unit tests** in any other common programming language. This is a huge advantage because it allows developers to write specifications in a way that is very close to how they are used to writing code.
 
