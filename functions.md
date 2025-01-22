@@ -68,7 +68,7 @@ spec Hasher {
 
 ### 11.3.1 Description
 
-In Inference, functions are the first-class citizens. This means that functions can be passed as arguments to other functions, returned as values from other functions, and assigned to variables. This allows for the creation of high-order functions, which are functions that take other functions as arguments or return functions as results.
+In Inference, functions are first-class citizens. This means that functions can be passed as arguments to other functions, returned as values from other functions, and assigned to variables. This allows for the creation of high-order functions, which are functions that take other functions as arguments or return functions as results.
 
 ### 11.3.2 Examples
 
