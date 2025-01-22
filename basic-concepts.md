@@ -69,7 +69,7 @@ In this analogy, the Inference proof is akin to a mathematical proof, whereas sy
 
 Inference leverages non-deterministic execution to model and reason about all possible execution paths of a program. Non-determinism allows the specification to consider every possible value a variable might take, enabling comprehensive verification.
 
-In Inference, non-determinism is introduced using the `@` (pronounce as `uzumaki`) keyword for variables value and the `forall`/`exists` keywords for blocks of code. An `@` variable represents all possible values of its type. A `forall` block terminates successfully only if its body terminates for **all possible combinations** of values of `@` variables, introduced inside it. An `exists` block terminates successfully if there is **at least one** combination of values of `@` variables, introduced inside it, that leads to successful termination (not abort).
+In Inference, non-determinism is introduced using the `@` (pronounced `uzumaki`) keyword for variable values and the `forall`/`exists` keywords for blocks of code. An `@` variable represents all possible values of its type. A `forall` block terminates successfully only if its body terminates for **all possible combinations** of values of `@` variables introduced inside it. An `exists` block terminates successfully if there is **at least one** combination of values of `@` variables introduced inside it that leads to successful termination.
 
 In fact, the sucessfull termination is asserted for each execution path entering the `forall` block. When an `assume` block appears inside the `forall` block it equals to the `let assume that...` statement.
 
