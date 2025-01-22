@@ -45,11 +45,11 @@ fn foo() -> i32 {
 
 ## 9.3 Forall
 
-The `forall` keyword is followed by a [block](#91-block). Semantically, `forall` is a logical analogue of for all $\forall$ quantifier.
+The `forall` keyword is followed by a [block](#91-block). Semantically, `forall` is a logical analog of for all $\forall$ quantifier.
 
 ## 9.4 Exists
 
-The `exists` keyword is followed by a [block](#91-block). Semantically, `exists` is a logical analogue of exists $\exists$ quantifier.
+The `exists` keyword is followed by a [block](#91-block). Semantically, `exists` is a logical analog of exists $\exists$ quantifier.
 
 ## 9.5 Assume
 
