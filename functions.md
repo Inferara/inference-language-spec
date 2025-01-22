@@ -59,7 +59,7 @@ spec Hasher {
 ```
 
 > [!NOTE]
-> The `ideal_hash` is supposed to be an _ideal_ in terms of collisions absence.
+> The `ideal_hash` function is supposed to be _ideal_ in terms of collision absence.
 
 > [!NOTE]
 > The expression `data1 == data2` with operator `==` and two arrays works similarly to C++. It comapres two arrays element-wise.
