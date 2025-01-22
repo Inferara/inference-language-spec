@@ -53,7 +53,7 @@ In Inference, you can write a specification that asserts the correctness of `sum
     }
 ```
 
-In this example, `sum_sub_spec` is a forall-marked function that, using `@` (uzumaki) keyword to say that `a` and `b` are considered for all their possible values and asserts that `sum(a, b)` equals `a + b` for all possible execution paths.
+In this example, `sum_sub_spec` is a forall-marked function that, using the `@` (uzumaki) keyword, says that `a` and `b` are considered for all their possible values and asserts that `sum(a, b)` equals `a + b` for all possible execution paths.
 
 ## 5.3 Execution Model
 
