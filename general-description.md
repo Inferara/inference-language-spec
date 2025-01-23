@@ -108,7 +108,6 @@ The `unique` block ensures, that for every distinct program state entering it th
 forall {
     /// Here computation splits into 2^32 subpaths,
     /// with `x` holding distinct value on each.
-    let mut x: u32;
     let y: u32 = @;
 
     /// Here we filter out `y` values not obeying `check_foo` property.
@@ -116,7 +115,10 @@ forall {
 
     /// Here we check that there is only one pre-image of `y`
     /// in the domain of function `bar`.
-    exists unique { x = @; assert(bar(x) == y); }
+    exists {
+        let mut x: u32;
+        unique { x = @; assert(bar(x) == y); }
+    }
 }
 
 /// This point is reached iff every value of `y` that successfully
