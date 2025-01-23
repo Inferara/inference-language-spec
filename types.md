@@ -81,9 +81,17 @@ An array is a linear segment of memory (also known as a vector or sequence). Sin
 let a: [i32; 3] = [1, 2, 3];
 ```
 
-## 6.4 User-Defined Types
+## 6.4 Function type
 
 ### 6.4.1 Description
+TODO
+
+### 6.4.2 Examples
+TODO
+
+## 6.5 User-Defined Types
+
+### 6.5.1 Description
 
 Users can define custom types in two ways:
 
