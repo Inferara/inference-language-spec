@@ -102,24 +102,25 @@ The rules regarding execution path isolation and dismissal of side effects for `
 
 ### 3.1.5 Unique
 
-The `unique` block propagates down the control flow only for those execution paths that do mandatory choice of single value on every `@` evaluation in its body. It should be seen as a local strengthening of the `exists` quantifier it is embedded in. For example:
+The `unique` block ensures, that for every distinct program state entering it there is one and only one program state exiting it, reachable through selection of `@` values along the way. It should be seen as a local strengthening of the `exists` quantifier it is embedded in. For example:
 
 ```inference
 forall {
     /// Here computation splits into 2^32 subpaths,
     /// with `x` holding distinct value on each.
-    let x: u32 = @;
+    let mut x: u32;
+    let y: u32 = @;
 
-    /// Here we leave only values, obeying `check_foo` property.
-    assume { check_foo(x); }
+    /// Here we filter out `y` values not obeying `check_foo` property.
+    assume { check_foo(y); }
 
-    /// Here we check that there is only one pre-image of `x`
+    /// Here we check that there is only one pre-image of `y`
     /// in the domain of function `bar`.
-    exists unique { assert(bar(@) == x); }
+    exists unique { x = @; assert(bar(x) == y); }
 }
 
-/// This point is reached iff every value of `x` that successfully
-/// pass through `check_foo` there is only one `y` such as `bar(y) == x`.
+/// This point is reached iff every value of `y` that successfully
+/// pass through `check_foo` there is only one `x` such as `bar(y) == x`.
 print("Success!");
 ```
 
