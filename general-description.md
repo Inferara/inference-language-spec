@@ -9,9 +9,9 @@ Inference is a formal specification language that aims to provide a straightforw
 
 ## 3.1 Non-Deterministic Computations
 
-The cornerstone idea behind Inference is utilization of non-determinism as a method to express general statements about classical deterministic computations. At face value non-deterministic specification can be seen as a formal generalization of the unit testing methodology, which we roughly define as expressing programmer's intentions about behavior of individual program components with additional snippets of code (in the same or almost the same language as main codebase), and then using some sort of automated process to check if actual implementation corresponds to stated intentions. The established methodology suggests stating intentions as individual cases feeding specific hand-picked input data to subject functions in order to check their behavior against reference results. This process is technologically primitive, as it relies on the straightforward execution of wrapped calls to tested code, but such simplicity comes with embedded flaw - no matter how comprehensive a test suite is, one can never be sure if a program behaves correctly in cases that are outside of its neccesarily limited test coverage.
+The cornerstone idea behind Inference is utilization of non-determinism as a method to express general statements about classical deterministic computations. At face value non-deterministic specification can be seen as a formal generalization of the unit testing methodology, which we roughly define as expressing programmer's intentions about behavior of individual program components with additional snippets of code (in the same or almost the same language as main codebase), and then using some sort of automated process to check if actual implementation corresponds to stated intentions. The established methodology suggests stating intentions as individual cases feeding specific hand-picked input data to subject functions in order to check their behavior against reference results. This process is technologically primitive, as it relies on the straightforward execution of wrapped calls to tested code, but such simplicity comes with an embedded flaw — no matter how comprehensive a test suite is, one can never be sure if a program behaves correctly in cases that are outside of its neccesarily limited test coverage.
 
-Inference addresses that problem by offering programmer to express statements about algorithm behavior that are much more general comparing to simplistic "given this specific input, function must return this specific output" and its variations. That is done through extending classical imperative exection model with idioms of non-determinism and logical quantification represented by the following keywords:
+Inference addresses that problem by allowing the programmer to express statements about algorithm behavior which are much more general compared to the simplistic "given this specific input, the function must return this specific output" idea and its variations. That is done by extending the classical imperative execution model with idioms of non-determinism and logical quantification represented by the following keywords:
 
 - [uzumaki](./statements.md#9821-uzumaki)
 - [forall](./statements.md#93-forall)
@@ -20,9 +20,9 @@ Inference addresses that problem by offering programmer to express statements ab
 
 ### 3.1.1 Uzumaki
 
-The `@` keyword (pronounced as u-zu-ma-ki うずまき) is a primitive expression that can occupy `rval` slot of any primitive type serving as a point of non-deterministic branching of passing computation. Its evaluation split execution path into finite set of subpaths, each of which differs from the others only by `@`'s result, collectively covering all possible values that given type can hold. Representing undetermined values, this construct lays foundation for every formal specification, idiomatically expressed in Inference through modelling non-deterministic behavior of covered functions and modules. As classical imperative programming paradigm doesn't have operational semantics for non-deterministic computations, `@` can be evaluated only inside specilized quantified contexts explained below.
+The `@` keyword (pronounced u-zu-ma-ki うずまき) is a primitive expression that can occupy the `rval` slot of any primitive type, serving as a point of non-deterministic branching of passing computation. Its evaluation splits the execution path into a finite set of subpaths, each of which differs from the others only by `@`'s result, collectively covering all possible values that the given type can hold. Representing undetermined values, this construct lays the foundation for every formal specification, idiomatically expressed in Inference through modeling the non-deterministic behavior of covered functions and modules. As the classical imperative programming paradigm doesn't have operational semantics for non-deterministic computations, `@` can be evaluated only inside specialized quantified contexts explained below.
 
-Manipulating undefined values in non-deterministic spec resembles mechanisms of symbolic execution widely employed in program analysis, and indeed `@` can rightfully be seen as analogue to the symbolic input values of ordinary constraint solver. However, there are important paradigmal differences that need to be taken into account. While symbolic execution is usually applied to the classical deterministic algorithms that are not aware of their non-deterministic interpretation environment, Inference embraces non-determinism as an organic part of its model allowing us to make quantified statements (see below) about undefined values inside algorithm itself, turing it into language for expression of logical properties.
+Manipulating undefined values in a non-deterministic spec resembles mechanisms of symbolic execution widely employed in program analysis, and indeed `@` can rightfully be seen as an analog to the symbolic input value of an ordinary constraint solver. However, important paradigm differences need to be taken into account. While symbolic execution is usually applied to classical deterministic algorithms that are not aware of their non-deterministic interpretation environment, Inference embraces non-determinism as an organic part of its model, allowing us to make quantified statements (see below) about undefined values inside the algorithm itself, turning it into a language for expression of logical properties.
 
 ### 3.1.2 Forall
 
@@ -46,11 +46,11 @@ forall {
 print("Success!");
 ```
 
-Note that each execution path of non-deterministic computation is completely isolated from its neighbors. Nothing that happens through the computation of `check_foo` function can affect any aspect of `check_bar` computation and vice versa. Moreover, this holds here for the computations of calls to the same function with different arguments too. Practically, one can percieve non-deterministic branching as act of passing duplicated state of whole execution context in its entirety to every spawned subpath. Also, it's worth to stress that quantifying blocks like `forall` are dismissing all changes made to such duplicated contexts on the way of its body execution, taking into account only totality of their successfull termination - for each execution path that enters `forall` block, no more then one continuation may exit it, and if that happens, it has same effect as if `nop` statement was in its place.
+Note that each execution path of non-deterministic computation is completely isolated from its neighbors. Nothing that happens through the computation of `check_foo` function can affect any aspect of `check_bar` computation and vice versa. Moreover, this holds for the computations of calls to the same function with different arguments. Practically, one can perceive non-deterministic branching as passing a duplicated state of the whole execution context to every spawned subpath. Also, it's worth stressing that quantifying blocks like `forall` dismiss all changes made to such duplicated contexts on the way of its body execution, taking into account only the totality of their successful termination - for each execution path that enters `forall` block, no more than one continuation may exit it. If that happens, it has the same effect as if `nop` statement was in its place.
 
 ### 3.1.3 Assume
 
-The `assume` block that propagates down the control flow only for those execution paths which successfully complete its body, while absorbing all internal failuers (be it outright traps, or neverending cycles) that would otherwize preemptively fail enclosing quantifying block. Practically it can be used to limit property checking to situations conforming to a given precondition. Take note that it makes sense only inside `forall` quantification context, as transforming failures into preemptive successfull termination of `exists`' body is not very useful. For example:
+The `assume` block propagates down the control flow only for those execution paths that complete its body while absorbing all internal failures (be it outright traps, or neverending cycles) that would otherwise preemptively fail the enclosing quantifying block. Practically, it can be used to limit property checking to situations conforming to a given precondition. Take note that it makes sense only inside the `forall` quantification context, as transforming failures into preemptive successful termination of `exists`' body is not very useful. For example:
 
 ```inference
 forall {
@@ -73,11 +73,11 @@ forall {
 print("Success!");
 ```
 
-It's important to keep in mind that `assume` is not a quantifier by itself, so it has no meaningful use without enclosing `forall` block, for which it merely denotes local change of failure interpretetion rules. For same reason `assume` blocks (unlike quantifers `forall` and `exists`) retain all changes to machine state along execution paths going through its body.
+It's important to keep in mind that `assume` is not a quantifier by itself, so it has no meaningful use without an enclosing `forall` block, for which it merely denotes a local change of failure interpretation rules. For the same reason, `assume` blocks (unlike the quantifiers `forall` and `exists`) retain all changes to the machine state along execution paths going through its body.
 
 ### 3.1.4 Exists
 
-`exists` (an execution path) is a quantifying block that passes control down the flow without any side effects, iff the execution of its body has at least one sucsessfully terminating non-deterministic path. Similarly:
+`exists` (an execution path) is a quantifying block that passes control down the flow without any side effects, iff the execution of its body has at least one successfully terminating non-deterministic path. Similarly:
 
 ```inference
 exists {
@@ -98,32 +98,35 @@ exists {
 print("Success!");
 ```
 
-Rules of execution path isolation and dismissal of side effects for `exists` are the same as for `forall`. One computation enters, no more then one exits, and if so, continuation recieves untouched execution context.
+The rules regarding execution path isolation and dismissal of side effects for `exists` are the same as for `forall`. One computation enters, no more then one exits, and if so, the continuation recieves an untouched execution context.
 
 ### 3.1.5 Unique
 
-The `unique` block propagates down the control flow only for those execution paths that do mandatory choice of single value on every `@` evaluation in its body. It should be seen as local strengthening of `exists` quantifier it is embedded in. For example:
+The `unique` block ensures, that for every distinct program state entering it there is one and only one program state exiting it, reachable through selection of `@` values along the way. It should be seen as a local strengthening of the `exists` quantifier it is embedded in. For example:
 
 ```inference
 forall {
     /// Here computation splits into 2^32 subpaths,
     /// with `x` holding distinct value on each.
-    let x: u32 = @;
+    let y: u32 = @;
 
-    /// Here we leave only values, obeying `check_foo` property.
-    assume { check_foo(x); }
+    /// Here we filter out `y` values not obeying `check_foo` property.
+    assume { check_foo(y); }
 
-    /// Here we check that there is only one pre-image of `x`
+    /// Here we check that there is only one pre-image of `y`
     /// in the domain of function `bar`.
-    exists unique { assert(bar(@) == x); }
+    exists {
+        let mut x: u32;
+        unique { x = @; assert(bar(x) == y); }
+    }
 }
 
-/// This point is reached iff every value of `x` that successfully
-/// pass through `check_foo` there is only one `y` such as `bar(y) == x`.
+/// This point is reached iff every value of `y` that successfully
+/// pass through `check_foo` there is only one `x` such as `bar(y) == x`.
 print("Success!");
 ```
 
-Similarly to `assume` `unique` retain all changes in the machine state along execution path going through its body.
+Similarly to `assume`, `unique` retains all changes in the machine state along execution path going through its body.
 
 ### 3.1.6 Semantics
 

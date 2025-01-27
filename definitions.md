@@ -32,7 +32,7 @@ fn sum(a: u32, b: u32) -> u32 {
 
 ### 10.3.1 Description
 
-External functions are functions that are defined outside of the current module or spec. They are used to interact with the external environment, such as calling functions from other modules. External functions are declared using the `extern` keyword followed by the function signature.
+External functions are functions that are defined outside of the current module or spec. They are used to interact with the external environment, such as calling functions from other modules. External functions are declared using the `external` keyword followed by the function signature.
 
 For detailed information about external functions, see the [Functions](./functions.md#11-external-function) section.
 
@@ -60,9 +60,9 @@ type Address = u32;
 
 ### 10.5.1 Description
 
-A spec is an abstract _module_ representation. By module, we mean a scoped set of imports, definitions, and functions. Contexts are used to group related definitions and functions together and provide a way to organize the specification.
+A spec is an abstract _module_ representation. By module, we mean a scoped set of imports, definitions, and functions. Specs are used to group related definitions and functions together and provide a way to organize the program specification as a whole.
 
-Contexts may contain definitions of constants and spec-level variables, structs, enums, and functions. Nested contexts are not allowed.
+Specs may contain definitions of constants, structs, enums, and functions. Nested specs are not allowed.
 
 ### 10.5.2 Examples
 

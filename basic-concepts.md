@@ -19,7 +19,7 @@ $$
 
 ## 5.2 Specification Is Not a Program
 
-Despite using the Inference programming language, a specification is a formula, not a program. Inference is designed to be very similar to usual imperative programming languages, providing a convenient way to write specifications.
+Inference is designed to be very similar to imperative programming languages, providing a convenient way to write specifications. Despite this, a specification is a formula, _not a program_.
 
 However, the imperative flavor of Inference unlocks another powerful feature: **writing formal specifications in Inference is as easy as writing unit tests** in any other common programming language. This is a huge advantage because it allows developers to write specifications in a way that is very close to how they are used to writing code.
 
@@ -53,7 +53,7 @@ In Inference, you can write a specification that asserts the correctness of `sum
     }
 ```
 
-In this example, `sum_sub_spec` is a forall-marked function that, using `@` (uzumaki) keyword to say that `a` and `b` are considered for all their possible values and asserts that `sum(a, b)` equals `a + b` for all possible execution paths.
+In this example, `sum_sub_spec` is a forall-marked function that, using the `@` (uzumaki) keyword, says that `a` and `b` are considered for all their possible values and asserts that `sum(a, b)` equals `a + b` for all possible execution paths.
 
 ## 5.3 Execution Model
 
@@ -61,7 +61,7 @@ Now, as we see, the spec is not an execution unit because it is not compiled to 
 
 Essentially, the theory describes how a virtual machine (VM) works, its memory state, and operations. It contains a description of how operations are executed, how memory is managed, how the stack is used, and so on. It is worth highlighting that the proof theory is not similar to symbolic execution. The symbolic execution technique actually executes commands and works with the memory state, while the proof theory is a way to describe what happens with memory after a command is executed without having this memory in the real world.
 
-For illustration, consider the well-known formula of energy $E=mc^2$. This formula is a property of one aspect of how the universe works. In order to prove this formula, other formulas and theories are used. But the formula itself is not proven by experiment simply because an experiment cannot cover all possible combinations of $m$ and $c$ to ensure the formula is correct for all possible values.
+For illustration, consider the well-known formula of energy $E=mc^2$. This formula is a property of one aspect of how the universe works. In order to prove this formula, other formulas and theories are used. However, the formula itself is not proven by experiment simply because an experiment cannot cover all possible combinations of $m$ and $c$ to ensure the formula is correct for all possible values.
 
 In this analogy, the Inference proof is akin to a mathematical proof, whereas symbolic execution is akin to an experimental approach.
 
@@ -69,7 +69,7 @@ In this analogy, the Inference proof is akin to a mathematical proof, whereas sy
 
 Inference leverages non-deterministic execution to model and reason about all possible execution paths of a program. Non-determinism allows the specification to consider every possible value a variable might take, enabling comprehensive verification.
 
-In Inference, non-determinism is introduced using the `@` (pronounce as `uzumaki`) keyword for variables value and the `forall`/`exists` keywords for blocks of code. An `@` variable represents all possible values of its type. A `forall` block terminates successfully only if its body terminates for **all possible combinations** of values of `@` variables, introduced inside it. An `exists` block terminates successfully if there is **at least one** combination of values of `@` variables, introduced inside it, that leads to successful termination (not abort).
+In Inference, non-determinism is introduced using the `@` (pronounced `uzumaki`) keyword for variable values and the `forall`/`exists` keywords for blocks of code. An `@` variable represents all possible values of its type. A `forall` block terminates successfully only if its body terminates for **all possible combinations** of values of `@` variables introduced inside it. An `exists` block terminates successfully if there is **at least one** combination of values of `@` variables introduced inside it that leads to successful termination.
 
 In fact, the sucessfull termination is asserted for each execution path entering the `forall` block. When an `assume` block appears inside the `forall` block it equals to the `let assume that...` statement.
 
@@ -91,7 +91,7 @@ fn foo() {
 }
 ```
 
-After the `forall` block only those execution paths will remain in which `x` has values for which the `forall` block does not fail for any `y`.
+After the `forall` block, only the execution paths where `x` has values for which the `forall` block does not fail for any `y` will remain.
 
 ## 5.5 Platform-Specific Execution
 
@@ -103,7 +103,7 @@ So when Inference reasons about the DApp, it reasons about the DApp itself, and 
 
 ## 5.6 Poly-Blockchain Design
 
-Inference is a low-level language by nature because property definitions must be straightforward and unambiguous. From the proof-unit viewpoint, the execution model follows the command set of a certain platform—for example, WASM. This means that if a blockchain uses WASM as a compilation target, then compiled DApp modules can be linked to the Inference modules, and proofs can be constructed.
+Inference is a low-level language because property definitions must be straightforward and unambiguous. From the proof-unit viewpoint, the execution model follows the command set of a certain platform—for example, WASM. This means that if a blockchain uses WASM as a compilation target, then compiled DApp modules can be linked to the Inference modules, and proofs can be constructed.
 
 For reference, the following blockchains use WASM as a compilation target:
 

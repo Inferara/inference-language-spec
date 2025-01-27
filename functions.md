@@ -30,7 +30,7 @@ spec Bridge {
 
 ### 11.2.1 Description
 
-External functions are functions that are defined outside of the current specification or spec. They are used to interact with the external environment, such as calling functions from other modules or libraries. External functions are declared using the `extern` keyword followed by the function signature.
+External functions are functions that are defined outside of the current specification or spec. They are used to interact with the external environment, such as calling functions from other modules or libraries. External functions are declared using the `external` keyword followed by the function signature.
 
 External functions are an entry point to the actual implementation of the system. This means the specification is a description of the system behavior, and the external functions are the actual implementation of the system. A specification can exist without the linked external implementation, but if it is desired to verify the correctness of the implementation, the external functions must be provided.
 
@@ -59,7 +59,7 @@ spec Hasher {
 ```
 
 > [!NOTE]
-> The `ideal_hash` is supposed to be an _ideal_ in terms of collisions absence.
+> The `ideal_hash` function is supposed to be _ideal_ in terms of collision absence.
 
 > [!NOTE]
 > The expression `data1 == data2` with operator `==` and two arrays works similarly to C++. It comapres two arrays element-wise.
@@ -68,7 +68,7 @@ spec Hasher {
 
 ### 11.3.1 Description
 
-In Inference, functions are the first-class citizens. This means that functions can be passed as arguments to other functions, returned as values from other functions, and assigned to variables. This allows for the creation of high-order functions, which are functions that take other functions as arguments or return functions as results.
+In Inference, functions are first-class citizens. This means that functions can be passed as arguments to other functions, returned as values from other functions, and assigned to variables. This allows for the creation of high-order functions, which are functions that take other functions as arguments or return functions as results.
 
 ### 11.3.2 Examples
 
@@ -118,7 +118,7 @@ spec HashContext {
 }
 ```
 
-A type of a function can be defined using [`type`](./statements.md#97-type-definition) statement. `HashFunction` in the example is an alias for the `hash` function type (its signature). Hence, it can be used in the type annotations but cannot be called as a function.
+The type of a function can be defined using [`type`](./statements.md#97-type-definition) statement. In the example, `HashFunction` is an alias for the `hash` function type (its signature). Hence, it can be used in type annotations but cannot be called as a function.
 
 ```inference
 fn add(a: i32, b: i32) -> i32 {
