@@ -8,21 +8,47 @@ Functions in Inference are the basic blocks used to build the specification. The
 
 Functions can be defined at the top level of the program, inside a [spec](./definitions.md#101-spec), or inside a [struct](./definitions.md#103-struct) definition. In the latter case, the function is considered a method of the struct and acquires access to struct fields.
 
-### 11.1.2 Modifiers
+### 11.1.2 Declaring a function
 
-#### 11.1.2.1 `forall`
+Funtions are declared using the `fn` keyword, followed by the name of the function, its parameter list, and optionally, its return type. This is then succeeded by a block, which is the function's body.
+
+Function parameters can be one of three things: 
+
+- A `self` or `mut self` reference. This is used when functions are declared as methods of a struct. It specifies whether or not the function may mutate the fields of the instance of the struct it was invoked in. For more information, see the [struct](./definitions.md#103-struct) page.
+- A standard parameter declaration (for example `x: bool` or `mut numbers : [i32]`). This consists of an identifier and a type, optionally preceded by the `mut` keyword. These identifiers will be available in scope of the function's body and will represent the arguments provided to the function when it is called. If the parameter is mutable, it means that the function can modify the argument's original value. That is, if the function modifies the argument, the effect is visible to the caller.
+- A type without an identifier. This indicates that the function will accept the argument, but will ignore it, as it is not possible to reference the argument in the function's body if it has not been bound to any identifier.
+
+If the return type of a function is omitted, it implicitly returns the unit value `()`.
+
+### 11.1.3 Modifiers
+
+#### 11.1.3.1 `forall`
 
 The `forall` keyword is used to specify that the function is forall. A forall-marked block in a function defines for all possible inputs. In other words, a forall-marked function is a function that is guaranteed to successfully terminate for all possible inputs.
 
-### 11.1.3 Examples
+### 11.1.4 Examples
 
 ```inference
 fn sum(a: u32, b: u32) -> u32 forall {
   return a + b;
 }
 
+fn ignore_first(i32, x: i32) -> i32 {
+    return x;
+}
+
 spec Bridge {
   /// Spec-specific functions
+}
+
+struct WrapInt {
+    value : i32;
+    fn unwrap(self) -> i32 {
+        return self.value;
+    }
+    fn add(mut self, x: i32) {
+        self.value = self.value + x;
+    }
 }
 ```
 
