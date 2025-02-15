@@ -12,11 +12,13 @@ Functions can be defined at the top level of the program, inside a [spec](./defi
 
 Funtions are declared using the `fn` keyword, followed by the name of the function, its parameter list, and optionally, its return type. This is then succeeded by a block, which is the function's body.
 
-Function parameters can be one of three things: 
+Function parameters can be one of four things: 
 
 - A `self` or `mut self` reference. This is used when functions are declared as methods of a struct. It specifies whether or not the function may mutate the fields of the instance of the struct it was invoked in. For more information, see the [struct](./definitions.md#103-struct) page.
 - A standard parameter declaration (for example `x: bool` or `mut numbers : [i32]`). This consists of an identifier and a type, optionally preceded by the `mut` keyword. These identifiers will be available in scope of the function's body and will represent the arguments provided to the function when it is called. If the parameter is mutable, it means that the function can modify the argument's original value. That is, if the function modifies the argument, the effect is visible to the caller.
-- A type without an identifier. This indicates that the function will accept the argument, but will ignore it, as it is not possible to reference the argument in the function's body if it has not been bound to any identifier.
+- An underscore followed by a type (for example `_ : i32`). This indicates that the function will accept an argument of that type, but will not do anything with it. Ignoring arguments may be useful if you need to adhere to some API or ABI rules in regards to functions' type signatures.
+- A plain type without an underscore or identifier. This is only used for external functions which do not have a body, hence it is not necessary to bind arguments to identifiers.
+
 
 If the return type of a function is omitted, it implicitly returns the unit value `()`.
 
@@ -33,7 +35,7 @@ fn sum(a: u32, b: u32) -> u32 forall {
   return a + b;
 }
 
-fn ignore_first(i32, x: i32) -> i32 {
+fn ignore_first(_: i32, x: i32) -> i32 {
     return x;
 }
 
@@ -50,6 +52,10 @@ struct WrapInt {
         self.value = self.value + x;
     }
 }
+
+/// Either of these work
+external fn draw_rectangle(Picture, u32, u32, u32, u32) -> Picture
+external fn draw_rectangle(old_picture: Picture, x: u32, y: u32, w: u32, h: u32) -> Picture
 ```
 
 ## 11.2 External Function
