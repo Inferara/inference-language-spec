@@ -10,7 +10,7 @@ Functions can be defined at the top level of the program, inside a [spec](./defi
 
 ### 11.1.2 Declaring a function
 
-Funtions are declared using the `fn` keyword, followed by the name of the function, its parameter list, and optionally, its return type. This is then succeeded by a block, which is the function's body.
+Functions are declared using the `fn` keyword, followed by the name of the function, its parameter list, and optionally, its return type. This is then succeeded by a block, which is the function's body.
 
 Function parameters can be one of four things: 
 
