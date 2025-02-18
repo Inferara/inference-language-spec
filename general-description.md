@@ -194,7 +194,7 @@ The compilation process consists of the following stages:
 
 As an automated theorem proving backend, Inference uses Rocq theorem prover. The Rocq's type system is based on the Calculus of Inductive Constructions (CIC), which is a dependently typed lambda calculus.
 
-Inference uses CIC along with first-order logic and Hoare logic to build theories for the given properties and the program code, as well as automatically prove the correctness of the properties if possible.
+Inference uses CIC along with first-order logic and Hoare logic to build theories for the given properties and the program code, as well as automatically proving the correctness of the properties if possible.
 
 Otherwise, meaningful diagnostics are provided.
 
