@@ -103,7 +103,7 @@ fn foo(n: u32) exists {
 }
 ```
 
-Quantified procedure `foo` succeeds if and only if its argument is a composit number with exactly two non-trivial divisors. So, `foo(6);` and `foo(8);` will succeed, while `foo(7);` and `foo(12);` fail.
+Quantified procedure `foo` succeeds if and only if its argument is a composite number with exactly two non-trivial divisors. So, `foo(6);` and `foo(8);` will succeed, while `foo(7);` and `foo(12);` fail.
 
 ## 9.7 Loop
 
