@@ -28,7 +28,7 @@ fn sum(a: u32, b: u32) -> u32 {
 }
 ```
 
-## 10.3 External Function
+## 10.3 External Functions
 
 ### 10.3.1 Description
 
