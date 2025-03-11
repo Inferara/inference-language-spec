@@ -121,9 +121,10 @@ A struct in Inference is a user-defined algebraic data type that allows you to d
 
 Along with the fields, a struct can also have methods that define the behavior of the struct. These methods can be used to manipulate the fields of the struct or perform some operations on them. The methods are defined inside the struct block and must take either `self` or `mut self` as the first parameter. A method which takes `self` can read the value of any field of the instance it was invoked on by accessing it using the `self` keyword. However, it may neither mutate any data in the struct, nor call other methods which take `mut self`. Methods which take `mut self` can additionally change data and call other `mut self` methods, but they may only be invoked on a mutable instance of the struct.
 
-Declared structs will automatically have a `new` function in their namespace for creating instances of the struct. The parameters of the `new` function are the values to be assigned to each field in the new instance. They are ordered the same way as fields are defined in the struct. 
+Declared structs will automatically have a `new` function in their namespace for creating instances of the struct. The parameters of the `new` function are the values to be assigned to each field in the new instance. They must be explicitly named with `name: value` syntax, and the order of the parameters does not matter.
 
 There are no visibility features in Inference, therefore it is not possible to mark certain fields or methods as private.
+
 ### 10.7.2 Examples
 
 Declaring an `Account` struct:
@@ -150,23 +151,23 @@ Creating an instance of `Account`:
 /// Suppose we already have some address we would like to use...
 let addr : Address = ... ;
 /// Create the new account with that address, and a balance of 0.
-let acc : Account = Account::new(addr, 0);
+let acc : Account = Account::new(address: addr, balance: 0);
 ```
 
 The type signature of the constructor is 
 ```inference
-Account::new(address : Address, balance : u64) -> Account
+Account::new(Address,u64) -> Account
 ```
-Because the `address` field was declared before the `balance` field. Alternatively, it is possible to pass named arguments rather than relying on the order they are declared in:
+It is possible to pass named arguments rather than relying on the order they are declared in:
 ```inference
 let acc : Account = Account::new(balance: 0, address: addr);
 ```
 
 Invoking methods:
 ```inference
-let mut account1 : Account = Account::new(addr1, 10)
-let mut account2 : Account = Account::new(addr2, 0);
-let account3 : Account = Account::new(addr3, 5);
+let mut account1 : Account = Account::new(address: addr1, balance: 10)
+let mut account2 : Account = Account::new(address: addr2, balance: 0);
+let account3 : Account = Account::new(address: addr3, balance: 5);
 
 /// Works because account1 and account2 are mutable, so we can change
 /// both of the balances.
