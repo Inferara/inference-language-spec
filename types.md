@@ -107,8 +107,8 @@ The names of the arguments may be specified (as they are in the first example) t
 
 Users can define custom types in two ways:
 
-1. Defining an `enum` (see [Enum](./definitions.md#102-enum))
-2. Defining a `struct` (see [Struct](./definitions.md#103-struct))
+1. Defining an `enum` (see [Enum](./definitions.md#106-enum))
+2. Defining a `struct` (see [Struct](./definitions.md#107-struct))
 
 ---
 
