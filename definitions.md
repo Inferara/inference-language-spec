@@ -119,19 +119,71 @@ enum ContextType {
 
 A struct in Inference is a user-defined algebraic data type that allows you to define a group of variables under a single name. The underlying data structure of a struct is a record, which is a collection of fields or members. Each field can have a different type, and the fields are accessed using the dot operator.
 
-Along with the fields, a struct can also have methods that define the behavior of the struct. These methods can be used to manipulate the fields of the struct or perform some operations on them. The methods are defined inside the struct block and can access the fields of the struct using the `self` keyword.
+Along with the fields, a struct can also have methods that define the behavior of the struct. These methods can be used to manipulate the fields of the struct or perform some operations on them. The methods are defined inside the struct block and must take either `self` or `mut self` as the first parameter. A method which takes `self` can read the value of any field of the instance it was invoked on by accessing it using the `self` keyword. However, it may neither mutate any data in the struct, nor call other methods which take `mut self`. Methods which take `mut self` can additionally change data and call other `mut self` methods, but they may only be invoked on a mutable instance of the struct.
+
+Declared structs will automatically have a `new` function in their namespace for creating instances of the struct. The parameters of the `new` function are the values to be assigned to each field in the new instance. They must be explicitly named with `name: value` syntax, and the order of the parameters does not matter.
+
+There are no visibility features in Inference, therefore it is not possible to mark certain fields or methods as private.
 
 ### 10.7.2 Examples
 
+Declaring an `Account` struct:
 ```inference
 struct Account {
   address: Address;
   balance: u64;
 
-  fn can_withdraw(amount: u64) -> bool {
+  fn can_withdraw(self, amount: u64) -> bool {
     return self.balance >= amount;
   }
+
+  fn transfer(mut self, amount: u64, mut receiver : Account) -> bool {
+    if !self.can_withdraw(amount) {return false;}
+    self.balance = self.balance - amount;
+    receiver.balance = receiver.balance + amount;
+    return true;
+  }
 }
+```
+
+Creating an instance of `Account`:
+```inference
+/// Suppose we already have some address we would like to use...
+let addr : Address = ... ;
+/// Create the new account with that address, and a balance of 0.
+let acc : Account = Account::new(address: addr, balance: 0);
+```
+
+The type signature of the constructor is 
+```inference
+Account::new(Address,u64) -> Account
+```
+It is possible to pass named arguments rather than relying on the order they are declared in:
+```inference
+let acc : Account = Account::new(balance: 0, address: addr);
+```
+
+Invoking methods:
+```inference
+let mut account1 : Account = Account::new(address: addr1, balance: 10)
+let mut account2 : Account = Account::new(address: addr2, balance: 0);
+let account3 : Account = Account::new(address: addr3, balance: 5);
+
+/// Works because account1 and account2 are mutable, so we can change
+/// both of the balances.
+account1.transfer(5, account2);
+
+/// Results in error: account2 is mutable, but account3 is not, so we cannot
+/// change its balance.
+account2.transfer(2, account3);
+
+/// Results in error: account1 is mutable, but account3 is not.
+account3.transfer(1, account1);
+
+/// This is OK. can_withdraw takes a regular reference, so we can invoke
+/// it on immutable account instances, as it does not change any information.
+let my_bool : bool = account3.can_withdraw(10);
+
 ```
 
 ---
