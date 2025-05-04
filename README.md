@@ -128,59 +128,59 @@ This repository contains the specification of the Inference programming language
       - [§7.4.3.1](./variables.md#7431-description) Description
       - [§7.4.3.2](./variables.md#7432-examples) Examples
 - [§8](./expressions.md) Expressions
-  - [§8.1](./expressions.md#81-assign) Assign
+  - [§8.1](./expressions.md#81-member-access) Member Access
     - [§8.1.1](./expressions.md#811-description) Description
     - [§8.1.2](./expressions.md#812-examples) Examples
-  - [§8.2](./expressions.md#82-member-access) Member Access
+  - [§8.2](./expressions.md#82-array-index-access) Array Index Access
     - [§8.2.1](./expressions.md#821-description) Description
     - [§8.2.2](./expressions.md#822-examples) Examples
-  - [§8.3](./expressions.md#83-array-index-access) Array Index Access
+  - [§8.3](./expressions.md#83-function-call) Function Call
     - [§8.3.1](./expressions.md#831-description) Description
     - [§8.3.2](./expressions.md#832-examples) Examples
-  - [§8.4](./expressions.md#84-function-call) Function Call
+  - [§8.4](./expressions.md#84-parenthesized) Parenthesized
     - [§8.4.1](./expressions.md#841-description) Description
     - [§8.4.2](./expressions.md#842-examples) Examples
-  - [§8.5](./expressions.md#85-parenthesized) Parenthesized
+  - [§8.5](./expressions.md#85-unary-operators) Unary Operators
     - [§8.5.1](./expressions.md#851-description) Description
     - [§8.5.2](./expressions.md#852-examples) Examples
-  - [§8.6](./expressions.md#86-unary-operators) Unary Operators
+  - [§8.6](./expressions.md#86-binary-operators) Binary Operators
     - [§8.6.1](./expressions.md#861-description) Description
     - [§8.6.2](./expressions.md#862-examples) Examples
-  - [§8.7](./expressions.md#87-binary-operators) Binary Operators
-    - [§8.7.1](./expressions.md#871-description) Description
-    - [§8.7.2](./expressions.md#872-examples) Examples
 - [§9](./statements.md#9-statements) Statements
-  - [§9.1](./statements.md#91-block) Block
+  - [§9.1](./statements.md#91-assign) Assign
     - [§9.1.1](./statements.md#911-description) Description
     - [§9.1.2](./statements.md#912-examples) Examples
-  - [§9.2](./statements.md#92-return) Return
+  - [§9.2](./statements.md#92-block) Block
     - [§9.2.1](./statements.md#921-description) Description
     - [§9.2.2](./statements.md#922-examples) Examples
-  - [§9.3](./statements.md#93-forall) Forall
-  - [§9.4](./statements.md#94-exists) Exists
-  - [§9.5](./statements.md#95-assume) Assume
-    - [§9.5.1](./statements.md#951-description) Description
-    - [§9.5.2](./statements.md#952-examples) Examples
-  - [§9.6](./statements.md#96-unique) Unique
+  - [§9.3](./statements.md#93-return) Return
+    - [§9.3.1](./statements.md#931-description) Description
+    - [§9.3.2](./statements.md#932-examples) Examples
+  - [§9.4](./statements.md#94-forall) Forall
+  - [§9.5](./statements.md#95-exists) Exists
+  - [§9.6](./statements.md#96-assume) Assume
     - [§9.6.1](./statements.md#961-description) Description
     - [§9.6.2](./statements.md#962-examples) Examples
-  - [§9.7](./statements.md#97-loop) Loop
+  - [§9.7](./statements.md#97-unique) Unique
     - [§9.7.1](./statements.md#971-description) Description
     - [§9.7.2](./statements.md#972-examples) Examples
-  - [§9.8](./statements.md#98-if) If
+  - [§9.8](./statements.md#98-loop) Loop
     - [§9.8.1](./statements.md#981-description) Description
     - [§9.8.2](./statements.md#982-examples) Examples
-  - [§9.9](./statements.md#99-variable-definition) Variable Definition
+  - [§9.9](./statements.md#99-if) If
     - [§9.9.1](./statements.md#991-description) Description
-    - [§9.9.2](./statements.md#992-value-modifiers) Value Modifiers
-      - [§9.9.2.1](./statements.md#9921-uzumaki) Uzumaki
-    - [§9.9.3](./statements.md#993-examples) Examples
-  - [§9.10](./statements.md#910-type-definition) Type Definition
+    - [§9.9.2](./statements.md#992-examples) Examples
+  - [§9.10](./statements.md#910-variable-definition) Variable Definition
     - [§9.10.1](./statements.md#9101-description) Description
-    - [§9.10.2](./statements.md#9102-examples) Examples
-  - [§9.11](./statements.md#911-assert) Assert
+    - [§9.10.2](./statements.md#9102-value-modifiers) Value Modifiers
+      - [§9.10.2.1](./statements.md#91021-uzumaki) Uzumaki
+    - [§9.10.3](./statements.md#9103-examples) Examples
+  - [§9.11](./statements.md#911-type-definition) Type Definition
     - [§9.11.1](./statements.md#9111-description) Description
     - [§9.11.2](./statements.md#9112-examples) Examples
+  - [§9.12](./statements.md#912-assert) Assert
+    - [§9.12.1](./statements.md#9121-description) Description
+    - [§9.12.2](./statements.md#9122-examples) Examples
 - [§10](./definitions.md) Definitions
   - [§10.1](./definitions.md#101-constant) Constant
     - [§10.1.1](./definitions.md#1011-description) Description
