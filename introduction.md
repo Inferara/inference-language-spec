@@ -28,7 +28,7 @@ Computer-assisted theorem proving is a technique used to prove the correctness o
 Inference is designed with the computer-assisted theorem proving technique in mind. It uses internally developed theories and internal techniques allowing automatically generating axioms and theorems along with the properties (defined in the spec) proofs. The Inference theory system is based on first-order logic, intuitionistic logic, Hoare logic, working together to extend any properly formalized abstract virtual machine with non-deterministic computations used to describe properties of code to specify.
 
 > [!NOTE]
-> For more information, read Inferara [papers](https://inferara.com/papers).
+> For more information, read Inferara [papers](https://inferara.com/en/papers).
 
 Speaking about Inference as a special-purpose programming language, it is important to list significant considerations that were taken into account during the language design:
 

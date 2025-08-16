@@ -4,17 +4,17 @@
 
 Inference supports the following types of [constants](./definitions.md#101-constant):
 
-- [bool](./types.md#611-boolean)
-- [i32](./types.md#613-integers)
-- [i64](./types.md#613-integers)
-- [u32](./types.md#613-unsigned-integers)
-- [u64](./types.md#613-unsigned-integers)
-- [array](./types.md#62-array)
-- [structs](./definitions.md#103-struct)
+- [bool](./types.md#621-boolean)
+- [i32](./types.md#622-integers)
+- [i64](./types.md#622-integers)
+- [u32](./types.md#623-unsigned-integers)
+- [u64](./types.md#623-unsigned-integers)
+- [array](./types.md#63-array)
+- [structs](./definitions.md#107-struct)
 
 Constants can be defined in the following structures:
 
-- [spec](./definitions.md#101-spec)
+- [spec](./definitions.md#105-spec)
 - [function](./functions.md)
 
 ## 12.2 Examples

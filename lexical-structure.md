@@ -4,12 +4,13 @@
 
 ### 4.1.1 Description
 
-Comments are used to document the code and are ignored by the compiler. Inference supports triple-slash comments `///` only.
+Comments are used to document the code and are ignored by the compiler. Inference supports double-slash comments `//` and tripple-slash `///` docstrings interpreted also as comments.
 
 ### 4.1.2 Examples
 
 ```inference
-/// This is a comment
+//  This is a line comment
+/// This is a docstring
 ```
 
 ## 4.2 Keywords
@@ -114,7 +115,7 @@ let b: bool = false;
 
 #### 4.7.2.1 Description
 
-`unit` is a [type](./types.md#6-unit) that has only one value: `()`. It is used to represent the absence of a value.
+`unit` is a [type](./types.md#61-unit) that has only one value: `()`. It is used to represent the absence of a value.
 
 #### 4.7.2.2 Examples
 
@@ -156,7 +157,7 @@ let a: u32 = 42;
 
 Curly braces `{}` are used to define blocks of code.
 
-See also: [Statements](./statements.md#9-block)
+See also: [Statements](./statements.md#92-block)
 
 #### 4.10.1.2 Examples
 
@@ -172,8 +173,8 @@ fn foo() {
 
 Parentheses `()` are used to group expressions and arguments in function calls. Also a `()` outside of a function definition spec is interpreted as a single token and is used to represent the unit type.
 
-See also: [Functions](./functions.md#11-function-definition)
-See also; [Types](./types.md#6-unit)
+See also: [Functions](./functions.md#111-function-definition)
+See also: [Types](./types.md#61-unit)
 
 #### 4.10.2.2 Examples
 
@@ -193,7 +194,7 @@ let a: () = ();
 
 Square brackets `[]` are used to define arrays and address individual elements of an array.
 
-See also: [Types](./types.md#62-array)
+See also: [Types](./types.md#63-array)
 
 #### 4.10.3.2 Examples
 
@@ -208,7 +209,7 @@ let b: u32 = a[0];
 
 Angle brackets `<>` are used to define type parameters.
 
-See also: [Types](./types.md#63-user-defined-types)
+See also: [Types](./types.md#65-user-defined-types)
 
 #### 4.10.4.2 Examples
 

@@ -13,10 +13,10 @@ The cornerstone idea behind Inference is utilization of non-determinism as a met
 
 Inference addresses that problem by allowing the programmer to express statements about algorithm behavior which are much more general compared to the simplistic "given this specific input, the function must return this specific output" idea and its variations. That is done by extending the classical imperative execution model with idioms of non-determinism and logical quantification represented by the following keywords:
 
-- [uzumaki](./statements.md#9821-uzumaki)
-- [forall](./statements.md#93-forall)
-- [assume](./statements.md#95-assume)
-- [exists](./statements.md#94-exists)
+- [uzumaki](./statements.md#91021-uzumaki)
+- [forall](./statements.md#94-forall)
+- [assume](./statements.md#96-assume)
+- [exists](./statements.md#95-exists)
 
 ### 3.1.1 Uzumaki
 
@@ -174,7 +174,7 @@ Stepping back and looking at the overall structure of the given code, we can har
 
 ## 3.2 Compiler Design
 
-`infc` is a multi-pass compiler. But since the final target of the language is a [proof-unit](./terms-and-definitions.md#proof-unit), it produces required proof modules as intermediate representations.
+`infc` is a multi-pass compiler. But since the final target of the language is a [proof-unit](./terms-and-definitions.md#25-proof-unit), it produces required proof modules as intermediate representations.
 
 The compilation process consists of the following stages:
 
@@ -184,8 +184,8 @@ The compilation process consists of the following stages:
    - Linked external modules integrity and capability check.
 2. Generating IR for the target execution platform (WASM) amended with Inference non-deterministic instructions.
 3. Building a compound module containing the Inference module IR and linked external code.
-4. Translating the compound module to a [proof-unit](./terms-and-definitions.md#proof-unit).
-5. Attaching Inference [theory](./terms-and-definitions.md#theory), platform axioms, and generating theorems.
+4. Translating the compound module to a [proof-unit](./terms-and-definitions.md#25-proof-unit).
+5. Attaching Inference [theory](./terms-and-definitions.md#24-theory), platform axioms, and generating theorems.
 6. Building proofs for the specification.
 
 ![Inference IR Building Sequence](./assets/inference-ir-building-sequence.png)

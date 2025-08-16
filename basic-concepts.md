@@ -8,7 +8,7 @@ $$
 \text{Specification} = \text{Property}_1 \land \text{Property}_2 \land \ldots \land \text{Property}_n
 $$
 
-In Inference, the specification is defined as a [spec](./definitions.md#101-spec). Every spec is then compiled into a [module](./terms-and-definitions.md#module) and into a [proof-unit](./terms-and-definitions.md#proof-unit). This modular structure enables Inference to support super-specifications, where a super-specification is a set of specifications combined as a conjunction of all specifications.
+In Inference, the specification is defined as a [spec](./definitions.md#105-spec). Every spec is then compiled into a [module](./terms-and-definitions.md#23-module) and into a [proof-unit](./terms-and-definitions.md#25-proof-unit). This modular structure enables Inference to support super-specifications, where a super-specification is a set of specifications combined as a conjunction of all specifications.
 
 $$
 \text{Super-specification} = \text{Specification}_1 \land \text{Specification}_2 \land \ldots \land \text{Specification}_n
@@ -85,7 +85,7 @@ fn foo() {
         forall {
             let y: u32 = @;
             foobar(param1 : @, param2: 5);
-            ///<do some checking for x and y>
+            // <do some checking for x and y>
         }
     }
 }
@@ -107,8 +107,9 @@ Inference is a low-level language because property definitions must be straightf
 
 For reference, the following blockchains use WASM as a compilation target:
 
+- [Stellar](https://www.stellar.org/)
+- [Polkadot](https://polkadot.network/)
 - [Solana](https://solana.com/docs)
-- [Polkadot Ink!](https://use.ink/smart-contracts-polkadot/)
 - [Cosmos](https://hub.cosmos.network/main)
 - [Arbitrum Stylus](https://arbitrum.io/stylus)
 - [Near](https://docs.near.org/build/smart-contracts/what-is)
@@ -116,7 +117,7 @@ For reference, the following blockchains use WASM as a compilation target:
 - [Internet computer](https://internetcomputer.org/capabilities/webassembly)
 - and many more
 
-`infc` is [designed](./general-description.md#compiler-design) to be modular, and it is possible to add support for more platforms in the future. The theory can be written (or extended) to use a platform variation, or new platforms (EVM, RISC-V, etc.) can be formulated. The front end—the Inference programming language—remains the same.
+`infc` is [designed](./general-description.md#32-compiler-design) to be modular, and it is possible to add support for more platforms in the future. The theory can be written (or extended) to use a platform variation, or new platforms (EVM, RISC-V, etc.) can be formulated. The front end—the Inference programming language—remains the same.
 
 ## 5.7 Automated Reasoning
 

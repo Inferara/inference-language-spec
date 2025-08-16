@@ -18,7 +18,7 @@ A theory is a set of definitions, inductive types, axioms, theorems, and proofs 
 
 ## 2.5 Proof-Unit
 
-A proof-unit is a [module](./terms-and-definitions.md#module) of proof code generated from the Inference spec and contains attached required theories to build the proof.
+A proof-unit is a [module](./terms-and-definitions.md#23-module) of proof code generated from the Inference spec and contains attached required theories to build the proof.
 
 ---
 

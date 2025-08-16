@@ -61,17 +61,17 @@ fn foo() -> i32 {
 
 ## 9.4 Forall
 
-The `forall` keyword is followed by a [block](#91-block). Semantically, `forall` is a logical analog of for all $\forall$ quantifier.
+The `forall` keyword is followed by a [block](#92-block). Semantically, `forall` is a logical analog of for all $\forall$ quantifier.
 
 ## 9.5 Exists
 
-The `exists` keyword is followed by a [block](#91-block). Semantically, `exists` is a logical analog of exists $\exists$ quantifier.
+The `exists` keyword is followed by a [block](#92-block). Semantically, `exists` is a logical analog of exists $\exists$ quantifier.
 
 ## 9.6 Assume
 
 ### 9.6.1 Description
 
-The `assume` keyword is followed by a [block](#91-block). Semantically, `assume` converts [traps](https://webassembly.github.io/spec/core/intro/overview.html) and proven infinite loops into the successful completion of the closest `forall` block (understood in terms of dynamic, not lexical scope). Regarding unwinding the call stack, handling traps inside `assume` is similar to exception handling in other languages (termination propagates up through activation frames until the point of handling) but differs in that `assume` doesn't retain any information about the cause and spec of failure.
+The `assume` keyword is followed by a [block](#92-block). Semantically, `assume` converts [traps](https://webassembly.github.io/spec/core/intro/overview.html) and proven infinite loops into the successful completion of the closest `forall` block (understood in terms of dynamic, not lexical scope). Regarding unwinding the call stack, handling traps inside `assume` is similar to exception handling in other languages (termination propagates up through activation frames until the point of handling) but differs in that `assume` doesn't retain any information about the cause and spec of failure.
 
 `assume` is not a representation of any logical quantifier and makes sense only when it is embedded into the `forall` block as a mechanism of filtering execution paths (that are not satisfied with the pre-conditions).
 
@@ -84,9 +84,9 @@ fn foo(i: i32) -> () forall {
         assert i > 0;
     }
 
-    /// This is equivalent to:
+    // This is equivalent to:
     if !(i > 0) {
-        /// Terminate the function or handle the case accordingly
+        // Terminate the function or handle the case accordingly
         return ();
     }
 }
@@ -96,7 +96,7 @@ fn foo(i: i32) -> () forall {
 
 ### 9.7.1 Description
 
-The `unique` keyword is followed by a [block](#91-block). It should be embedded in the `exists` block to locally strengthen its execution semantics. By wrapping a code block in a `unique` modifier, we add a restriction on execution paths entering it to continue after its closing bracket. If and only if every combination of `@` values encountered through block execution either leads it to failure or to states of success indistinguishable from each other, `unique` block succeeds with this exit state.
+The `unique` keyword is followed by a [block](#92-block). It should be embedded in the `exists` block to locally strengthen its execution semantics. By wrapping a code block in a `unique` modifier, we add a restriction on execution paths entering it to continue after its closing bracket. If and only if every combination of `@` values encountered through block execution either leads it to failure or to states of success indistinguishable from each other, `unique` block succeeds with this exit state.
 
 As `unique` doesn't erase changes to machine state upon exit, it is not a quantifier and can't be used in deterministic code or inside quantifiers otside of `exists`.
 
@@ -132,17 +132,17 @@ The `loop` statement is used to perform a certain number of iterations repetitiv
 ```inference
 fn loop_example() {
     loop 10 {
-        /// This block will be executed 10 times
+        // This block will be executed 10 times
     }
 
     loop 0 {
-        /// This block will not be executed
+        // This block will not be executed
     }
 
     let i: i32 = 10;
     loop i {
-        /// This block will be executed 10 times
-        /// Modifying 'i' inside the loop is not allowed
+        // This block will be executed 10 times
+        // Modifying 'i' inside the loop is not allowed
     }
 }
 ```
@@ -153,7 +153,7 @@ The special case of using `loop` is the infinite loop, which **must** be inside 
 fn infinite_loop_example() {
     assume {
         loop () {
-            /// Infinite loop body
+            // Infinite loop body
             break;
         }
     }
@@ -172,9 +172,9 @@ The `if` statement is used to execute a block of code if a condition is true. If
 fn foo() {
     let flag: bool = true;
     if flag {
-        /// This block will be executed
+        // This block will be executed
     } else {
-        /// This block will not be executed
+        // This block will not be executed
     }
 }
 ```
@@ -189,7 +189,7 @@ Variable definition is a statement that declares a variable and optionally initi
 
 #### 9.10.2.1 Uzumaki
 
-When a variable is declared with the `@` modifier, it has a type but omits initialization. Declaration of an undefined variable may appear only inside blocks or functions with non-deterministic semantics (with [forall](./functions.md#111-forall) or `assume` modifiers).
+When a variable is declared with the `@` modifier, it has a type but omits initialization. Declaration of an undefined variable may appear only inside blocks or functions with non-deterministic semantics (with [forall](./functions.md#11131-forall) or `assume` modifiers).
 
 ```inference
 let x: i32 = @;
@@ -203,7 +203,7 @@ Here, `@` for `x` splits the execution path of the non-deterministic computation
 fn foo() {
     let x: i32 = 10;
     let y: i32 = @;
-    /// 'y' can be any possible i32 value
+    // 'y' can be any possible i32 value
 }
 ```
 

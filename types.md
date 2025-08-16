@@ -24,7 +24,7 @@ By elementary types, we mean the types that are built into the language and allo
 
 The Boolean type is used to represent either `true` or `false` values.
 
-In memory, the `bool` type is represented as an `i32` due to the minimal addressable unit being 4 bytes (see the [restrictions section](./general-description.md#restrictions)).
+In memory, the `bool` type is represented as an `i32` due to the minimal addressable unit being 4 bytes (see the [restrictions section](./general-description.md#34-restrictions)).
 
 #### 6.2.1.2 Examples
 
@@ -84,7 +84,7 @@ let a: [i32; 3] = [1, 2, 3];
 ## 6.4 Function type
 
 ### 6.4.1 Description
-Because functions in Inference are [first class citizens](./functions.md#113-higher-order-functions), there is a type to represent them. It is crucial to remember that Inference is a platform-agnostic language which compiles to a [proof-unit](./terms-and-definitions.md#proof-unit), not executable machine code. Hence, unlike low-level languages such as C or WASM, values of this type are _not_ stored under the hood as pointers or function indices. Instead, they behave as abstract references that get erased or inlined at compile time. This behavior is more similar to languages like Haskell.
+Because functions in Inference are [first class citizens](./functions.md#113-high-order-functions), there is a type to represent them. It is crucial to remember that Inference is a platform-agnostic language which compiles to a [proof-unit](./terms-and-definitions.md#25-proof-unit), not executable machine code. Hence, unlike low-level languages such as C or WASM, values of this type are _not_ stored under the hood as pointers or function indices. Instead, they behave as abstract references that get erased or inlined at compile time. This behavior is more similar to languages like Haskell.
 
 ### 6.4.2 Examples
 A higher-order sorting function, which takes a comparison function as a parameter:

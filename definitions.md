@@ -34,7 +34,7 @@ fn sum(a: u32, b: u32) -> u32 {
 
 External functions are functions that are defined outside of the current module or spec. They are used to interact with the external environment, such as calling functions from other modules. External functions are declared using the `external` keyword followed by the function signature.
 
-For detailed information about external functions, see the [Functions](./functions.md#11-external-function) section.
+For detailed information about external functions, see the [Functions](./functions.md#112-external-function) section.
 
 ### 10.3.2 Examples
 

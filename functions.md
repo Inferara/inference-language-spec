@@ -6,7 +6,7 @@
 
 Functions in Inference are the basic blocks used to build the specification. They are used to describe the behavior of the system in functional terms. A function is a matter of verification.
 
-Functions can be defined at the top level of the program, inside a [spec](./definitions.md#101-spec), or inside a [struct](./definitions.md#103-struct) definition. In the latter case, the function is considered a method of the struct and acquires access to struct fields.
+Functions can be defined at the top level of the program, inside a [spec](./definitions.md#105-spec), or inside a [struct](./definitions.md#107-struct) definition. In the latter case, the function is considered a method of the struct and acquires access to struct fields.
 
 ### 11.1.2 Declaring a function
 
@@ -14,7 +14,7 @@ Functions are declared using the `fn` keyword, followed by the name of the funct
 
 Function parameters can be one of four things: 
 
-- A `self` or `mut self` reference. This is used when functions are declared as methods of a struct. It specifies whether or not the function may mutate the fields of the instance of the struct it was invoked in. For more information, see the [struct](./definitions.md#103-struct) page.
+- A `self` or `mut self` reference. This is used when functions are declared as methods of a struct. It specifies whether or not the function may mutate the fields of the instance of the struct it was invoked in. For more information, see the [struct](./definitions.md#107-struct) page.
 - A standard parameter declaration (for example `x: bool` or `mut numbers : [i32]`). This consists of an identifier and a type, optionally preceded by the `mut` keyword. These identifiers will be available in scope of the function's body and will represent the arguments provided to the function when it is called. If the parameter is mutable, it means that the function can modify the argument's original value. That is, if the function modifies the argument, the effect is visible to the caller.
 - An underscore followed by a type (for example `_ : i32`). This indicates that the function will accept an argument of that type, but will not do anything with it. Ignoring arguments may be useful if you need to adhere to some API or ABI rules in regards to functions' type signatures.
 - A plain type without an underscore or identifier. This is only used for external functions which do not have a body, hence it is not necessary to bind arguments to identifiers.
@@ -150,7 +150,7 @@ spec HashContext {
 }
 ```
 
-The type of a function can be defined using [`type`](./statements.md#97-type-definition) statement. In the example, `HashFunction` is an alias for the `hash` function type (its signature). Hence, it can be used in type annotations but cannot be called as a function.
+The type of a function can be defined using [`type`](./statements.md#911-type-definition) statement. In the example, `HashFunction` is an alias for the `hash` function type (its signature). Hence, it can be used in type annotations but cannot be called as a function.
 
 ```inference
 fn add(a: i32, b: i32) -> i32 {
