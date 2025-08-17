@@ -1,6 +1,4 @@
-![alt text](./assets/inference-logo.svg)
-
-# Inference programming language specification
+# 🌀 Inference programming language specification
 
 > [!WARNING]
 > This document is a work in progress. The content is subject to change. Some sections may be incomplete or missing. Please stay tuned for updates.

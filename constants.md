@@ -17,6 +17,9 @@ Constants can be defined in the following structures:
 - [spec](./definitions.md#105-spec)
 - [function](./functions.md)
 
+> [!NOTE]
+> `()` unit type is a constant by definition because it does not have any other values except `()`. That is why we omit it in the list of constant types.
+
 ## 12.2 Examples
 
 ```inference

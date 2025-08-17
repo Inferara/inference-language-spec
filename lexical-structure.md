@@ -9,8 +9,8 @@ Comments are used to document the code and are ignored by the compiler. Inferenc
 ### 4.1.2 Examples
 
 ```inference
-//  This is a line comment
 /// This is a docstring
+//  This is a line comment
 ```
 
 ## 4.2 Keywords
@@ -39,7 +39,6 @@ Comments are used to document the code and are ignored by the compiler. Inferenc
 - `assert`
 - `self`
 - `type`
-
 
 ## 4.3 Identifiers
 
@@ -203,19 +202,19 @@ let a: [u32; 3] = [1, 2, 3];
 let b: u32 = a[0];
 ```
 
-### 4.10.4 Angle brackets
+### 4.10.4 Prime symbol
 
 #### 4.10.4.1 Description
 
-Angle brackets `<>` are used to define type parameters.
+Prime symbol `'` are used to define type parameters.
 
 See also: [Types](./types.md#65-user-defined-types)
 
 #### 4.10.4.2 Examples
 
 ```inference
-fn foo<T>(a: T) {
-    /// code block
+fn foo T' (a: T') {
+    // code block
 }
 ```
 

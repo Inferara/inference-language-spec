@@ -1,3 +1,3 @@
-# THE FOLLOWING NOTICE GOVERNS THE INFERENCE SPEC
+# THE FOLLOWING NOTICE GOVERNS THE INFERENCE LANGUAGE SPECIFICATION
 
 (c) Copyright 2024 Inferara. All rights reserved. Inferara and Inference are either registered trademarks or trademarks of Inferara in Japan and/or other countries/regions. Other product and company names mentioned herein may be the trademarks of their respective owners.

@@ -1,11 +1,11 @@
 # 1 Introduction
 
-The Web3 space is an area where every application's correctness and resistance to hackers' attacks are crucial. It is critical for both the application itself, because a security violation immediately breaks the trust of the users, and for the whole ecosystem, because an insecure set of applications running on the platform can shed a bad light on the entire platform.
+The Web3 space is an area where every application's correctness and resistance to hackers' attacks are crucial. It is critical for both the application itself, because a security violation immediately breaks the trust of the users, and for the whole ecosystem, because an insecure set of applications running on the platform can cast a shadow over the entire platform.
 
 > [!IMPORTANT]
-> Web3 native applications work with users' assets and data. The correctness of the application is crucial for users' trust.
+> Web3 native applications work with users' assets and data; hence, correctness of the application is crucial for users' trust.
 
-Since security is paramount for Web3 applications, exhaustive security assessment is a must. At Inferara, we see that during the evolution of blockchain technology, logical attacks have become the most dangerous and devastating. Modern tools and techniques can help detect technical errors (such as division by zero or similar issues), but they cannot deal with algorithmic weaknesses and corner cases.
+Since security is paramount for Web3 applications, exhaustive security assessment is a must. At Inferara, we see that during the evolution of blockchain technology, logical attacks have become the most dangerous and devastating. Modern tools and techniques can help detect technical errors (such as division by zero, numeric overflow, or similar issues), but they cannot deal with algorithmic weaknesses and corner cases.
 
 Technical bugs and the overall work correctness can be tested by:
 
@@ -15,7 +15,7 @@ Technical bugs and the overall work correctness can be tested by:
 
 Unit tests are the most common and widely used. They help developers check if a given input to the program produces the expected output.
 
-Fuzz and invariant tests are used to check the program's behavior under a set of inputs in order to either check that the fuzzer is not able to find an input that makes the program produce unexpected output or, in the case of invariants, to check that the fuzzer is not able to find a set of inputs that turns the program into an invalid state. Both of these techniques use brute force to produce the input.
+Fuzz and invariant tests are used to check the program's behavior under a set of inputs in order to either check that the fuzzer is not able to find an input that makes the program produce unexpected output or, in the case of invariants, to check that the fuzzer is not able to find a set of inputs that turns the program into an invalid state. Both of these techniques use clever, but brute force to produce the input.
 
 More sophisticated techniques, which fall under the umbrella term "formal methods," use mathematical logic (often first-order logic) to interpret a program flow in logical terms and deduce the correctness of these formulas according to the provided properties claimed for the program from the developer.
 
