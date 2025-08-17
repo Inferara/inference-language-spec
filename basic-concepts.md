@@ -47,7 +47,7 @@ In Inference, you can write a specification that asserts the correctness of `sum
     }
 
     fn proof() {
-        sum_sub_spec();
+        sum_spec();
     }
 ```
 
