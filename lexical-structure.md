@@ -206,7 +206,7 @@ let b: u32 = a[0];
 
 #### 4.10.4.1 Description
 
-Prime symbol `'` are used to define type parameters.
+Prime symbol `'` is used to define type parameters.
 
 See also: [Types](./types.md#65-user-defined-types)
 
