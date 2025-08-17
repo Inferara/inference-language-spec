@@ -2,7 +2,7 @@
 
 ## 7.1 General Description
 
-Variables in programming languages often reflect the language's memory model. However, in Inference, there is no a direct concept of a memory model.
+Variables in programming languages often reflect the language's memory model. However, in Inference, there is no direct concept of a memory model.
 
 Inference is a language for defining formal specifications. While the spec defines variables and operations on them, these are abstract definitions and do not involve interaction with actual physical (or virtual) memory. This means there is no stack, heap, or any other specific memory location where variables are stored. The same applies to how variables are passed to functions. It is even possible to create an array of infinite length and pass it to a function.
 
