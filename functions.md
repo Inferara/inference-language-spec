@@ -62,9 +62,9 @@ external fn draw_rectangle(old_picture: Picture, x: u32, y: u32, w: u32, h: u32)
 
 ### 11.2.1 Description
 
-External functions are functions that are defined outside of the current specification or spec. They are used to interact with the external environment, such as calling functions from other modules or libraries. External functions are declared using the `external` keyword followed by the function signature.
+External functions are functions that are defined outside of the current specification or spec. Their behavior is either defined in other module that we are linking against, or determined by a host platform. External functions are declared using the `import` keyword after the function signature replacing body definition.
 
-External functions are an entry point to the actual implementation of the system. This means the specification is a description of the system behavior, and the external functions are the actual implementation of the system. A specification can exist without the linked external implementation, but if it is desired to verify the correctness of the implementation, the external functions must be provided.
+When imported from host, functions are an entry point to the execution environment, where code under specification is supposed to run. This means the specification is a description of the system behavior, and the external functions are the actual implementation of the system. A specification can exist without the linked external implementation, but if it is desired to verify the correctness of the implementation, the external functions must be provided.
 
 ### 11.2.2 Examples
 
