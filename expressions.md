@@ -4,7 +4,7 @@
 
 ### 8.1.1 Description
 
-Member access is an expression allowing you to access a struct's fields. The syntax for member access is the dot operator (`.`) followed by the name of the field or element.
+Member access is an expression allowing access a struct's fields. The syntax for member access is the dot operator (`.`) followed by the name of the field or element.
 
 ### 8.1.2 Examples
 
@@ -23,7 +23,7 @@ fn get_balance(account: Account) -> u64 {
 
 ### 8.2.1 Description
 
-Array index access is an expression that allows you to access the elements of an array. The syntax for array index access is square brackets (`[]`) enclosing the element's index.
+Array index access is an expression allowing access to the elements of an array. The syntax for an array index access is a pair of the square brackets (`[]`) enclosing the element's index.
 
 ### 8.2.2 Examples
 
@@ -37,7 +37,7 @@ fn get_element(arr: [u32; 10], index: u32) -> u32 {
 
 ### 8.3.1 Description
 
-A function call is an expression that allows you to call a function with the specified arguments. The syntax for a function call is the function name followed by the arguments enclosed in parentheses.
+A function call is an expression that allows to call a function with the specified type parameters and arguments. The syntax for a function call is the function name followed by the optional type parameters and arguments enclosed in parentheses.
 
 A function can be called with an explicit argument name, but in this case, all arguments must be named.
 
@@ -50,11 +50,22 @@ fn sum(a: u32, b: u32) -> u32 forall {
   return a + b;
 }
 
-fn example() -> u32 {
+fn sub T' (a: T', b: T') -> T' forall {
+  return a - b;
+}
+
+fn example_1() -> u32 {
   let x: u32 = sum(1, 2);
   let y: u32 = sum(a: 1, b: 2);
   let z: u32 = sum(@, @);
   return sum(a: @, b: @);
+}
+
+fn example_2() -> i32 {
+  let x: i32 = sub i32 (1, 2);
+  let y: i32 = sub i32 (a: 1, b: 2);
+  let z: i32 = sub i32 (@, @);
+  return sub i32 (a: @, b: @);
 }
 ```
 

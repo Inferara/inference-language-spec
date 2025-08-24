@@ -71,7 +71,9 @@ The `exists` keyword is followed by a [block](#92-block). Semantically, `exists`
 
 ### 9.6.1 Description
 
-The `assume` keyword is followed by a [block](#92-block). Semantically, `assume` converts [traps](https://webassembly.github.io/spec/core/intro/overview.html) and proven infinite loops into the successful completion of the closest `forall` block (understood in terms of dynamic, not lexical scope). Regarding unwinding the call stack, handling traps inside `assume` is similar to exception handling in other languages (termination propagates up through activation frames until the point of handling) but differs in that `assume` doesn't retain any information about the cause and spec of failure.
+The `assume` keyword is followed by a [block](#92-block). Semantically, `assume` converts [traps](https://webassembly.github.io/spec/core/intro/overview.html) and proven infinite loops into the successful completion of the closest `forall` block (understood in terms of dynamic, not lexical scope).
+
+Regarding unwinding the call stack, handling traps inside `assume` is similar to exception handling in other languages (termination propagates up through activation frames until the point of handling) but differs in that `assume` doesn't retain any information about the cause and spec of failure.
 
 `assume` is not a representation of any logical quantifier and makes sense only when it is embedded into the `forall` block as a mechanism of filtering execution paths (that are not satisfied with the pre-conditions).
 
@@ -96,7 +98,9 @@ fn foo(i: i32) -> () forall {
 
 ### 9.7.1 Description
 
-The `unique` keyword is followed by a [block](#92-block). It should be embedded in the `exists` block to locally strengthen its execution semantics. By wrapping a code block in a `unique` modifier, we add a restriction on execution paths entering it to continue after its closing bracket. If and only if every combination of `@` values encountered through block execution either leads it to failure or to states of success indistinguishable from each other, `unique` block succeeds with this exit state.
+The `unique` keyword is followed by a [block](#92-block). It should be embedded in the `exists` block to locally strengthen its execution semantics. By wrapping a code block in a `unique` modifier, we add a restriction on execution paths entering it to continue after its closing bracket.
+
+If and only if every combination of `@` values encountered through block execution either leads it to failure or to states of success indistinguishable from each other, `unique` block succeeds with this exit state.
 
 As `unique` doesn't erase changes to machine state upon exit, it is not a quantifier and can't be used in deterministic code or inside quantifiers otside of `exists`.
 

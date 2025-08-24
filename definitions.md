@@ -4,7 +4,7 @@
 
 ### 10.1.1 Description
 
-Constants are immutable values that are assigned to a variable at compile time. Constants are declared using the `const` keyword and must be initialized with a value or with an expression that can be evaluated at compile time. The value of a constant cannot be changed once it is assigned.
+[Constants](./constants.md) are immutable values that are assigned to a variable at compile time. Constants are declared using the `const` keyword and must be initialized with a value or with an expression that can be evaluated at compile time. The value of a constant cannot be changed once it is assigned. Technically, a constant is a substitute for an underlying literal value which is replaced by the constant's value during compilation.
 
 ### 10.1.2 Examples
 
@@ -16,7 +16,7 @@ const MAX_SIZE: u32 = 100;
 
 ### 10.2.1 Description
 
-Functions in Inference are used to define a block of code that can be executed multiple times with different inputs. Functions are defined using the `fn` keyword followed by the function name, parameters, return type, and body. Functions can have multiple parameters and can return a single value or a tuple of values.
+Functions in Inference are used to define a block of code that can be executed multiple times with different inputs. Functions are defined using the `fn` keyword followed by the function name, type parameters, parameters, return type, and body. Functions can have multiple parameters and can return a single value or a tuple of values.
 
 For detailed information about functions, see the [Functions](./functions.md) section.
 
@@ -32,7 +32,7 @@ fn sum(a: u32, b: u32) -> u32 {
 
 ### 10.3.1 Description
 
-External functions are functions that are defined outside of the current module or spec. They are used to interact with the external environment, such as calling functions from other modules. External functions are declared using the `external` keyword followed by the function signature.
+External functions are functions that are not defined within the current module or spec but in fact are `host` calls. Such functions may simulate the `host` (blockchain) behavior as a description about the external environment.
 
 For detailed information about external functions, see the [Functions](./functions.md#112-external-function) section.
 
@@ -60,7 +60,7 @@ type Address = u32;
 
 ### 10.5.1 Description
 
-A spec is an abstract _module_ representation. By module, we mean a scoped set of imports, definitions, and functions. Specs are used to group related definitions and functions together and provide a way to organize the program specification as a whole.
+A `spec` is an abstract _module_ representation. By module, we mean a scoped set of imports, definitions, and functions. Specs are used to group related definitions and functions together and provide a way to organize the program specification as a whole. Technically, a `spec` is compiled to the theory consisting of propositions and theorems.
 
 Specs may contain definitions of constants, structs, enums, and functions. Nested specs are not allowed.
 
@@ -97,7 +97,7 @@ spec AuctionSpec {
 
 Enums, short for enumerations, are a user-defined data type in Inference that consists of a set of named integral constants. They provide a way to assign symbolic names to integral values, enhancing code readability and maintainability.
 
-During compilation, the compiler replaces the enum constants with their corresponding integral values, making enums a compile-time construct.
+During compilation, the compiler replaces the enum constants with their corresponding integral values, making enums a compile-time construct. Technically, enums are very similar to C-style "macro enums".
 
 ### 10.6.2 Examples
 
@@ -117,13 +117,14 @@ enum ContextType {
 
 ### 10.7.1 Description
 
-A struct in Inference is a user-defined algebraic data type that allows you to define a group of variables under a single name. The underlying data structure of a struct is a record, which is a collection of fields or members. Each field can have a different type, and the fields are accessed using the dot operator.
+A struct in Inference is a user-defined algebraic data type that allows defining a group of variables under a single name. The underlying data structure of a struct is a record (or a tuple), which is a collection of fields or members. Each field can have a different type, and the fields are accessed using the dot operator.
 
-Along with the fields, a struct can also have methods that define the behavior of the struct. These methods can be used to manipulate the fields of the struct or perform some operations on them. The methods are defined inside the struct block and must take either `self` or `mut self` as the first parameter. A method which takes `self` can read the value of any field of the instance it was invoked on by accessing it using the `self` keyword. However, it may neither mutate any data in the struct, nor call other methods which take `mut self`. Methods which take `mut self` can additionally change data and call other `mut self` methods, but they may only be invoked on a mutable instance of the struct.
+Along with the fields, a struct can also have methods that define the behavior of the struct. These methods can be used to manipulate the fields of the struct or perform some operations on them. The methods are defined inside the `struct` block and must take either `self` or `mut self` as the first parameter. A method which takes `self` can read the value of any field of the instance it was invoked on by accessing it using the `self` keyword. However, it may neither mutate any data in the struct, nor call other methods which take `mut self`. Methods which take `mut self` can additionally change data and call other `mut self` methods, but they may only be invoked on a mutable instance of the struct.
 
 Declared structs will automatically have a `new` function in their namespace for creating instances of the struct. The parameters of the `new` function are the values to be assigned to each field in the new instance. They must be explicitly named with `name: value` syntax, and the order of the parameters does not matter.
 
-There are no visibility features in Inference, therefore it is not possible to mark certain fields or methods as private.
+>[!NOTE]
+>There are no visibility features in Inference, therefore it is not possible to mark certain fields or methods as private.
 
 ### 10.7.2 Examples
 
@@ -148,9 +149,9 @@ struct Account {
 
 Creating an instance of `Account`:
 ```inference
-/// Suppose we already have some address we would like to use...
+// Suppose we already have some address we would like to use...
 let addr : Address = ... ;
-/// Create the new account with that address, and a balance of 0.
+// Create the new account with that address, and a balance of 0.
 let acc : Account = Account::new(address: addr, balance: 0);
 ```
 
@@ -169,19 +170,19 @@ let mut account1 : Account = Account::new(address: addr1, balance: 10)
 let mut account2 : Account = Account::new(address: addr2, balance: 0);
 let account3 : Account = Account::new(address: addr3, balance: 5);
 
-/// Works because account1 and account2 are mutable, so we can change
-/// both of the balances.
+// Works because account1 and account2 are mutable, so we can change
+// both of the balances.
 account1.transfer(5, account2);
 
-/// Results in error: account2 is mutable, but account3 is not, so we cannot
-/// change its balance.
+// Results in error: account2 is mutable, but account3 is not, so we cannot
+// change its balance.
 account2.transfer(2, account3);
 
-/// Results in error: account1 is mutable, but account3 is not.
+// Results in error: account1 is mutable, but account3 is not.
 account3.transfer(1, account1);
 
-/// This is OK. can_withdraw takes a regular reference, so we can invoke
-/// it on immutable account instances, as it does not change any information.
+// This is OK. can_withdraw takes a regular reference, so we can invoke
+// it on immutable account instances, as it does not change any information.
 let my_bool : bool = account3.can_withdraw(10);
 
 ```

@@ -6,19 +6,18 @@
 
 Functions in Inference are the basic blocks used to build the specification. They are used to describe the behavior of the system in functional terms. A function is a matter of verification.
 
-Functions can be defined at the top level of the program, inside a [spec](./definitions.md#105-spec), or inside a [struct](./definitions.md#107-struct) definition. In the latter case, the function is considered a method of the struct and acquires access to struct fields.
+Functions can be defined at the top level of the program, inside a [spec](./definitions.md#105-spec), or inside a [struct](./definitions.md#107-struct) definition. In the latter case, the function is considered a friend function of the struct and optionally acquires access to struct fields.
 
 ### 11.1.2 Declaring a function
 
-Functions are declared using the `fn` keyword, followed by the name of the function, its parameter list, and optionally, its return type. This is then succeeded by a block, which is the function's body.
+Functions are declared using the `fn` keyword, followed by the name of the function, optionally type parameters, its arguments list, and optionally, its return type. This is then succeeded by a block, which is the function's body.
 
 Function parameters can be one of four things: 
 
 - A `self` or `mut self` reference. This is used when functions are declared as methods of a struct. It specifies whether or not the function may mutate the fields of the instance of the struct it was invoked in. For more information, see the [struct](./definitions.md#107-struct) page.
-- A standard parameter declaration (for example `x: bool` or `mut numbers : [i32]`). This consists of an identifier and a type, optionally preceded by the `mut` keyword. These identifiers will be available in scope of the function's body and will represent the arguments provided to the function when it is called. If the parameter is mutable, it means that the function can modify the argument's original value. That is, if the function modifies the argument, the effect is visible to the caller.
+- A standard parameter declaration (for example `x: bool` or `mut numbers : [i32; 10]`). This consists of an identifier and a type, optionally preceded by the `mut` keyword. These identifiers will be available in scope of the function's body and will represent the arguments provided to the function when it is called. If the parameter is mutable, it means that the function can modify the argument's original value. That is, if the function modifies the argument, the effect is visible to the caller.
 - An underscore followed by a type (for example `_ : i32`). This indicates that the function will accept an argument of that type, but will not do anything with it. Ignoring arguments may be useful if you need to adhere to some API or ABI rules in regards to functions' type signatures.
 - A plain type without an underscore or identifier. This is only used for external functions which do not have a body, hence it is not necessary to bind arguments to identifiers.
-
 
 If the return type of a function is omitted, it implicitly returns the unit value `()`.
 
@@ -40,7 +39,7 @@ fn ignore_first(_: i32, x: i32) -> i32 {
 }
 
 spec Bridge {
-  /// Spec-specific functions
+  // Spec-specific functions
 }
 
 struct WrapInt {
@@ -62,9 +61,18 @@ external fn draw_rectangle(old_picture: Picture, x: u32, y: u32, w: u32, h: u32)
 
 ### 11.2.1 Description
 
-External functions are functions that are defined outside of the current specification or spec. They are used to interact with the external environment, such as calling functions from other modules or libraries. External functions are declared using the `external` keyword followed by the function signature.
+External functions represent interactions with the `host` outside the current specification. For example, a check such as "is this call authorized under these parameters with this key?" is not something the specification itself computes directly, but rather something modeled as communication with the `host`. These functions provide the abstraction boundary between the formal description of system behavior and the concrete external mechanisms that support it.
 
-External functions are an entry point to the actual implementation of the system. This means the specification is a description of the system behavior, and the external functions are the actual implementation of the system. A specification can exist without the linked external implementation, but if it is desired to verify the correctness of the implementation, the external functions must be provided.
+In practice, restrictions on host functions can be expressed within [assume blocks]() in the specification, where higher-level behavioral properties are imposed to guide reasoning about correctness.
+
+On the Wasm side, this abstraction is formalized using an abstract class parameterized by host_state : `eqType` and a `list` of host functions. For each function, we define:
+
+```ocaml
+host_application : host_state -> store_record -> function_type -> host_function -> seq value ->
+                   host_state -> option (store_record * result) -> Prop
+```
+
+This relation specifies how a function application connects the before and after states of both the machine and the `host`. In other words, it describes the transition caused by invoking a `host` function, including possible changes to state and outputs. These relations are not just theoretical: they can and should be used directly in proofs to reason about correctness, invariants, and external interactions.
 
 ### 11.2.2 Examples
 
