@@ -15,7 +15,7 @@ Technical bugs and the overall work correctness can be tested by:
 
 Unit tests are the most common and widely used. They help developers check if a given input to the program produces the expected output.
 
-Fuzz and invariant tests are used to check the program's behavior under a set of inputs in order to either check that the fuzzer is not able to find an input that makes the program produce unexpected output or, in the case of invariants, to check that the fuzzer is not able to find a set of inputs that turns the program into an invalid state. Both of these techniques use clever, but brute force to produce the input.
+Fuzz and invariant tests are used to check the program's behavior under a set of inputs in order to either check that the fuzzer is not able to find an input that makes the program produce an unexpected output or, in the case of invariants, to check that the fuzzer is not able to find a set of inputs that turns the program into an invalid state. Both of these techniques are clever, but use brute force to produce the input.
 
 More sophisticated techniques, which fall under the umbrella term "formal methods," use mathematical logic (often first-order logic) to interpret a program flow in logical terms and deduce the correctness of these formulas according to the provided properties claimed for the program from the developer.
 

@@ -7,7 +7,7 @@ Variables in programming languages often reflect the language's memory model. Ho
 Inference is a language for defining formal specifications. While the spec defines variables and operations on them, these are abstract definitions and do not involve interaction with actual physical (or virtual) memory. This means there is no stack, heap, or any other specific memory location where variables are stored. The same applies to how variables are passed to functions. It is even possible to create an array of infinite length and pass it to a function.
 
 >[!TIP]
->As a mental model, it makes sense to think about Inference code and variables in a way of defining hypothesis about the code behavior where variables are just shortcuts for storing intermediate reasoning terms.
+>As a mental model, it makes sense to think about Inference code and variables in a way of defining hypotheses about the code behavior where variables are just shortcuts for storing intermediate reasoning terms.
 
 *The question arises: how can Inference reason about platforms used in real life in a theoretical way that still reflects actual machine behavior?* The answer lies in Inference's abstract computational model, which allows reasoning about program behavior without being tied to specific memory implementations, yet remains applicable to real-world platforms through appropriate mappings during the proof process.
 

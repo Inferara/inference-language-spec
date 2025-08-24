@@ -95,7 +95,7 @@ After the `forall` block, only the execution paths where `x` has values for whic
 
 Blockchains are complex systems that have massive codebases and various features and capabilities like different consensus algorithms, finality algorithms, and so on. Keeping this fact in mind, we can see that it is hardly possible to reproduce the whole blockchain in terms of the proof theory as it is done for platforms like [CompCert](https://github.com/AbsInt/CompCert).
 
-The approach used in Inference is as follows: the proof theory consists of two parts—the execution platform theory and a set of axioms that describe the blockchain behavior. The axioms are the set of properties that are stated to be true for the blockchain by its design and implementation. In term of WASM for DApps blockchain is considered as `host`.
+The approach used in Inference is as follows: the proof theory consists of two parts—the execution platform theory and a set of axioms that describe the blockchain behavior. The axioms are the set of properties that are stated to be true for the blockchain by its design and implementation. As for WASM terminology for DApps, we consider a blockchain itself as `host`.
 
 So when Inference reasons about a DApp, it reasons about the DApp itself, and the blockchain API that is used by the DApp is covered by the axiomatic theory. We can think about these API axioms in a way similar to an SDK for a platform that we are using, as provided by the platform developers.
 

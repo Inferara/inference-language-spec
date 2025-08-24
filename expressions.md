@@ -4,7 +4,7 @@
 
 ### 8.1.1 Description
 
-Member access is an expression allowing to access a struct's fields. The syntax for member access is the dot operator (`.`) followed by the name of the field or element.
+Member access is an expression allowing access a struct's fields. The syntax for member access is the dot operator (`.`) followed by the name of the field or element.
 
 ### 8.1.2 Examples
 
@@ -23,7 +23,7 @@ fn get_balance(account: Account) -> u64 {
 
 ### 8.2.1 Description
 
-Array index access is an expression that allows to access the elements of an array. The syntax for an array index access is a pair of the square brackets (`[]`) enclosing the element's index.
+Array index access is an expression allowing access to the elements of an array. The syntax for an array index access is a pair of the square brackets (`[]`) enclosing the element's index.
 
 ### 8.2.2 Examples
 

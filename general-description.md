@@ -22,7 +22,7 @@ Inference addresses that problem by allowing the programmer to express statement
 
 ### 3.1.1 Uzumaki
 
-The `@` keyword (pronounced u-zu-ma-ki うずまき 🌀) is a primitive expression that can occupy the `rval` slot of any primitive type, serving as a point of non-deterministic branching of passing computation. Its evaluation splits the execution path into a finite set of subpaths, each of which differs from the others only by `@`'s result, collectively covering all possible values that the given type can hold.
+The `@` keyword (pronounced u-zu-ma-ki うずまき 🌀 渦巻き "whirlpool / maelstrom / vortex") is a primitive expression that can occupy the `rval` slot of any primitive type, serving as a point of non-deterministic branching of passing computation. Its evaluation splits the execution path into a finite set of subpaths, each of which differs from the others only by `@`'s result, collectively covering all possible values that the given type can hold.
 
 Representing undetermined values, this construct lays the foundation for every formal specification, idiomatically expressed in Inference through modeling the non-deterministic behavior of covered functions and modules. As the classical imperative programming paradigm doesn't have operational semantics for non-deterministic computations, `@` can be evaluated only inside specialized quantified contexts explained below.
 
@@ -140,13 +140,13 @@ Similarly to `assume`, `unique` retains all changes in the machine state along e
 
 ### 3.1.6 Semantics
 
-From the first glance, an operational semantics of non-deterministic computations may look impractical - generally, it is impossible to call `forall` block to check if it indeed terminates on every possible combination of `@` values which means that comparing to classical testsuites, non-deterministic specification is not so straightforward to verify.
+At first glance, an operational semantics of non-deterministic computations may look impractical - generally, it is impossible to call `forall` block to check if it indeed terminates on every possible combination of `@` values which means that comparing to classical testsuites, non-deterministic specification is not so straightforward to verify.
 
-Intended compilation target of Inference code is not a classical executable binary, but a proof assistant theory where the verification of stated properties can be achieved through formal reasoning about structure of execution tree. This additional complexity is compensated by granting a programmer ability to formulate statements of general nature powerful enough to precisely delineate a correct behavior of the algorithm on every possible execution path.
+Intended compilation target of Inference code is not a classical executable binary, but a proof assistant theory where the verification of stated properties can be achieved through formal reasoning about the structure of an execution tree. This additional complexity is compensated by granting a programmer the ability to formulate statements of general nature powerful enough to precisely delineate a correct behavior of the algorithm on every possible execution path.
 
 It is important to differentiate between non-determinism as a model of execution and undetermined (undefined) behaviour as it is usually understood in the classical imperative paradigm. Undefined behavior in languages like C++ denotes unpredictable and potentially hazardous unambiguousness.
 
-`@` variables actually have well-defined semantics. They are undefined in terms of which specific value they hold, but the behavior of operations involving them is specified according to the language rules. It is optimal to percieve undefined values of Inference the same way we percieve unbound variables in logical formulas, as sets of possibilities delimiting domain space of expressions under $\forall$ and $\exists$ quantors, which essence in Inference is captured by `forall` and `exists` keywords.
+`@` variables actually have well-defined semantics. They are undefined in terms of which specific value they hold, but the behavior of operations involving them is specified according to the language rules. It is optimal to percieve undefined values of Inference the same way we percieve unbound variables in logical formulas, as sets of possibilities delimiting domain space of expressions under $\forall$ and $\exists$ quantors, whose essence in Inference is captured by `forall` and `exists` keywords.
 
 For more information, see the following article: [Specifying Algorithms Using Non-Deterministic Computations](https://www.inferara.com/en/papers/specifying-algorithms-using-non-deterministic-computations/)
 
@@ -191,7 +191,7 @@ Next, it assumes that `n` does not hold any non-trivial factions using another q
 Stepping back and looking at the overall structure of the given code, we can hardly ignore similarities with classical testing - basically, here we see "testsuite" consisting of two cases that due to their generality together cover the whole domain of the specified function, pinpointing its behavior exactly.
 
 >[!NOTE]
->Here we only see the specification of function in question, while what needs to be done in order to confirm adherence of particular `factor` implementation to stated specification, stays out of our scope for now.
+>Here we only see the specification of the function in question, while what needs to be done in order to confirm adherence of particular `factor` implementation to stated specification, stays out of our scope for now.
 
 ## 3.2 Compiler Design
 
