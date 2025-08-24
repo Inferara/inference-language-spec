@@ -61,9 +61,18 @@ external fn draw_rectangle(old_picture: Picture, x: u32, y: u32, w: u32, h: u32)
 
 ### 11.2.1 Description
 
-External functions are functions that are defined outside of the current specification or spec. They are used to interact with the external environment, such as calling functions from other modules or libraries. External functions are declared using the `external` keyword followed by the function signature.
+External functions represent interactions with the `host` outside the current specification. For example, a check such as "is this call authorized under these parameters with this key?" is not something the specification itself computes directly, but rather something modeled as communication with the `host`. These functions provide the abstraction boundary between the formal description of system behavior and the concrete external mechanisms that support it.
 
-External functions are an entry point to the actual implementation of the system. This means the specification is a description of the system behavior, and the external functions are the actual implementation of the system. A specification can exist without the linked external implementation, but if it is desired to verify the correctness of the implementation, the external functions must be provided.
+In practice, restrictions on host functions can be expressed within [assume blocks]() in the specification, where higher-level behavioral properties are imposed to guide reasoning about correctness.
+
+On the Wasm side, this abstraction is formalized using an abstract class parameterized by host_state : `eqType` and a `list` of host functions. For each function, we define:
+
+```ocaml
+host_application : host_state -> store_record -> function_type -> host_function -> seq value ->
+                   host_state -> option (store_record * result) -> Prop
+```
+
+This relation specifies how a function application connects the before and after states of both the machine and the `host`. In other words, it describes the transition caused by invoking a `host` function, including possible changes to state and outputs. These relations are not just theoretical: they can and should be used directly in proofs to reason about correctness, invariants, and external interactions.
 
 ### 11.2.2 Examples
 

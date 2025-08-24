@@ -32,7 +32,7 @@ fn sum(a: u32, b: u32) -> u32 {
 
 ### 10.3.1 Description
 
-External functions are functions that are defined outside of the current module or spec. They are used to interact with the external environment, such as calling functions from other modules. External functions are declared using the `external` keyword followed by the function signature.
+External functions are functions that are not defined within the current module or spec but in fact are `host` calls. Such functions may simulate the `host` (blockchain) behavior as a description about the external environment.
 
 For detailed information about external functions, see the [Functions](./functions.md#112-external-function) section.
 
