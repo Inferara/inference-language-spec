@@ -63,7 +63,7 @@ external fn draw_rectangle(old_picture: Picture, x: u32, y: u32, w: u32, h: u32)
 
 External functions represent interactions with the `host` outside the current specification. For example, a check such as "is this call authorized under these parameters with this key?" is not something the specification itself computes directly, but rather something modeled as communication with the `host`. These functions provide the abstraction boundary between the formal description of system behavior and the concrete external mechanisms that support it.
 
-In practice, restrictions on host functions can be expressed within [assume blocks]() in the specification, where higher-level behavioral properties are imposed to guide reasoning about correctness.
+In practice, restrictions on host functions can be expressed within [assume blocks](./general-description.md#313-assume) in the specification, where higher-level behavioral properties are imposed to guide reasoning about correctness.
 
 On the Wasm side, this abstraction is formalized using an abstract class parameterized by host_state : `eqType` and a `list` of host functions. For each function, we define:
 
