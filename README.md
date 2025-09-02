@@ -1,3 +1,5 @@
+![alt text](./assets/inference-logo.svg)
+
 # 🌀 Inference programming language specification
 
 > [!WARNING]
