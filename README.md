@@ -26,12 +26,13 @@ This repository contains the specification of the Inference programming language
   - [§2.5](./terms-and-definitions.md#25-proof-unit) Proof-Unit
 - [§3](./general-description.md) General description
   - [§3.1](./general-description.md#31-non-deterministic-computations) Non-Deterministic Computations
-    - [§3.1.1](./general-description.md#311-forall) Forall
-    - [§3.1.2](./general-description.md#312-exists) Exists
+    - [§3.1.1](./general-description.md#311-uzumaki) Uzumaki
+    - [§3.1.2](./general-description.md#312-forall) Forall
     - [§3.1.3](./general-description.md#313-assume) Assume
-    - [§3.1.4](./general-description.md#314-uzumaki) Uzumaki
-      - [§3.1.4.1](./general-description.md#3141-semantics) Semantics
-      - [§3.1.4.2](./general-description.md#3142-examples) Examples
+    - [§3.1.4](./general-description.md#314-exists) Exists
+    - [§3.1.5](./general-description.md#315-unique) Unique
+    - [§3.1.6](./general-description.md#316-semantics) Semantics
+    - [§3.1.7](./general-description.md#317-examples) Examples
   - [§3.2](./general-description.md#32-compiler-design) Compiler Design
   - [§3.3](./general-description.md#33-automated-theorem-proving) Automated Theorem Proving
   - [§3.4](./general-description.md#34-restrictions) Restrictions
