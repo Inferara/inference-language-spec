@@ -32,10 +32,10 @@ Inference is designed with the computer-assisted theorem proving technique in mi
 
 Speaking about Inference as a special-purpose programming language, it is important to list significant considerations that were taken into account during the language design:
 
-- Inference is intended to be a simple, concise, unambiguous, and easy-to-understand formal specification language.
+- Inference is intended to be a simple, concise, unambiguous, and easy-to-understand language for both formal specification and high-assurance application development.
 - The language should have the feel of an imperative language and hide all the complexity of formal verification details.
-- The language is intended for use in developing Web3 applications as a correctness specification language that ensures the application's properties and certifies the application's correctness.
-- The language evolves in the direction of improving the power of automated deduction and being applicable to a wide range of blockchain architectures.
+- The language is intended for use in developing critical systems as a dual-purpose language: writing efficient, safe executables and their correctness specifications in the same codebase.
+- The language evolves in the direction of improving the power of automated deduction and being applicable to a wide range of architectures (e.g., WASM, RISC-V, EVM).
 - Support for modern IDEs and code editors is very important.
 
 ---

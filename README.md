@@ -5,12 +5,12 @@
 > [!WARNING]
 > This document is a work in progress. The content is subject to change. Some sections may be incomplete or missing. Please stay tuned for updates.
 
-Inference is a domain-specific programming language designed by [Inferara](https://inferara.com) to enable Web3 developers to formulate properties of the native application algorithms in a familiar format similar to how unit tests are written.
+Inference is a programming language that defines a high-assurance, deterministic computing model with non-deterministic extensions designed by [Inferara](https://inferara.com) for developing verifiable programs. It enables developers to write both executable code and formal specifications in a unified language, using a familiar syntax similar to imperative programming languages.
 
-Inference allows formal proof of the correctness of the specified properties to be expressed as a theorem-prover theory and verified in an automated way.
+Inference allows formal proof of the correctness of the specified properties to be expressed as a theorem-prover theory and verified in an automated way. The compiler (`infc`) targets multiple backends: generating executable binaries (currently WASM via LLVM IR) for deployment and proof units (Rocq) for formal verification.
 
 > [!IMPORTANT]
-> Inference is a Web3 native applications-oriented, formal specification language.
+> Inference is designed for both high-assurance application development and formal specification. While Web3 applications are a primary use case, the language's safety guarantees (determinism, no floating-point, static typing) make it suitable for any critical system requiring formal verification.
 
 This repository contains the specification of the Inference programming language. The specification is divided into several sections, each describing a specific aspect of the language. The language is designed to be simple and easy to learn, and its syntax is concise and similar to Rust.
 
@@ -74,7 +74,7 @@ This repository contains the specification of the Inference programming language
     - [§4.10.3](./lexical-structure.md#4103-square-brackets) Square Brackets
       - [§4.10.3.1](./lexical-structure.md#41031-description) Description
       - [§4.10.3.2](./lexical-structure.md#41032-examples) Examples
-    - [§4.10.4](./lexical-structure.md#4104-angle-brackets) Angle Brackets
+    - [§4.10.4](./lexical-structure.md#4104-prime-symbol) Prime Symbol
       - [§4.10.4.1](./lexical-structure.md#41041-description) Description
       - [§4.10.4.2](./lexical-structure.md#41042-examples) Examples
 - [§5](./basic-concepts.md) Basic concepts
@@ -83,7 +83,7 @@ This repository contains the specification of the Inference programming language
   - [§5.3](./basic-concepts.md#53-execution-model) Execution Model
   - [§5.4](./basic-concepts.md#54-non-deterministic-execution) Non-deterministic Execution
   - [§5.5](./basic-concepts.md#55-platform-specific-execution) Platform-specific Execution
-  - [§5.6](./basic-concepts.md#56-poly-blockchain-design) Poly-blockchain Design
+  - [§5.6](./basic-concepts.md#56-platform-agnostic-design) Platform Agnostic Design
   - [§5.7](./basic-concepts.md#57-automated-reasoning) Automated Reasoning
   - [§5.8](./basic-concepts.md#58-correctness-certificate) Correctness Certificate
 - [§6](./types.md) Types
@@ -207,9 +207,10 @@ This repository contains the specification of the Inference programming language
 - [§11](./functions.md) Functions
   - [§11.1](./functions.md#111-function-definition) Function Definition
     - [§11.1.1](./functions.md#1111-description) Description
-    - [§11.1.2](./functions.md#1112-modifiers) Modifiers
-        - [§11.1.2.1](./functions.md#11121-forall) `forall`
-    - [§11.1.3](./functions.md#1113-examples) Examples
+    - [§11.1.2](./functions.md#1112-declaring-a-function) Declaring a function
+        - [§11.1.3](./functions.md#1113-modifiers) Modifiers
+            - [§11.1.3.1](./functions.md#11131-forall) `forall`
+    - [§11.1.4](./functions.md#1114-examples) Examples
   - [§11.2](./functions.md#112-external-function) External Function
     - [§11.2.1](./functions.md#1121-description) Description
     - [§11.2.2](./functions.md#1122-examples) Examples
