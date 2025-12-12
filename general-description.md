@@ -212,7 +212,7 @@ The compilation process consists of the following stages:
    - Building proofs for the specification.
 4. For **Application Execution**:
    - "Vanilla" structs and modules (executable code) are lowered to LLVM IR (`ll`).
-   - The LLVM IR is compiled to the target architecture (currently primarily WASM) using `inf-llc` with appropriate flags that forces high level of optimization.
+   - The LLVM IR is compiled to the target architecture (currently primarily WASM) using `inf-llc` with appropriate flags that force high level of optimization.
 
 This workflow enables using Inference for both safe application development and formal specification at the same time. In the same file or project, developers can write the executable code and its formal specification. The formal verification prover uses the exact code written as an application to verify it, and then the compiled module can be deployed to the target environment.
 
