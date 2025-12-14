@@ -55,13 +55,18 @@ In this example, `sum_spec` is a `forall`-marked function that, using the `@` (u
 
 ## 5.3 Execution Model
 
-A `spec` is not an execution unit because it is mechanically impossible to execute a non-deterministic program (`@` introduces non-determinism in terms of cosidering all possibilities). The target platform of `infc` is a theorem prover. The [Inferara execution theory](TODO) enables reasoning about the program *as if it has been executed* on a certain platform. As of now, the execution platform covered by the Inferara theory is [WASM](https://webassembly.org/).
+## 5.3 Execution Model
+
+Inference serves two purposes: formal specification and high-assurance application execution.
+
+1.  **Specification**: A `spec` or any code involving non-deterministic constructs (like `@`, `forall`, `exists`, `assume`, `unique`) is not an execution unit in the traditional sense because it is mechanically impossible to execute a non-deterministic program. For these parts, the target platform is a theorem prover (Rocq), and the [Inferara execution theory](./terms-and-definitions.md#24-theory) enables reasoning about the program *as if it has been executed*.
+2.  **Execution**: "Vanilla" Inference code (structs, functions without non-determinism) is compiled to executable binaries. This code is what runs in the target environment.
 
 Essentially, the theory describes how a virtual machine (VM) works, its memory state and operations. It contains a description of how operations are executed, how memory is managed, how the stack is used, and so on. It is worth highlighting that the proof theory is not similar to symbolic execution. The symbolic execution technique actually executes commands and works with the memory state, while the proof theory is a way to describe what happens with memory after a command is executed without having this memory in the real world.
 
 For illustration, consider the well-known formula of energy $E=mc^2$. This formula is a property of one aspect of how the universe works. In order to prove this formula, other formulas and theories are used. However, the formula itself is not proven by experiment simply because an experiment cannot cover all possible combinations of $m$ and $c$ to ensure the formula is correct for all possible values.
 
-In this analogy, the Inference proof is akin to a mathematical proof, whereas symbolic execution is akin to an experimental approach.
+In this analogy, the Inference proof is akin to a mathematical proof, whereas symbolic execution (and actual execution) is akin to an experimental approach. Inference allows you to write the application and the "mathematical proof" (spec) in the same language.
 
 ## 5.4 Non-Deterministic Execution
 
@@ -101,11 +106,17 @@ So when Inference reasons about a DApp, it reasons about the DApp itself, and th
 
 However, it does not limit Inference usage for DApps only. Inference can be used to reason about any program that is a part or a blockchain itself. For example, a consensus algorithm can be extracted from the setting where host functions are used and a `spec` can be created to describe its behavior.
 
-## 5.6 Poly-Blockchain Design
+## 5.6 Platform Agnostic Design
 
-Inference is a low-level language because property definitions must be straightforward and unambiguous. From the [proof-unit](./terms-and-definitions.md#25-proof-unit) viewpoint, the execution model follows the command set of a certain platform—for example, WASM. This means that if a blockchain uses WASM as a compilation target (or can be compiled to with the unchanged semantic), then compiled DApp modules can be linked to the Inference modules, and proofs can be constructed.
+Inference is a low-level language because property definitions must be straightforward and unambiguous. From the [proof-unit](./terms-and-definitions.md#25-proof-unit) viewpoint, the execution model follows the command set of a certain platform—for example, WASM.
 
-For reference, the following blockchains use WASM as a compilation target:
+However, the language design itself is **platform agnostic**. The `infc` compiler is modular, meaning:
+
+1.  **Frontend**: The Inference language remains the same regardless of the target.
+2.  **Backend**: `infc` generates IR for a specific target (currently WASM).
+3.  **Verification**: The Inferara theory corresponds to the target platform's execution model.
+
+Currently, WASM is the fully supported target because many blockchains use WASM as a compilation target:
 
 - [Stellar](https://www.stellar.org/)
 - [Polkadot](https://polkadot.network/)
@@ -143,7 +154,7 @@ Since the final artifact of `infc` is a Rocq file `.v`, it can be checked by the
 
 Furthermore, correctness tracking is also available, so we can check if the proof for the code at state $S$ is equivalent to the proof for the code at state $S'$.
 
-There is a [database](#TODO) of correctness certificates that Inferara holds, and it is possible to ensure if a given code has been proven before and if the proof is still valid.
+There is a database of correctness certificates that Inferara holds, and it is possible to ensure if a given code has been proven before and if the proof is still valid.
 
 ---
 

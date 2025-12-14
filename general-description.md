@@ -4,8 +4,8 @@ Inference is a formal specification language that aims to provide a straightforw
 
 > [!IMPORTANT]
 > Based on this fact, the following important consequences follow:
-> 1. Inference is a Turing-complete language, **but**
-> 2. It is not intended to be used for general-purpose programming.
+> 1. Inference is a Turing-complete language.
+> 2. It is designed to be used for both formal specification and high-assurance application development.
 
 ## 3.1 Non-Deterministic Computations
 
@@ -202,12 +202,22 @@ The compilation process consists of the following stages:
 1. Inference source code parsing using [tree-sitter-inference](https://github.com/Inferara/tree-sitter-inference) grammar parser.
    - Building required internal representations.
    - Semantic analysis and type checking. [Tracking issue](https://github.com/Inferara/inference/issues/8)
-   - Linked external modules integrity and capability check.
-2. Generating IR for the target execution platform (WASM) amended with Inference non-deterministic instructions.
-3. Building a compound module containing the Inference module IR and linked external code.
-4. Translating the compound module to a [proof-unit](./terms-and-definitions.md#25-proof-unit).
-5. Attaching Inference [theory](./terms-and-definitions.md#24-theory), platform axioms, and generating theorems.
-6. Building proofs for the specification.
+2. Linked external modules integrity and capability check.
+3. For **Formal Specification**:
+   - Generating `ll` with `inf intrinsics` (Inference non-deterministic instructions).
+   - Lowering `ll` to the target architecture (currently primarily WASM) using `inf-llc`.
+   - Translating the compound module to a [proof-unit](./terms-and-definitions.md#25-proof-unit).
+   - Attaching Inference [theory](./terms-and-definitions.md#24-theory), platform axioms.
+   - Inferencing theorems.
+   - Building proofs for the specification.
+4. For **Application Execution**:
+   - "Vanilla" structs and modules (executable code) are lowered to LLVM IR (`ll`).
+   - The LLVM IR is compiled to the target architecture (currently primarily WASM) using `inf-llc` with appropriate flags that force high level of optimization.
+
+This workflow enables using Inference for both safe application development and formal specification at the same time. In the same file or project, developers can write the executable code and its formal specification. The formal verification prover uses the exact code written as an application to verify it, and then the compiled module can be deployed to the target environment.
+
+> [!NOTE]
+> While WASM is the current primary target for both execution and verification mechanization, the `infc` architecture is modular. Support for other architectures (like RISC-V or EVM) can be added by extending the compiler backend and the corresponding verification theory.
 
 ![Inference IR Building Sequence](./assets/inference-ir-building-sequence.png)
 

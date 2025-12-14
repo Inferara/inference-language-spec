@@ -6,7 +6,7 @@ Decentralized Applications (DApps) are applications that run on a decentralized 
 
 ## 2.2 `infc`
 
-Inference Compiler (`infc`) is a tool that compiles Inference programs into proof code. The compiler is responsible for parsing the Inference code, type-checking it, and generating the output code. The source code is located in the [Inference](https://github.com/Inferara/inference) repository.
+Inference Compiler (`infc`) is a tool that compiles Inference programs into proof code and executable binaries. The compiler is responsible for parsing the Inference code, type-checking it, generating the output code (LLVM IR -> Target Binary for execution, Rocq for verification). The source code is located in the [Inference](https://github.com/Inferara/inference) repository.
 
 ## 2.3 Module
 
