@@ -1,4 +1,4 @@
-![alt text](./assets/inference-logo.svg)
+![alt text](./assets/inference-logo-oulined-shaped-font.svg)
 
 # 🌀 Inference programming language specification
 
@@ -208,8 +208,8 @@ This repository contains the specification of the Inference programming language
   - [§11.1](./functions.md#111-function-definition) Function Definition
     - [§11.1.1](./functions.md#1111-description) Description
     - [§11.1.2](./functions.md#1112-declaring-a-function) Declaring a function
-        - [§11.1.3](./functions.md#1113-modifiers) Modifiers
-            - [§11.1.3.1](./functions.md#11131-forall) `forall`
+      - [§11.1.3](./functions.md#1113-modifiers) Modifiers
+        - [§11.1.3.1](./functions.md#11131-forall) `forall`
     - [§11.1.4](./functions.md#1114-examples) Examples
   - [§11.2](./functions.md#112-external-function) External Function
     - [§11.2.1](./functions.md#1121-description) Description
