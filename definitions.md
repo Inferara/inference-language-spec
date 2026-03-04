@@ -123,9 +123,6 @@ Along with the fields, a struct can also have methods that define the behavior o
 
 Declared structs will automatically have a `new` function in their namespace for creating instances of the struct. The parameters of the `new` function are the values to be assigned to each field in the new instance. They must be explicitly named with `name: value` syntax, and the order of the parameters does not matter.
 
->[!NOTE]
->There are no visibility features in Inference, therefore it is not possible to mark certain fields or methods as private.
-
 ### 10.7.2 Examples
 
 Declaring an `Account` struct:

@@ -87,7 +87,13 @@ fn example() -> u32 {
 
 ### 8.5.1 Description
 
-Unary operators are operators that operate on a single operand. In Inference, only the unary minus operator (`-`) is supported. The operand of a unary expression is an expression.
+Unary operators are operators that operate on a single operand. In Inference, the following unary operators are supported:
+
+- `-` (negation) — numeric sign inversion
+- `!` (logical NOT) — boolean negation; evaluates to `true` if the operand is `false`, and vice versa
+- `~` (bitwise NOT) — inverts all bits of the operand
+
+The operand of a unary expression is an expression.
 
 ### 8.5.2 Examples
 
@@ -95,6 +101,14 @@ Unary operators are operators that operate on a single operand. In Inference, on
 fn example() -> i32 {
   let a: i32 = -42;
   return a;
+}
+
+fn logical_not_example(flag: bool) -> bool {
+  return !flag;
+}
+
+fn bitwise_not_example(x: i32) -> i32 {
+  return ~x;
 }
 ```
 
@@ -121,11 +135,11 @@ Binary operators are operators that operate on two operands. In Inference, the f
 
 Bitwise operators are available, but they are added to support imported code. For instance, if an external function that is part of a specification returns a bit-packed value, we need a way to unpack such a union. Other possible reasons for using bitwise operators in a specification, like memory or computation optimization, are not relevant because a specification is not an execution unit.
 
-- `<<` (shift one bit left)
-- `>>` (shift one bit right)
-- `^` (logical xor)
-- `|` (logical disjunction aka set bit)
-- `&` (logical conjunction aka check bit)
+- `<<` (bitwise left shift)
+- `>>` (bitwise right shift)
+- `^` (bitwise XOR)
+- `|` (bitwise OR)
+- `&` (bitwise AND)
 
 Left and right operands of a binary expression are expressions.
 

@@ -40,7 +40,7 @@ let b: bool = (1 == 2); // false
 Signed integers are represented by the following types: `i8`, `i16`, `i32`, `i64`. The `i` prefix stands for signed integer. The number after the `i` indicates the number of bits that the integer occupies in memory.
 
 > [!NOTE]
-> Even when using `i8` or `i16` types, 4 bytes of memory will be allocated for the variable due to the minimal addressable unit.
+> Even when using `i8` or `i16` types, a scalar variable will use 4 bytes in a WASM local slot. However, when used as array element types, elements are stored at their natural size (1 byte for `i8`, 2 bytes for `i16`).
 
 #### 6.2.2.2 Examples
 
@@ -58,7 +58,7 @@ let d: i64 = (2 ** 63) - 1;     // 9,223,372,036,854,775,807
 Unsigned integers are represented by the following types: `u8`, `u16`, `u32`, `u64`. The `u` prefix stands for unsigned integer. The number after the `u` indicates the number of bits that the integer occupies in memory.
 
 > [!NOTE]
-> Even when using `u8` or `u16` types, 4 bytes of memory will be allocated for the variable due to the minimal addressable unit.
+> Even when using `u8` or `u16` types, a scalar variable will use 4 bytes in a WASM local slot. However, when used as array element types, elements are stored at their natural size (1 byte for `u8`, 2 bytes for `u16`).
 
 #### 6.2.3.2 Examples
 

@@ -10,9 +10,9 @@ The assign statement is used to assign a value, or generally speaking, the resul
 
 ```inference
 fn example() -> u32 {
-  let a: u32 = 42;
-  let b: u32 = a;
-  return b;
+  let mut a: u32 = 42;
+  a = 10;
+  return a;
 }
 ```
 
@@ -37,9 +37,10 @@ fn bar() {
         /// This is the 'else' block
     }
 
-    let i: i32 = 10;
-    loop i {
+    let mut i: i32 = 0;
+    loop i < 10 {
         /// This is the loop block
+        i = i + 1;
     }
 }
 ```
@@ -129,37 +130,46 @@ Quantified procedure `foo` succeeds if and only if its argument is a composite n
 
 ### 9.8.1 Description
 
-The `loop` statement is used to perform a certain number of iterations repetitively. It is configured by a numeric literal or a variable. The loop body is a block of code executed in each iteration. The loop cannot be parameterized by a negative number. If a loop is parameterized by a variable, the variable must be initialized before the loop.
+The `loop` statement comes in two forms:
+
+1. **Conditional loop**: `loop CONDITION { ... }` — evaluates the boolean condition before each iteration and continues as long as the condition is `true`. The condition is an expression that must evaluate to a boolean value.
+
+2. **Infinite loop**: `loop { ... }` — repeats the loop body indefinitely. An infinite loop **must** contain a `break` statement to exit.
+
+The `break` statement exits the innermost enclosing loop.
 
 ### 9.8.2 Examples
 
 ```inference
 fn loop_example() {
-    loop 10 {
+    let mut i: i32 = 0;
+    loop i < 10 {
         // This block will be executed 10 times
+        i = i + 1;
     }
 
-    loop 0 {
+    loop false {
         // This block will not be executed
     }
 
-    let i: i32 = 10;
-    loop i {
+    let mut n: i32 = 10;
+    loop n > 0 {
         // This block will be executed 10 times
-        // Modifying 'i' inside the loop is not allowed
+        n = n - 1;
     }
 }
 ```
 
-The special case of using `loop` is the infinite loop, which **must** be inside a `assume` statement and **must** contain a `break` statement to exit. Infinite loops are parameterized by the [unit](./types.md#61-unit) type as a special case.
+The infinite loop form uses `loop` without a condition. It **must** contain a `break` statement to exit.
 
 ```inference
 fn infinite_loop_example() {
-    assume {
-        loop () {
-            // Infinite loop body
+    let mut i: i32 = 0;
+    loop {
+        if i >= 100 {
             break;
         }
+        i = i + 7;
     }
 }
 ```

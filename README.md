@@ -7,7 +7,7 @@
 
 Inference is a programming language that defines a high-assurance, deterministic computing model with non-deterministic extensions designed by [Inferara](https://inferara.com) for developing verifiable programs. It enables developers to write both executable code and formal specifications in a unified language, using a familiar syntax similar to imperative programming languages.
 
-Inference allows formal proof of the correctness of the specified properties to be expressed as a theorem-prover theory and verified in an automated way. The compiler (`infc`) targets multiple backends: generating executable binaries (currently WASM via LLVM IR) for deployment and proof units (Rocq) for formal verification.
+Inference allows formal proof of the correctness of the specified properties to be expressed as a theorem-prover theory and verified in an automated way. The compiler (`infc`) targets multiple backends: generating executable binaries (currently WASM) for deployment and proof units (Rocq) for formal verification.
 
 > [!IMPORTANT]
 > Inference is designed for both high-assurance application development and formal specification. While Web3 applications are a primary use case, the language's safety guarantees (determinism, no floating-point, static typing) make it suitable for any critical system requiring formal verification.

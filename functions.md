@@ -113,20 +113,20 @@ In Inference, functions are first-class citizens. This means that functions can 
 ### 11.3.2 Examples
 
 ```inference
-fn bubble_sort(arr: [i32;10], compare_function: fn(left: i32, right: i32) -> i32) -> () {
+fn bubble_sort(mut arr: [i32;10], compare_function: fn(left: i32, right: i32) -> i32) -> () {
     let n: i32 = 10;
-    let i: i32 = 0;
-    loop n {
-        i = i + 1;
-        let j: i32 = 0;
-        loop n - i - 1 {
-            j = j + 1;
+    let mut i: i32 = 0;
+    loop i < n {
+        let mut j: i32 = 0;
+        loop j < n - i - 1 {
             if compare_function(arr[j], arr[j + 1]) > 0 {
                 let temp: i32 = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
             }
+            j = j + 1;
         }
+        i = i + 1;
     }
 }
 ```
