@@ -5,8 +5,12 @@
 Inference supports the following types of [constants](./definitions.md#101-constant):
 
 - [bool](./types.md#621-boolean)
+- [i8](./types.md#622-integers)
+- [i16](./types.md#622-integers)
 - [i32](./types.md#622-integers)
 - [i64](./types.md#622-integers)
+- [u8](./types.md#623-unsigned-integers)
+- [u16](./types.md#623-unsigned-integers)
 - [u32](./types.md#623-unsigned-integers)
 - [u64](./types.md#623-unsigned-integers)
 - [array](./types.md#63-array)

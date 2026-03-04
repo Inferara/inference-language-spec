@@ -200,19 +200,17 @@ Stepping back and looking at the overall structure of the given code, we can har
 The compilation process consists of the following stages:
 
 1. Inference source code parsing using [tree-sitter-inference](https://github.com/Inferara/tree-sitter-inference) grammar parser.
-   - Building required internal representations.
+   - Building required internal representations (typed AST).
    - Semantic analysis and type checking. [Tracking issue](https://github.com/Inferara/inference/issues/8)
 2. Linked external modules integrity and capability check.
 3. For **Formal Specification**:
-   - Generating `ll` with `inf intrinsics` (Inference non-deterministic instructions).
-   - Lowering `ll` to the target architecture (currently primarily WASM) using `inf-llc`.
+   - Generating WASM with custom non-deterministic instruction extensions (Inference non-deterministic opcodes).
    - Translating the compound module to a [proof-unit](./terms-and-definitions.md#25-proof-unit).
    - Attaching Inference [theory](./terms-and-definitions.md#24-theory), platform axioms.
    - Inferencing theorems.
    - Building proofs for the specification.
 4. For **Application Execution**:
-   - "Vanilla" structs and modules (executable code) are lowered to LLVM IR (`ll`).
-   - The LLVM IR is compiled to the target architecture (currently primarily WASM) using `inf-llc` with appropriate flags that force high level of optimization.
+   - "Vanilla" structs and modules (executable code) are compiled directly to WebAssembly.
 
 This workflow enables using Inference for both safe application development and formal specification at the same time. In the same file or project, developers can write the executable code and its formal specification. The formal verification prover uses the exact code written as an application to verify it, and then the compiled module can be deployed to the target environment.
 
@@ -231,12 +229,11 @@ Otherwise, meaningful diagnostics are provided.
 
 ## 3.4 Restrictions
 
-- The minimal addressable unit of memory in Inference is a 4-byte word (32 bits).
+- The minimal addressable unit for scalar variables in Inference is a 4-byte word (32 bits). Array elements, however, are stored at their natural size according to their type.
 - Inference does not support floating-point numbers.
 - Inference tends to be as explicit as possible, so no implicit type conversions are allowed, as well as there is no dynamic type inference.
 - Inference does not support dynamically sized arrays.
 - Inference does not support pointers.
-- Inference does not support strings.
 
 ---
 

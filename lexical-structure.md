@@ -23,11 +23,13 @@ Comments are used to document the code and are ignored by the compiler. Inferenc
 - `exists`
 - `@`
 - `assume`
+- `unique`
 - `loop`
 - `return`
 - `from`
 - `use`
-- `for`
+- `pub`
+- `mod`
 - `if`
 - `break`
 - `else`
@@ -38,7 +40,6 @@ Comments are used to document the code and are ignored by the compiler. Inferenc
 - `const`
 - `assert`
 - `self`
-- `type`
 
 ## 4.3 Identifiers
 

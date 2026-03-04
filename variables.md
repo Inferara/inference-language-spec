@@ -91,10 +91,10 @@ fn foo() {
     let a: i32 = 42;
 
     let mut b: bool = true;
-    let mut i: i32 = 10;
-    let mut acc: i32 = 0; 
+    let mut i: i32 = 0;
+    let mut acc: i32 = 0;
 
-    loop i {
+    loop i < 10 {
         i = i + 1;
         b = i % 2 == 0;
         if b {        
@@ -109,14 +109,14 @@ fn foo() {
 
 #### 7.4.3.1 Description
 
-A `loop` statement is used to execute a block of code repeatedly for a specified number of iterations `N`. It is used to iterate over a sequence of values or perform a fixed number of repetitions.
+A `loop` statement is used to execute a block of code repeatedly. In the conditional form, `loop CONDITION { ... }`, the boolean condition is evaluated before each iteration and the loop continues as long as the condition holds. In the infinite form, `loop { ... }`, the body repeats until a `break` statement is encountered.
 
 #### 7.4.3.2 Examples
 
 ```inference
 fn inverse_bool_array(mut bool_arr: [bool; 10]) {
     let mut i: i32 = 0;
-    loop 10 {
+    loop i < 10 {
         bool_arr[i] = !bool_arr[i];
         i = i + 1;
     }
