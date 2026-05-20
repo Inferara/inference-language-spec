@@ -83,16 +83,16 @@ The member access operator `.` is used to access fields and methods of a struct.
 
 ```inference
 struct Account {
-    address: u32;
+    address: i32;
 
-    fn new(addr: u32) -> Account {
-        self.address = addr;
+    fn new(addr: i32) -> Account {
+        return Account { address: addr };
     }
 }
 
 fn main() {
     let a: Account = Account::new(42);
-    let b: u32 = a.address;
+    let b: i32 = a.address;
 }
 ```
 
@@ -121,6 +121,20 @@ let b: bool = false;
 
 ```inference
 let a: unit = ();
+```
+
+### 4.7.3 Numeric
+
+#### 4.7.3.1 Description
+
+A numeric literal is a sequence of decimal digits, optionally preceded by the unary `-` sign for negation. The literal's type is determined by the context — typically the explicit type annotation on the surrounding declaration or the expected type of the surrounding expression.
+
+#### 4.7.3.2 Examples
+
+```inference
+let a: i32 = 42;
+let b: u64 = 1000;
+let c: i32 = -7;
 ```
 
 ## 4.8 Right arrow
@@ -216,6 +230,33 @@ See also: [Types](./types.md#65-user-defined-types)
 ```inference
 fn foo T' (a: T') {
     // code block
+}
+```
+
+## 4.11 Visibility
+
+### 4.11.1 Description
+
+The `pub` keyword marks a top-level definition as exported from the compiled module. Items without `pub` are private to the compilation unit and may be referenced only from inside the same source file. Spec functions are never exported even when declared `pub` — see [§10.5 Spec](./definitions.md#105-spec).
+
+`pub` is currently accepted on `fn`, `struct`, and `enum` definitions.
+
+### 4.11.2 Examples
+
+```inference
+pub fn add(a: i32, b: i32) -> i32 {
+    return a + b;
+}
+
+pub struct Point {
+    x: i32;
+    y: i32;
+}
+
+pub enum Color {
+    Red,
+    Green,
+    Blue,
 }
 ```
 

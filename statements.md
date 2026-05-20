@@ -203,13 +203,22 @@ Variable definition is a statement that declares a variable and optionally initi
 
 #### 9.10.2.1 Uzumaki
 
-When a variable is declared with the `@` modifier, it has a type but omits initialization. Declaration of an undefined variable may appear only inside blocks or functions with non-deterministic semantics (with [forall](./functions.md#11131-forall) or `assume` modifiers).
+When a variable is declared with `@` on its right-hand side, it carries no concrete initial value — instead, the expression splits the surrounding computation into a sub-path per value of the variable's type. The `@` expression may appear only inside a non-deterministic block — `forall`, `exists`, `assume`, or `unique` — or inside the body of a function whose body is itself such a block (e.g. a function marked with the [`forall`](./functions.md#11131-forall) modifier).
 
 ```inference
 let x: i32 = @;
 ```
 
 Here, `@` for `x` splits the execution path of the non-deterministic computation into sub-paths. Each sub-path considers one of every possible `i32` value.
+
+`@` is an expression, not exclusively a `let`-initializer: it may appear anywhere a value of its inferred type is expected — for example as a function argument or a `return` operand. See also [§8.3 Function Call](./expressions.md#83-function-call).
+
+```inference
+fn sum_is_zero_or_not() forall {
+    let y: i32 = sum(@, @);
+    assert(y >= 0 || y < 0);
+}
+```
 
 ### 9.10.3 Examples
 
@@ -239,11 +248,13 @@ type Address = u32;
 
 The `assert` statement is used to check a condition and generate properties for the verifier. If the condition is false, the verifier will find a contradiction.
 
+In *compile* mode `assert(cond)` evaluates `cond` at runtime and traps via `unreachable` if `cond` is `false`. In *proof* mode the `assert` becomes a proof obligation: the verifier must show that no execution path can reach the `assert` with `cond == false`. See [§3.2 Compiler Design](./general-description.md#32-compiler-design) for the difference between the two modes.
+
 ### 9.12.2 Examples
 
 ```inference
 fn foo() {
-    let flag: u32 = 0;
+    let flag: i32 = 0;
     assert(flag <= 0);
 }
 ```

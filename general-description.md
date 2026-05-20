@@ -148,6 +148,8 @@ It is important to differentiate between non-determinism as a model of execution
 
 `@` variables actually have well-defined semantics. They are undefined in terms of which specific value they hold, but the behavior of operations involving them is specified according to the language rules. It is optimal to percieve undefined values of Inference the same way we percieve unbound variables in logical formulas, as sets of possibilities delimiting domain space of expressions under $\forall$ and $\exists$ quantors, whose essence in Inference is captured by `forall` and `exists` keywords.
 
+In operational terms, *successful termination* of an execution path means it does not trap — no unreachable instruction is hit, no `assert` fails, no out-of-bounds access occurs, no integer division by zero. A `forall` block succeeds iff every path through its body completes without trapping; an `exists` block succeeds iff at least one such path exists; a `unique` block succeeds iff exactly one does; an `assume` block silently drops the paths that would have trapped. This is the runtime correspondent of the quantifier semantics above and is what the verifier checks.
+
 For more information, see the following article: [Specifying Algorithms Using Non-Deterministic Computations](https://www.inferara.com/en/papers/specifying-algorithms-using-non-deterministic-computations/)
 
 ### 3.1.7 Examples
@@ -192,6 +194,9 @@ Stepping back and looking at the overall structure of the given code, we can har
 
 >[!NOTE]
 >Here we only see the specification of the function in question, while what needs to be done in order to confirm adherence of particular `factor` implementation to stated specification, stays out of our scope for now.
+
+> [!NOTE]
+> This example is illustrative of the design intent. Some of the constructs it relies on — in particular `external fn` declarations with named parameter lists and certain implicit conversions between `u32` literals and the surrounding numeric types — are not yet fully supported by the current `infc` implementation, so the snippet above is not guaranteed to compile end-to-end with the present compiler. The structure and semantics it exposes are nevertheless the canonical shape of specifications about external functions.
 
 ## 3.2 Compiler Design
 

@@ -60,9 +60,9 @@ type Address = u32;
 
 ### 10.5.1 Description
 
-A `spec` is an abstract _module_ representation. By module, we mean a scoped set of imports, definitions, and functions. Specs are used to group related definitions and functions together and provide a way to organize the program specification as a whole. Technically, a `spec` is compiled to the theory consisting of propositions and theorems.
+A `spec` is an abstract _module_ representation. By module, we mean a scoped set of imports, definitions, and functions. Specs are used to group related definitions and functions together and provide a way to organize the program specification as a whole. Technically, in *proof* mode a `spec` is translated into a theory of propositions and theorems alongside its module; in *compile* mode the `spec` is stripped from the output entirely. See [§3.2 Compiler Design](./general-description.md#32-compiler-design).
 
-Specs may contain definitions of constants, structs, enums, and functions. Nested specs are not allowed.
+Specs may contain definitions of constants, structs, enums, and functions. Nested specs are not allowed and are rejected at parse time.
 
 ### 10.5.2 Examples
 

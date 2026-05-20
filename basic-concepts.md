@@ -8,7 +8,7 @@ $$
 \text{Specification} = \text{Property}_1 \land \text{Property}_2 \land \ldots \land \text{Property}_n
 $$
 
-In Inference, the specification is defined as a [`spec`](./definitions.md#105-spec). Every `spec` is then compiled into a [module](./terms-and-definitions.md#23-module) and into a [proof-unit](./terms-and-definitions.md#25-proof-unit). This modular structure enables Inference to support super-specifications, where a super-specification is a set of specifications combined as a conjunction of all specifications.
+In Inference, a specification is defined as a [`spec`](./definitions.md#105-spec) block grouping properties of a [module](./terms-and-definitions.md#23-module). The compiler operates in two modes (see [§3.2 Compiler Design](./general-description.md#32-compiler-design)): in *compile* mode `spec` blocks are stripped, producing only the deterministic module; in *proof* mode the spec is preserved unoptimized, and the compiler emits the module together with a [proof-unit](./terms-and-definitions.md#25-proof-unit) capturing the spec's obligations. This modular structure enables Inference to support super-specifications, where a super-specification is the conjunction of multiple specifications.
 
 $$
 \text{Super-specification} = \text{Specification}_1 \land \text{Specification}_2 \land \ldots \land \text{Specification}_n
@@ -52,8 +52,6 @@ In Inference, you can write a specification that asserts the correctness of `sum
 ```
 
 In this example, `sum_spec` is a `forall`-marked function that, using the `@` (uzumaki) keyword, says that `a` and `b` are considered for all their possible values and asserts that the computation result of `sum(a, b)` equals `a + b` for all possible execution paths (e.g. `a` and `b` values).
-
-## 5.3 Execution Model
 
 ## 5.3 Execution Model
 
