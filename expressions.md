@@ -133,6 +133,8 @@ Binary operators are operators that operate on two operands. In Inference, the f
 - `&&` (logical AND)
 - `||` (logical OR)
 
+The logical operators `&&` and `||` use short-circuit evaluation: the right operand is evaluated only when the left operand does not determine the result — `&&` evaluates its right operand only when the left operand is `true`, and `||` evaluates its right operand only when the left operand is `false`. A trap in the right operand (such as a division by zero or an out-of-bounds array index) therefore cannot occur when the left operand decides the expression, which makes guard expressions such as `x != 0 && y / x > 1` well-defined.
+
 Bitwise operators are available, but they are added to support imported code. For instance, if an external function that is part of a specification returns a bit-packed value, we need a way to unpack such a union. Other possible reasons for using bitwise operators in a specification, like memory or computation optimization, are not relevant because a specification is not an execution unit.
 
 - `<<` (bitwise left shift)
@@ -140,6 +142,8 @@ Bitwise operators are available, but they are added to support imported code. Fo
 - `^` (bitwise XOR)
 - `|` (bitwise OR)
 - `&` (bitwise AND)
+
+Unlike `&&` and `||`, the bitwise operators evaluate both of their operands unconditionally.
 
 Left and right operands of a binary expression are expressions.
 
