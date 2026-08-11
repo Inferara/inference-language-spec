@@ -129,12 +129,25 @@ let a: unit = ();
 
 A numeric literal is a sequence of decimal digits, optionally preceded by the unary `-` sign for negation. The literal's type is determined by the context — typically the explicit type annotation on the surrounding declaration or the expected type of the surrounding expression.
 
+The sign, when present, belongs to the literal and must be written immediately against the first digit: no whitespace or comment may come between them. `-7` is one numeric literal, whereas `- 7` is not a literal at all but the unary negation operator (see [8.5 Unary Operators](./expressions.md#85-unary-operators)) applied to the literal `7`, and is ill-formed. A negative number therefore has exactly one spelling, and what a program denotes never depends on whitespace. The distinction is not cosmetic: a signed type's minimum has no positive counterpart in that type, so it is expressible only as a literal carrying its own sign — `-128` is an `i8`, while `128` is not.
+
+A `-` written immediately before a digit is part of the literal only where a literal may begin. Where it directly follows an expression it is the binary subtraction operator (see [8.6 Binary Operators](./expressions.md#86-binary-operators)), and spacing around it is free: `value-1`, `value -1`, and `value - 1` all subtract `1` from `value`. Where no expression has just ended — after `=`, `(`, `[`, `,`, `return`, or another operator — `-1` is the negative literal.
+
 #### 4.7.3.2 Examples
 
 ```inference
 let a: i32 = 42;
 let b: u64 = 1000;
-let c: i32 = -7;
+let c: i32 = -7;    // a negative literal: the sign is attached
+let d: i8 = -128;   // the minimum of `i8`, expressible only this way
+let e: i32 = c-1;   // subtraction: the `-` follows an expression
+let f: i32 = -c;    // negation of a variable, which is not a literal
+```
+
+The following is ill-formed, because the sign is separated from the digits:
+
+```inference
+let g: i32 = - 7;
 ```
 
 ## 4.8 Right arrow
