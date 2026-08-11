@@ -95,6 +95,8 @@ Unary operators are operators that operate on a single operand. In Inference, th
 
 The operand of a unary expression is an expression.
 
+The `-` operator may not be applied to a numeric literal it is written apart from. A negative number is a single literal carrying its own sign (see [4.7.3 Numeric](./lexical-structure.md#473-numeric)), so `-42` is its only well-formed spelling and `- 42` is ill-formed. The restriction covers that one shape and no other: negation of any other operand may be spaced freely, so `-x` and `- x` are equivalent, as are `-(a + b)` and `- (a + b)`, and `-(42)` negates a parenthesized expression rather than a literal.
+
 ### 8.5.2 Examples
 
 ```inference
