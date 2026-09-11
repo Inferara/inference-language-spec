@@ -97,6 +97,8 @@ The operand of a unary expression is an expression.
 
 The `-` operator may not be applied to a numeric literal it is written apart from. A negative number is a single literal carrying its own sign (see [4.7.3 Numeric](./lexical-structure.md#473-numeric)), so `-42` is its only well-formed spelling and `- 42` is ill-formed. The restriction covers that one shape and no other: negation of any other operand may be spaced freely, so `-x` and `- x` are equivalent, as are `-(a + b)` and `- (a + b)`, and `-(42)` negates a parenthesized expression rather than a literal.
 
+`-` is checked: when the mathematical result of the operation lies outside the range of its operand type, the program traps. This holds at every integer width and in both compilation modes. Writing the expression inside a `wrapping(...)` makes it compute that result modulo two to the power of the operand type's width instead (see [8.7 Arithmetic Overflow](#87-arithmetic-overflow)). `!` and `~` cannot overflow.
+
 ### 8.5.2 Examples
 
 ```inference
@@ -135,7 +137,9 @@ Binary operators are operators that operate on two operands. In Inference, the f
 - `&&` (logical AND)
 - `||` (logical OR)
 
-The logical operators `&&` and `||` use short-circuit evaluation: the right operand is evaluated only when the left operand does not determine the result — `&&` evaluates its right operand only when the left operand is `true`, and `||` evaluates its right operand only when the left operand is `false`. A trap in the right operand (such as a division by zero or an out-of-bounds array index) therefore cannot occur when the left operand decides the expression, which makes guard expressions such as `x != 0 && y / x > 1` well-defined.
+`+`, `-` and `*` are checked: when the mathematical result of the operation lies outside the range of its operand type, the program traps. This holds at every integer width and in both compilation modes. Writing the expression inside a `wrapping(...)` makes them compute that result modulo two to the power of the operand type's width instead (see [8.7 Arithmetic Overflow](#87-arithmetic-overflow)). The remaining arithmetic operators are not checked in this sense, and for different reasons: signed division traps on its own at the one quotient a width cannot hold and on a zero divisor, `%` cannot overflow at any width, and a shift discards the bits it moves out by definition.
+
+The logical operators `&&` and `||` use short-circuit evaluation: the right operand is evaluated only when the left operand does not determine the result — `&&` evaluates its right operand only when the left operand is `true`, and `||` evaluates its right operand only when the left operand is `false`. A trap in the right operand (such as a division by zero, an out-of-bounds array index, or an arithmetic result outside its operand type) therefore cannot occur when the left operand decides the expression, which makes guard expressions such as `x != 0 && y / x > 1` well-defined.
 
 Bitwise operators are available, but they are added to support imported code. For instance, if an external function that is part of a specification returns a bit-packed value, we need a way to unpack such a union. Other possible reasons for using bitwise operators in a specification, like memory or computation optimization, are not relevant because a specification is not an execution unit.
 
@@ -154,6 +158,34 @@ Left and right operands of a binary expression are expressions.
 ```inference
 fn example() -> u32 {
   return 1 + 2 * 3;
+}
+```
+
+## 8.7 Arithmetic Overflow
+
+### 8.7.1 Description
+
+`wrapping(e)` and `checked(e)` are prefix expression forms that fix how the arithmetic written inside `e` behaves on overflow. `wrapping(e)` makes every `+`, `-`, `*` and unary `-` written between its parentheses compute its result modulo two to the power of the operand type's width; `checked(e)` makes them trap, which is what they do anywhere no `wrapping(...)` encloses them. The expression has the type of `e`.
+
+`checked` and `wrapping` are reserved words. Neither may be used as the name of anything.
+
+The forms are lexical and they nest, innermost first: in `wrapping(a * checked(b + c))` the multiplication wraps and the addition traps. They govern the operators written between their own parentheses and no others, so the body of a function called inside `e` keeps whatever its own source says, and `wrapping(f(x))` changes nothing about `f`.
+
+`e` is a scalar expression — an integer or a `bool`. A `bool` is admitted because the arithmetic being governed may sit inside a comparison, as in `wrapping(a + b > c)`. A compound, unit or function-typed `e` is ill-formed.
+
+An annotation that contains no `+`, `-`, `*` or unary `-` at a type that can overflow is ill-formed. A negative number is a single literal carrying its own sign rather than a negation applied to a value (see [4.7.3 Numeric](./lexical-structure.md#473-numeric)), so `wrapping(-2147483648)` contains no arithmetic and is ill-formed under the same rule. A `checked(e)` that no `wrapping(...)` encloses names the behaviour already in force: it is well-formed and changes nothing.
+
+### 8.7.2 Examples
+
+```inference
+fn fixmul(a: i64, b: i64) -> i64 {
+  const ONE: i64 = 1048576;
+  return a * b / ONE;
+}
+
+fn mix(s: u64) -> u64 {
+  const C1: u64 = 11400714819323198485;
+  return wrapping(s * C1);
 }
 ```
 
