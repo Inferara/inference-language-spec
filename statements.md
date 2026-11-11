@@ -99,32 +99,44 @@ fn foo(i: i32) -> () forall {
 
 ### 9.7.1 Description
 
-The `unique` keyword is followed by a [block](#92-block). It should be embedded in the `exists` block to locally strengthen its execution semantics. By wrapping a code block in a `unique` modifier, we add a restriction on execution paths entering it to continue after its closing bracket.
+The `unique` keyword is followed by a [block](#92-block). The block succeeds if and only if exactly one assignment of values to the `@` variables it declares completes it: at least one assignment does, and any two assignments that do are equal.
 
-If and only if every combination of `@` values encountered through block execution either leads it to failure or to states of success indistinguishable from each other, `unique` block succeeds with this exit state.
+The variables compared are those introduced by `let x: T = @;` statements written directly in the block. They must be scalar, and the block must declare at least one. Such a declaration inside an `if` arm, an `assume` block or a plain nested block of the `unique` block is an error. A `@` variable declared under a nested `forall` or `exists` block belongs to that quantifier and is not compared.
 
-As `unique` doesn't erase changes to machine state upon exit, it is not a quantifier and can't be used in deterministic code or inside quantifiers otside of `exists`.
+`unique` may be used as a block statement anywhere inside a specification function, as the kind of an `if` arm (`if c unique { ... }`), and as the body kind of a function (`fn f() unique { ... }`). It cannot be used in deterministic code.
 
 ### 9.7.2 Examples
 
 ```inference
-fn foo(n: u32) exists {
-  let mut p: u64;
-  let mut q: u64;
+spec Factors {
+  // 6 has exactly one factor pair with 1 < p < q < 6.
+  fn factor_pair() {
+    unique {
+      let p: u32 = @;
+      let q: u32 = @;
+      assert(p > 1);
+      assert(p < q);
+      assert(q < 6);
+      assert(p * q == 6);
+    }
+  }
 
-  unique {
-    p = @;
-    assert(p > 1 && p < n);
-
-    q = @;
-    assert(q > 1 && q < n);
-
-    assert(p < q && p * q == n);
+  // `z` belongs to the nested `exists` and is not compared:
+  // the claim is about `x` alone.
+  fn dismissed_draw(n: i32) forall {
+    unique {
+      let x: i32 = @;
+      assert(x == n);
+      exists {
+        let z: i32 = @;
+        assert(z == x);
+      }
+    }
   }
 }
 ```
 
-Quantified procedure `foo` succeeds if and only if its argument is a composite number with exactly two non-trivial divisors. So, `foo(6);` and `foo(8);` will succeed, while `foo(7);` and `foo(12);` fail.
+`factor_pair` holds because `(2, 3)` is the only pair that satisfies all four conditions. Without the bound `q < 6` it would not: the multiplication is 32-bit machine arithmetic, and pairs whose product wraps around to 6 would count as further solutions.
 
 ## 9.8 Loop
 
