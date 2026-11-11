@@ -112,31 +112,37 @@ The rules regarding execution path isolation and dismissal of side effects for `
 
 ### 3.1.5 Unique
 
-The `unique` block ensures, that for every distinct program state entering it there is one and only one program state exiting it, reachable through selection of `@` values along the way. It should be seen as a local strengthening of the `exists` quantifier it is embedded in. For example:
+A `unique` block claims that exactly one assignment of values to the `@` variables it declares completes the block. The values it compares are the ones introduced by `let x: T = @;` statements written directly in the block. For example:
 
 ```inference
-forall {
-    /// Here computation splits into 2^32 subpaths,
-    /// with `x` holding distinct value on each.
-    let y: u32 = @;
-
-    /// Here we filter out `y` values not obeying `check_foo` property.
-    assume { check_foo(y); }
-
-    /// Here we check that there is only one pre-image of `y`
-    /// in the domain of function `bar`.
-    exists {
-        let mut x: u32;
-        unique { x = @; assert(bar(x) == y); }
-    }
+fn bar(x: i32) -> i32 {
+    return wrapping(x + 1);
 }
 
-/// This point is reached iff every value of `y` that successfully
-/// pass through `check_foo` there is only one `x` such as `bar(y) == x`.
-print("Success!");
+spec Preimage {
+    /// For every `y` there is exactly one `x` with `bar(x) == y`.
+    fn one_preimage(y: i32) forall {
+        unique {
+            let x: i32 = @;
+            assert(bar(x) == y);
+        }
+    }
+}
 ```
 
-Similarly to `assume`, `unique` retains all changes in the machine state along execution path going through its body.
+The claim has two halves: some value of `x` completes the block, and every value of `x` that completes it is that same value. A `unique` block may stand wherever a block statement may stand inside a specification: directly in a function body, inside a `forall`, `exists` or `assume` block, or as the kind of an `if` arm. It may also be the body of a function (`fn f() unique { ... }`), where the values compared are the function's parameters and the `@` variables declared directly in its body.
+
+A `@` variable declared under a nested `forall` or `exists` block belongs to that quantifier and is not one of the values compared. The nested block is part of what each candidate value must satisfy, and its own variables are dismissed when it closes, as for any quantifier.
+
+Three restrictions keep the claim well defined:
+
+- A compared value must be declared by a `let x: T = @;` statement directly in the `unique` block. A declaration inside an `if` arm, an `assume` block or a plain nested block is rejected, because on a path that skips it the variable would be unconstrained and no claim of uniqueness could hold.
+- A compared value must be scalar.
+- A `unique` block must declare at least one value of its own.
+
+A candidate value is excluded only by a condition that is defined and false. A candidate on which a called function traps is neither excluded nor equal to the chosen value, so uniqueness over a partial function needs conditions that fence its undefined region off before the call.
+
+Arithmetic inside the block is the same machine arithmetic as everywhere else. At `u8`, `x * 2 == 10` under `wrapping` has two solutions, 5 and 133, so bounds that exclude wrap-around must be stated explicitly.
 
 ### 3.1.6 Semantics
 
@@ -148,7 +154,7 @@ It is important to differentiate between non-determinism as a model of execution
 
 `@` variables actually have well-defined semantics. They are undefined in terms of which specific value they hold, but the behavior of operations involving them is specified according to the language rules. It is optimal to percieve undefined values of Inference the same way we percieve unbound variables in logical formulas, as sets of possibilities delimiting domain space of expressions under $\forall$ and $\exists$ quantors, whose essence in Inference is captured by `forall` and `exists` keywords.
 
-In operational terms, *successful termination* of an execution path means it does not trap — no unreachable instruction is hit, no `assert` fails, no out-of-bounds access occurs, no integer division by zero occurs, no signed division overflows, and no checked `+`, `-`, `*` or unary `-` produces a result outside its operand type. A `forall` block succeeds iff every path through its body completes without trapping; an `exists` block succeeds iff at least one such path exists; a `unique` block succeeds iff exactly one does; an `assume` block silently drops the paths that would have trapped. This is the runtime correspondent of the quantifier semantics above and is what the verifier checks.
+In operational terms, *successful termination* of an execution path means it does not trap — no unreachable instruction is hit, no `assert` fails, no out-of-bounds access occurs, no integer division by zero occurs, no signed division overflows, and no checked `+`, `-`, `*` or unary `-` produces a result outside its operand type. A `forall` block succeeds iff every path through its body completes without trapping; an `exists` block succeeds iff at least one such path exists; a `unique` block succeeds iff exactly one assignment of values to the `@` variables it declares has such a path; an `assume` block silently drops the paths that would have trapped. This is the runtime correspondent of the quantifier semantics above and is what the verifier checks.
 
 For more information, see the following article: [Specifying Algorithms Using Non-Deterministic Computations](https://www.inferara.com/en/papers/specifying-algorithms-using-non-deterministic-computations/)
 
